@@ -46,7 +46,7 @@ function renderPokemonInfo() {
     nameEL.textContent = currentPokemon.name
     
     pokemonIdNumber()
-    
+
     //Main picture from pokemon.
     document.querySelector('.img').src = currentPokemon.sprites.other.home.front_default;
 
@@ -113,7 +113,7 @@ function pokemonType() {
     typeEl.innerHTML = '';
     for (let i = 0; i < currentPokemonType.length; i++) {
         const element = currentPokemonType[i];
-        typeEl.innerHTML += `<div>${element.type.name}</div>`;
+        typeEl.innerHTML += `<div class="pokemon-type-name">${element.type.name}</div>`;
     }
 }
 
@@ -169,7 +169,7 @@ function nameOfThePokemonInOtherLanguages() {
     }
 }
 
-//Die function show statistik
+//Die function show the statistik.
 function pokemonStats() {
     const statsEl = document.querySelector('.pokemon-stats');
     statsEl.innerHTML = '';
