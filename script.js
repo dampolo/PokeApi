@@ -1,5 +1,6 @@
 let currentPokemon;
-let currentPokemonSpecies
+let currentPokemonSpecies;
+let currentPokemonEvolution;
 
 
 let currentPokemonType;
@@ -12,21 +13,23 @@ let currentFemaleMale; //Mrs or Mr
 
 
 const uri = 'https://pokeapi.co/api/v2';
-let id = 1
+let id = 1;
 
 async function loadPokemon() {
     currentPokemon = await sendRequest(`/pokemon/${id}`);
     currentPokemonType = currentPokemon.types;
     currentPokemonStats = currentPokemon.stats;
     currentPokemonMoves = currentPokemon.moves;
-    console.log(currentPokemonMoves)
+    // console.log(currentPokemonMoves)
     currentPokemonAbilities = currentPokemon.abilities;
     // Fetch Pokemon species data
     currentPokemonSpecies = await sendRequest(`/pokemon-species/${id}`)
     currentPokemonLanguages = currentPokemonSpecies.names; // Adjust this based on the structure of the response
     currentFemaleMale = currentPokemonSpecies.gender_rate
     
-    console.log('Curren Pokemon', currentPokemon);
+    // currentPokemonEvolution = await sendRequest(`/evolution_chain/${id}`)
+
+    // console.log('Curren Pokemon', currentPokemon);
     console.log('pokemon-species', currentPokemonSpecies);
     
     renderPokemonInfo();
@@ -68,9 +71,8 @@ function renderPokemonInfo() {
     nameOfThePokemonInOtherLanguages()
     pokemonStats()
     
-    document.querySelector('.pokemon-egg-groups').innerHTML = currentPokemonSpecies.egg_groups[0].name
-    // document.querySelector('.pokemon-egg-cycle').innerHTML = currentPokemonSpecies.egg_groups[1].name
-    
+    pokemonBreeding()
+   
     const movesEl = document.querySelector(".pokemon-moves")
     movesEl.innerHTML = '';
 
@@ -84,14 +86,14 @@ function renderPokemonInfo() {
 //Number and Id of the pokemon.
 function pokemonIdNumber() {
     const numberEl = document.querySelector('.pokemon-number')
-    if (currentPokemon.id >= 0) {
+    if (currentPokemon.id <= 9) {
         numberEl.textContent = `#000${currentPokemon.id}`
-    } else if (currentPokemon.id >= 10) {
+    } else if (currentPokemon.id <= 99) {
         numberEl.textContent = `#00${currentPokemon.id}`
-    } else if (currentPokemon.id >= 100) {
+    } else if (currentPokemon.id <= 9999) {
         numberEl.textContent = `#0${currentPokemon.id}`
-    } else if (currentPokemon.id >= 1000) {
-        numberEl.textContent = `#0${currentPokemon.id}`
+    } else {
+        numberEl.textContent = `#${currentPokemon.id}`
     }
 }
 
@@ -127,6 +129,23 @@ function pokemonAbilities() {
             abilitiesEl.textContent += ', ';
         }
         abilitiesEl.textContent += `${element.ability.name}`
+    }
+}
+
+function pokemonBreeding() {
+    const eggGroups = document.querySelector('.pokemon-egg-groups');
+    const eggCycle = document.querySelector('.pokemon-egg-cycle');
+
+    // eggCycle.innerHTML = currentPokemonSpecies.egg_groups[1].name;
+    if (!currentPokemonSpecies.egg_groups[0] || !currentPokemonSpecies.egg_groups[0].name) {
+    } else {
+        eggGroups.innerHTML = currentPokemonSpecies.egg_groups[0].name;
+    }
+
+    if (!currentPokemonSpecies.egg_groups[1] || !currentPokemonSpecies.egg_groups[1].name) {
+        eggCycle.textContent = '---------';
+    } else {
+        eggCycle.innerHTML = currentPokemonSpecies.egg_groups[1].name;
     }
 }
 
@@ -206,10 +225,10 @@ function pokemonStats() {
     }
     statsEl.innerHTML += /*html*/ `
             <div class="row my-3 d-flex align-items-center">
-                <div class="text-capitalize col-4 p-0 fw-bold pokemon-base-stats-name">Total</div>
+                <div class="text-capitalize col-3 p-0 fw-bold pokemon-base-stats-name">Total</div>
                     <div class="col-1 p-0 fw-bold">${totalSum}
                     </div>
-                <div class="progress col-7 px-0">
+                <div class="progress col-7 px-0 ms-sm-auto">
                     <div class="progress-bar bg-success" role="progressbar" aria-label="Success example" style="width: ${totalSum / 7}%" aria-valuemin="0" aria-valuemax="700">
                     </div>
                 </div>

@@ -20,6 +20,7 @@
     flex-direction: column;
     height: 100vh;
     line-height: 1.5;
+    scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     font-family: 'Roboto', sans-serif;
   }
@@ -154,7 +155,7 @@ header {
 }
 
 .pokemon-bottom {
-  transform: translateY(-75px);
+  transform: translateY(-60px);
   background-color: rgb(255, 255, 255);
   display: flex;
   flex-direction: column;
@@ -204,7 +205,7 @@ header {
 }
 .about-section {
   line-height: 1.8;
-  display: none;
+  display: flex;
   flex-direction: column;
 }
 
@@ -212,21 +213,27 @@ header {
   width: 100%;
   overflow: hidden;
   padding: 0;
-  margin: 0
+  margin: 0;
 }
 
 .about-dt {
   float: left;
   width: 50%;
   /* adjust the width; make sure the total of both is 100% */
+  font-weight: unset;
   padding: 0;
   margin: 0
+}
+
+.pokemon-abilities {
+  height: 55px;
 }
 
 .about-dd {
   float: left;
   width: 50%;
   /* adjust the width; make sure the total of both is 100% */
+  font-weight: 700;
   padding: 0;
   margin: 0
 }
@@ -237,6 +244,11 @@ header {
 
 .pokemon-gender-female {
   margin-right: 10px;
+  font-weight: 700;
+}
+
+.pokemon-gender-male {
+  font-weight: 700;
 }
 
 .gender-info {
@@ -248,13 +260,14 @@ header {
   display: flex;
   margin: 0 30px 20px 30px;
   overflow: hidden;
+  overflow-y: auto;
 }
 
 .pokemon-languages {
   width: 100%;
   max-width: 440px;
   overflow-y: scroll;
-  display: none;
+  display: flex;
 }
 
 .pokemon-languages-content {
@@ -278,7 +291,6 @@ button {
   cursor: pointer;
   background-color: rgba(74,74,74,.9);
   border: none;
-  border-radius: 40px;
   /* it must be z-index otherwise cursor pointer doesn't work. */
   z-index: 3;
   transition: ease-in-out 200ms;
@@ -345,13 +357,14 @@ right: 30px;
   display: flex;
   font-weight: 500;
   overflow-y: auto;
+  overflow-x: hidden;
   flex-wrap: wrap;
 }
 
 .pokemon-type-name {
   border-radius: 10px 10px 10px 10px;
   padding: 2px 10px;
-  background-color: rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.5);
 
 }
 .pokemon-move-name {
@@ -388,8 +401,21 @@ right: 30px;
   }
 }
 
-@media (max-width: 320px) {
+@media (max-height: 850px) {
+  .pokemon-img {
+    height: 250px;
+  }
   .img {
-    /* transform: translateY(35px); */
+    transform: translateY(-25%);
+    height: 250px;
+  }
+
+  .pokemon-bottom {
+    height: 330px;
+  }
+
+  .test {
+    display: flex;
+    justify-content: center;
   }
 }
