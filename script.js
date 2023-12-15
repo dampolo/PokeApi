@@ -1,7 +1,6 @@
 let currentPokemon;
 let currentPokemonSpecies;
-let currentPokemonEvolution;
-
+let currentPokemonEvolution
 
 let currentPokemonType;
 let currentPokemonLanguages;
@@ -10,7 +9,14 @@ let currentPokemonAbout;
 let currentPokemonAbilities;
 let currentPokemonMoves;
 let currentFemaleMale; //Mrs or Mr
+let currentPokemonEvolutionChain;
 
+let namePokemon;
+let defultEvolutionPokemonName
+let firstEvolutionPokemonName;
+let secondEvolutionPokemonName;
+
+let temporaryId;
 
 const uri = 'https://pokeapi.co/api/v2';
 let id = 1;
@@ -26,13 +32,50 @@ async function loadPokemon() {
     currentPokemonSpecies = await sendRequest(`/pokemon-species/${id}`)
     currentPokemonLanguages = currentPokemonSpecies.names; // Adjust this based on the structure of the response
     currentFemaleMale = currentPokemonSpecies.gender_rate
-    
-    // currentPokemonEvolution = await sendRequest(`/evolution_chain/${id}`)
+    //Path to evolution_chain.url
+    currentPokemonEvolutionChain = currentPokemonSpecies.evolution_chain.url
 
-    // console.log('Curren Pokemon', currentPokemon);
-    console.log('pokemon-species', currentPokemonSpecies);
-    
-    renderPokemonInfo();
+    function extractNumberFromUrl(url) {
+        // Match the last sequence of digits in the URL
+        const match = url.match(/\/(\d+)\/$/);
+        // Check if there is a match
+        if (match && match[1]) {
+            // Extracted number
+            const number = parseInt(match[1], 10);
+            temporaryId = number;
+            return number;
+        } else {
+            // Return an error or handle the case where no number is found
+            return null;
+        }
+    }
+    extractNumberFromUrl(currentPokemonEvolutionChain)
+
+    console.log(currentPokemonEvolutionChain)
+
+    currentPokemonEvolution = await sendRequest(`/evolution-chain/${temporaryId}`)
+    namePokemon = currentPokemonEvolution.chain.species.name
+
+    defultEvolutionPokemonName = currentPokemonEvolution.chain.species.name
+    firstEvolutionPokemonName = currentPokemonEvolution.chain.evolves_to[0].species.name
+    secondEvolutionPokemonName = currentPokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name
+
+    const defultNameEl = document.querySelector('.defult-name-evolution');
+    defultNameEl.textContent = defultEvolutionPokemonName;
+
+    const firstNameEl = document.querySelector('.first-name-evolution');
+    firstNameEl.textContent = firstEvolutionPokemonName;
+
+    const secondNameEl = document.querySelector('.second-name-evolution');
+    secondNameEl.textContent = secondEvolutionPokemonName;
+
+
+    console.log("Name:", currentPokemonEvolution)
+    console.log("First Name:", firstEvolutionPokemonName)
+    console.log("Second Name:", secondEvolutionPokemonName)
+      
+      // console.log('pokemon-species', currentPokemonSpecies);
+      renderPokemonInfo();
 }
 
 async function sendRequest(endpoint) {
@@ -41,45 +84,30 @@ async function sendRequest(endpoint) {
     return await response.json();
 }
 
-
 function renderPokemonInfo() {
     document.querySelector('.pokemon-top-section').style.backgroundColor = currentPokemonSpecies.color.name;
 
-    const nameEL = document.querySelector('.pokemon-name')
-    nameEL.textContent = currentPokemon.name
-    
+    nameOfPokemon()
     pokemonIdNumber()
-
     //Main picture from pokemon.
-    document.querySelector('.img').src = currentPokemon.sprites.other.home.front_default;
-
-    const famalePrecent = (currentFemaleMale*100)/8;
-    const malePrecent = (100 - famalePrecent);
-    document.querySelector('.pokemon-gender-female').textContent = famalePrecent + '%';
-    document.querySelector('.pokemon-gender-male').textContent = malePrecent + '%'
-
+    const imgEl = document.querySelector('.img')
+    imgEl.src = currentPokemon.sprites.other.home.front_default;
+    pokemonFamaleOrMale()
     pokemonType()
+    pokemonSpecies();
+    pokemonHeight();
+    pokemonWeight();
+    pokemonAbilities();
+    nameOfThePokemonInOtherLanguages();
+    pokemonStats();
+    pokemonBreeding();
+    pokemonMoves();
+}
 
-    //Species of pokemon
-    let pokemonSpeciesArt = currentPokemonSpecies.genera[7].genus
-    let pokemonSpeciesArtFirstWort = pokemonSpeciesArt
-    document.querySelector('.species').innerHTML = pokemonSpeciesArtFirstWort
-
-    pokemonHeight()
-    pokemonWeight()
-    pokemonAbilities()
-    nameOfThePokemonInOtherLanguages()
-    pokemonStats()
-    
-    pokemonBreeding()
-   
-    const movesEl = document.querySelector(".pokemon-moves")
-    movesEl.innerHTML = '';
-
-    for (let i = 0; i < currentPokemonMoves.length; i++) {
-        const element = currentPokemonMoves[i];
-        movesEl.innerHTML += `<div class="pokemon-move-name">${element.move.name}</div>`
-    }
+//Name of the pokemon.
+function nameOfPokemon() {
+    const nameEL = document.querySelector('.pokemon-name');
+    nameEL.textContent = currentPokemon.name
 
 }
 
@@ -97,16 +125,22 @@ function pokemonIdNumber() {
     }
 }
 
+//height of the pokemon.
+function pokemonWeight() {
+    const pokemonHeight = ((currentPokemon.height*10)/100).toFixed(2)
+    document.querySelector('.pokemon-height').innerHTML = pokemonHeight + ' cm';
+}
+
 //weight of the pokemon.
 function pokemonHeight() {
     const pokemonWeight = (currentPokemon.weight)/10;
     document.querySelector('.pokemon-weight').innerHTML = pokemonWeight + ' kg';
 }
 
-//height of the pokemon.
-function pokemonWeight() {
-    const pokemonHeight = ((currentPokemon.height*10)/100).toFixed(2)
-    document.querySelector('.pokemon-height').innerHTML = pokemonHeight + ' cm';
+//Species of pokemon
+function pokemonSpecies() {
+    let pokemonSpeciesArt = currentPokemonSpecies.genera[7].genus;
+    document.querySelector('.species').innerHTML = pokemonSpeciesArt;
 }
 
 // A list of details showing types this Pokémon has.
@@ -118,6 +152,15 @@ function pokemonType() {
         typeEl.innerHTML += `<div class="pokemon-type-name">${element.type.name}</div>`;
     }
 }
+
+// Mrs or Mr
+function pokemonFamaleOrMale() {
+    const famalePrecent = (currentFemaleMale*100)/8;
+    const malePrecent = (100 - famalePrecent);
+    document.querySelector('.pokemon-gender-female').textContent = famalePrecent + '%';
+    document.querySelector('.pokemon-gender-male').textContent = malePrecent + '%';
+}
+
 
 function pokemonAbilities() {
     const abilitiesEl = document.querySelector(".pokemon-abilities")
@@ -228,11 +271,21 @@ function pokemonStats() {
                 <div class="text-capitalize col-3 p-0 fw-bold pokemon-base-stats-name">Total</div>
                     <div class="col-1 p-0 fw-bold">${totalSum}
                     </div>
-                <div class="progress col-7 px-0 ms-sm-auto">
+                <div class="progress col-7 px-0 ms-auto">
                     <div class="progress-bar bg-success" role="progressbar" aria-label="Success example" style="width: ${totalSum / 7}%" aria-valuemin="0" aria-valuemax="700">
                     </div>
                 </div>
             </div>`
+}
+
+function pokemonMoves() {
+    const movesEl = document.querySelector(".pokemon-moves")
+    movesEl.innerHTML = '';
+
+    for (let i = 0; i < currentPokemonMoves.length; i++) {
+        const element = currentPokemonMoves[i];
+        movesEl.innerHTML += `<div class="pokemon-move-name">${element.move.name}</div>`
+    }
 }
 
 
