@@ -42,26 +42,65 @@ async function loadPokemon() {
     //Path to evolution_chain.url
     currentPokemonEvolutionChain = currentPokemonSpecies.evolution_chain.url
 
-    function extractNumberFromUrl(url) {
-        // Match the last sequence of digits in the URL
-        const match = url.match(/\/(\d+)\/$/);
-        // Check if there is a match
-        if (match && match[1]) {
-            // Extracted number
-            const number = parseInt(match[1], 10);
-            temporaryId = number;
-            return number;
-        } else {
-            // Return an error or handle the case where no number is found
-            return null;
-        }
-    }
     extractNumberFromUrl(currentPokemonEvolutionChain)
 
     console.log(currentPokemonEvolutionChain)
 
     currentPokemonEvolution = await sendRequest(`/evolution-chain/${temporaryId}`)
     namePokemon = currentPokemonEvolution.chain.species.name
+
+    evolutionLoadTheNameFromTheChain()
+
+    defultPokemonName = await sendRequest(`/pokemon/${defultName}`);
+    firstPokemonName = await sendRequest(`/pokemon/${firstName}`);
+    secondPokemonName = await sendRequest(`/pokemon/${secondName}`);
+    
+    
+    evolutionLoadTheImageThroughTheNameFromTheChain()
+    console.log("Second Name:", secondEvolutionPokemonName)
+    console.log('pokemon', currentPokemon);
+    console.log('pokemon-species', currentPokemonSpecies);
+    
+    renderPokemonInfo();
+}
+
+async function sendRequest(endpoint) {
+    const url = `${uri}${endpoint}`
+    const response = await fetch(url)
+    return await response.json();
+}
+
+
+
+function extractNumberFromUrl(url) {
+    // Match the last sequence of digits in the URL
+    const match = url.match(/\/(\d+)\/$/);
+    // Check if there is a match
+    if (match && match[1]) {
+        // Extracted number
+        const number = parseInt(match[1], 10);
+        temporaryId = number;
+        return number;
+    } else {
+        // Return an error or handle the case where no number is found
+        return null;
+    }
+}
+
+function evolutionLoadTheImageThroughTheNameFromTheChain() {
+    console.log("Name:", currentPokemonEvolution)
+    const imgDefultName = document.querySelector('.img-defult-name-evolution')
+    imgDefultName.src = defultPokemonName.sprites.other.home.front_default;
+    
+    console.log("First Name:", firstEvolutionPokemonName)
+    const imgFirstName = document.querySelector('.img-first-name-evolution')
+    imgFirstName.src = firstPokemonName.sprites.other.home.front_default;
+    
+    const imgSecondName = document.querySelector('.img-second-name-evolution')
+    imgSecondName.src = secondPokemonName.sprites.other.home.front_default;
+    }
+
+function evolutionLoadTheNameFromTheChain() {
 
     defultEvolutionPokemonName = currentPokemonEvolution.chain.species.name;
     defultName = defultEvolutionPokemonName;
@@ -80,37 +119,7 @@ async function loadPokemon() {
 
     const secondNameEl = document.querySelector('.second-name-evolution');
     secondNameEl.textContent = secondEvolutionPokemonName;
-    
-    defultPokemonName = await sendRequest(`/pokemon/${defultName}`);
-    firstPokemonName = await sendRequest(`/pokemon/${firstName}`);
-    secondPokemonName = await sendRequest(`/pokemon/${secondName}`);
-
-
-    
-    console.log("Name:", currentPokemonEvolution)
-    const imgDefultName = document.querySelector('.img-defult-name-evolution')
-    imgDefultName.src = defultPokemonName.sprites.other.home.front_default;
-    
-    console.log("First Name:", firstEvolutionPokemonName)
-    const imgFirstName = document.querySelector('.img-first-name-evolution')
-    imgFirstName.src = firstPokemonName.sprites.other.home.front_default;
-    
-    const imgSecondName = document.querySelector('.img-second-name-evolution')
-    imgSecondName.src = secondPokemonName.sprites.other.home.front_default;
-
-    console.log("Second Name:", secondEvolutionPokemonName)
-    
-    console.log('pokemon', currentPokemon);
-    console.log('pokemon-species', currentPokemonSpecies);
-    
-    renderPokemonInfo();
-}
-
-async function sendRequest(endpoint) {
-    const url = `${uri}${endpoint}`
-    const response = await fetch(url)
-    return await response.json();
-}
+    }
 
 function renderPokemonInfo() {
     document.querySelector('.pokemon-top-section').style.backgroundColor = currentPokemonSpecies.color.name;
