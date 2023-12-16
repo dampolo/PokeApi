@@ -1,6 +1,8 @@
 let currentPokemon;
 let currentPokemonSpecies;
-let currentPokemonEvolution
+let currentPokemonEvolution;
+let currentPokemonName;
+
 
 let currentPokemonType;
 let currentPokemonLanguages;
@@ -20,9 +22,14 @@ let temporaryId;
 
 const uri = 'https://pokeapi.co/api/v2';
 let id = 1;
+let defultName;
+let firstName;
+let secondName;
+
 
 async function loadPokemon() {
     currentPokemon = await sendRequest(`/pokemon/${id}`);
+    
     currentPokemonType = currentPokemon.types;
     currentPokemonStats = currentPokemon.stats;
     currentPokemonMoves = currentPokemon.moves;
@@ -56,9 +63,14 @@ async function loadPokemon() {
     currentPokemonEvolution = await sendRequest(`/evolution-chain/${temporaryId}`)
     namePokemon = currentPokemonEvolution.chain.species.name
 
-    defultEvolutionPokemonName = currentPokemonEvolution.chain.species.name
+    defultEvolutionPokemonName = currentPokemonEvolution.chain.species.name;
+    defultName = defultEvolutionPokemonName;
+
     firstEvolutionPokemonName = currentPokemonEvolution.chain.evolves_to[0].species.name
+    firstName = firstEvolutionPokemonName
+    
     secondEvolutionPokemonName = currentPokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name
+    secondName = secondEvolutionPokemonName
 
     const defultNameEl = document.querySelector('.defult-name-evolution');
     defultNameEl.textContent = defultEvolutionPokemonName;
@@ -68,14 +80,30 @@ async function loadPokemon() {
 
     const secondNameEl = document.querySelector('.second-name-evolution');
     secondNameEl.textContent = secondEvolutionPokemonName;
+    
+    defultPokemonName = await sendRequest(`/pokemon/${defultName}`);
+    firstPokemonName = await sendRequest(`/pokemon/${firstName}`);
+    secondPokemonName = await sendRequest(`/pokemon/${secondName}`);
 
 
+    
     console.log("Name:", currentPokemonEvolution)
+    const imgDefultName = document.querySelector('.img-defult-name-evolution')
+    imgDefultName.src = defultPokemonName.sprites.other.home.front_default;
+    
     console.log("First Name:", firstEvolutionPokemonName)
+    const imgFirstName = document.querySelector('.img-first-name-evolution')
+    imgFirstName.src = firstPokemonName.sprites.other.home.front_default;
+    
+    const imgSecondName = document.querySelector('.img-second-name-evolution')
+    imgSecondName.src = secondPokemonName.sprites.other.home.front_default;
+
     console.log("Second Name:", secondEvolutionPokemonName)
-      
-      // console.log('pokemon-species', currentPokemonSpecies);
-      renderPokemonInfo();
+    
+    console.log('pokemon', currentPokemon);
+    console.log('pokemon-species', currentPokemonSpecies);
+    
+    renderPokemonInfo();
 }
 
 async function sendRequest(endpoint) {
