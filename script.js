@@ -21,7 +21,7 @@ let secondEvolutionPokemonName;
 let temporaryId;
 
 const uri = 'https://pokeapi.co/api/v2';
-let id = 1;
+let id = 19;
 let defultName;
 let firstName;
 let secondName;
@@ -44,7 +44,7 @@ async function loadPokemon() {
 
     extractNumberFromUrl(currentPokemonEvolutionChain)
 
-    console.log(currentPokemonEvolutionChain)
+    // console.log(currentPokemonEvolutionChain)
 
     currentPokemonEvolution = await sendRequest(`/evolution-chain/${temporaryId}`)
     namePokemon = currentPokemonEvolution.chain.species.name
@@ -55,11 +55,10 @@ async function loadPokemon() {
     firstPokemonName = await sendRequest(`/pokemon/${firstName}`);
     secondPokemonName = await sendRequest(`/pokemon/${secondName}`);
     
-    
     evolutionLoadTheImageThroughTheNameFromTheChain()
     console.log("Second Name:", secondEvolutionPokemonName)
-    console.log('pokemon', currentPokemon);
-    console.log('pokemon-species', currentPokemonSpecies);
+    // console.log('pokemon', currentPokemon);
+    // console.log('pokemon-species', currentPokemonSpecies);
     
     renderPokemonInfo();
 }
@@ -93,8 +92,11 @@ function evolutionLoadTheImageThroughTheNameFromTheChain() {
     imgDefultName.src = defultPokemonName.sprites.other.home.front_default;
     
     console.log("First Name:", firstEvolutionPokemonName)
-    const imgFirstName = document.querySelector('.img-first-name-evolution')
-    imgFirstName.src = firstPokemonName.sprites.other.home.front_default;
+
+    const imgFirstName = document.querySelectorAll('.img-first-name-evolution')
+        for (let i = 0; i < imgFirstName.length; i++) {
+            imgFirstName[i].src = firstPokemonName.sprites.other.home.front_default;
+        }
     
     const imgSecondName = document.querySelector('.img-second-name-evolution')
     imgSecondName.src = secondPokemonName.sprites.other.home.front_default;
@@ -108,14 +110,22 @@ function evolutionLoadTheNameFromTheChain() {
     firstEvolutionPokemonName = currentPokemonEvolution.chain.evolves_to[0].species.name
     firstName = firstEvolutionPokemonName
     
-    secondEvolutionPokemonName = currentPokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name
-    secondName = secondEvolutionPokemonName
+    // secondEvolutionPokemonName = currentPokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name
+    if(currentPokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name) {
+        secondName = secondEvolutionPokemonName
+    } else {
+        console.log('DUPA')
+        document.getElementById('.dupa').classList.add('d-none')
+    }
+
 
     const defultNameEl = document.querySelector('.defult-name-evolution');
     defultNameEl.textContent = defultEvolutionPokemonName;
 
-    const firstNameEl = document.querySelector('.first-name-evolution');
-    firstNameEl.textContent = firstEvolutionPokemonName;
+    const firstNameEl = document.querySelectorAll('.first-name-evolution');
+        for (let i = 0; i < firstNameEl.length; i++) {
+            firstNameEl[i].textContent = firstEvolutionPokemonName;;
+        }
 
     const secondNameEl = document.querySelector('.second-name-evolution');
     secondNameEl.textContent = secondEvolutionPokemonName;
@@ -218,6 +228,8 @@ function pokemonBreeding() {
 
     // eggCycle.innerHTML = currentPokemonSpecies.egg_groups[1].name;
     if (!currentPokemonSpecies.egg_groups[0] || !currentPokemonSpecies.egg_groups[0].name) {
+        eggGroups.textContent = '---------';
+
     } else {
         eggGroups.innerHTML = currentPokemonSpecies.egg_groups[0].name;
     }
@@ -332,6 +344,7 @@ function nextImageRight() {
 }
 
 function lastImageLeft() {
-    id--
+    id = 20;
+    id--;
     loadPokemon()
 }
