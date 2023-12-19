@@ -496,10 +496,3 @@ right: 30px;
   }
 }
 
-@media (max-width: 400px) {
-  .img {
-    transform: translateY(-20%);
-  }
-}
-
-
