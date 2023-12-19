@@ -183,7 +183,6 @@ header {
 }
 
 .pokemon-nav-item {
-  /* overflow: scroll; */
   display: flex;
   justify-content: center;
   cursor: pointer;
@@ -202,8 +201,8 @@ header {
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  width: 35px;
-  height: 35px;
+  min-width: 35px;
+  min-height: 35px;
   border-radius: 50%;
   background-color: rgb(245, 243, 241);
   margin: 5px;
