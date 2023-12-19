@@ -53,24 +53,36 @@
 
           </div>
           <div class="pokemon-bottom">
-            <ul class="pokemon-navbar">
-              <li class="pokemon-nav-item about-nav-item active" onclick="showSection('about-section')">
-                <a class="text-decoration-none about-nav-item-a active-a" href="#">About</a>
-              </li>
-              <li class="pokemon-nav-item languages-nav-item" onclick="showSection('pokemon-languages')">
-                <a class="text-decoration-none languages-nav-item-a" href="#">Languages</a>
-              </li>
-              <li class="pokemon-nav-item stats-nav-item" onclick="showSection('pokemon-stats')">
-                <a class="text-decoration-none stats-nav-item-a" href="#">Base Stats</a>
-              </li>
-              <li class="pokemon-nav-item evolution-nav-item" onclick="showSection('pokemon-evolution')">
-                <a class="text-decoration-none evolution-nav-item-a" href="#">Evolution</a>
-              </li>
-              <li class="pokemon-nav-item moves-nav-item" onclick="showSection('pokemon-moves')">
-                <a class="text-decoration-none moves-nav-item-a" href="#">Moves</a>
-              </li>
-            </ul>
-
+          <div class="navbar-section">
+            <div id="left-icon" class="nav-arrow-single" onclick="toLeft()">
+              <a href="javascript:void(0)">
+                <img class="nav-arrow" src="./icons/nav-arrow-left.svg" alt="left-icon"/>
+            </a>
+          </div>
+              <ul class="pokemon-navbar">
+                <li class="pokemon-nav-item about-nav-item active" onclick="showSection('about-section')">
+                  <a class="text-decoration-none about-nav-item-a active-a" href="#">About</a>
+                </li>
+                <li class="pokemon-nav-item languages-nav-item" onclick="showSection('pokemon-languages')">
+                  <a class="text-decoration-none languages-nav-item-a" href="#">Languages</a>
+                </li>
+                <li class="pokemon-nav-item stats-nav-item" onclick="showSection('pokemon-stats')">
+                  <a class="text-decoration-none stats-nav-item-a" href="#">Base stats</a>
+                </li>
+                <li class="pokemon-nav-item evolution-nav-item" onclick="showSection('pokemon-evolution')">
+                  <a class="text-decoration-none evolution-nav-item-a" href="#">Evolution</a>
+                </li>
+                <li class="pokemon-nav-item moves-nav-item" onclick="showSection('pokemon-moves')">
+                  <a class="text-decoration-none moves-nav-item-a" href="#">Moves</a>
+                </li>
+                <li class="pokemon-nav-item moves-nav-item" onclick="showSection('pokemon-moves')">
+                  <a class="text-decoration-none moves-nav-item-a" href="#">Growth rate</a>
+                </li>
+              </ul>
+              <div id="right-icon" class="nav-arrow-single" onclick="toRight()">
+                <a href="javascript:void(0)"><img class="nav-arrow" src="./icons/nav-arrow-right.svg" alt="right-icon"/> </a>
+              </div>
+            </div>
             <div class="all-sections">         
               <div class="about-section">
                 

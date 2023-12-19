@@ -347,7 +347,28 @@ function lastImageLeft() {
     loadPokemon()
 }
 
-
+function toRight() {
+    const listContainer = document.querySelector(".pokemon-navbar");
+    listContainer.scrollLeft += 115;
+    document.getElementById("left-icon").style.display = "flex";
+    // Check if we've reached the end
+    // if (listContainer.scrollLeft + listContainer.clientWidth >= listContainer.scrollWidth) {
+      // Hide the right arrow icon
+    //   document.getElementById("right-icon").style.display = "none";
+    // }
+  }
+  
+  // Scroll to left 
+  function toLeft() {
+    const listContainer = document.querySelector(".pokemon-navbar");
+    listContainer.scrollLeft -= 115;
+  
+    if(listContainer.scrollLeft === 0) {
+    //   document.getElementById("left-icon").style.display = "none";
+    }
+    // Show the right arrow icon when scrolling left
+    // document.getElementById("right-icon").style.display = "flex";
+  }
 
 function showSection(sectionClass) {
     const sections = ['about-section', 'pokemon-languages', 'pokemon-stats', 'pokemon-evolution', 'pokemon-moves'];
