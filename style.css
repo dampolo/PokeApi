@@ -180,14 +180,23 @@ header {
   cursor: pointer;
   width: 100%;
   font-weight: 700;
-  border-bottom: 2px solid rgba(0, 0, 0, 0.205);
+  border-bottom: 3px solid rgba(0, 0, 0, 0.205);
   padding-bottom: 10px;
   transition: all 500ms;
 }
 
 .pokemon-nav-item:hover {
   color: rgb(0, 0, 0);
-  border-bottom: 2px solid rgb(0, 0, 0);
+  border-bottom: 3px solid rgb(0, 0, 0);
+}
+
+.active {
+  color: rgb(0, 0, 0);
+  border-bottom: 3px solid rgb(0, 0, 0);
+}
+
+.active-a {
+  color: rgb(0, 0, 0) !important;
 }
 
 .pokemon-nav-item a {

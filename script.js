@@ -21,7 +21,7 @@ let secondEvolutionPokemonName;
 let temporaryId;
 
 const uri = 'https://pokeapi.co/api/v2';
-let id = 19;
+let id = 1;
 let defultName;
 let firstName;
 let secondName;
@@ -56,7 +56,6 @@ async function loadPokemon() {
     secondPokemonName = await sendRequest(`/pokemon/${secondName}`);
     
     evolutionLoadTheImageThroughTheNameFromTheChain()
-    console.log("Second Name:", secondEvolutionPokemonName)
     // console.log('pokemon', currentPokemon);
     // console.log('pokemon-species', currentPokemonSpecies);
     
@@ -110,12 +109,12 @@ function evolutionLoadTheNameFromTheChain() {
     firstEvolutionPokemonName = currentPokemonEvolution.chain.evolves_to[0].species.name
     firstName = firstEvolutionPokemonName
     
-    // secondEvolutionPokemonName = currentPokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name
-    if(currentPokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name) {
-        secondName = secondEvolutionPokemonName
+    if(currentPokemonEvolution.chain.evolves_to[0].evolves_to == 0) {
+        document.getElementById('dupa').classList.add('d-none')
     } else {
-        console.log('DUPA')
-        document.getElementById('.dupa').classList.add('d-none')
+        document.getElementById('dupa').classList.remove('d-none')
+        secondEvolutionPokemonName = currentPokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name;
+        secondName = secondEvolutionPokemonName;
     }
 
 
@@ -344,7 +343,33 @@ function nextImageRight() {
 }
 
 function lastImageLeft() {
-    id = 20;
     id--;
     loadPokemon()
 }
+
+
+
+function showSection(sectionClass) {
+    const sections = ['about-section', 'pokemon-languages', 'pokemon-stats', 'pokemon-evolution', 'pokemon-moves'];
+    const navMenu = ['about-nav-item', 'languages-nav-item', 'stats-nav-item', 'evolution-nav-item', 'moves-nav-item'];
+    const navMenuA = ['about-nav-item-a', 'languages-nav-item-a', 'stats-nav-item-a', 'evolution-nav-item-a', 'moves-nav-item-a'];
+
+  
+    sections.forEach((section, i) => {
+      const element = document.querySelector(`.${section}`);
+      const menuElement = document.querySelector(`.${navMenu[i]}`);
+      const AElement = document.querySelector(`.${navMenuA[i]}`);
+
+  
+      if (section === sectionClass) {
+        element.classList.remove('d-none');
+        menuElement.classList.add('active'); // Highlight corresponding nav menu item
+        AElement.classList.add('active-a'); // Highlight corresponding nav menu item
+        
+    } else {
+        element.classList.add('d-none');
+        menuElement.classList.remove('active'); // Remove active class from other nav menu items
+        AElement.classList.remove('active-a');
+        }
+    });
+  }
