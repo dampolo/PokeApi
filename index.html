@@ -75,8 +75,8 @@
                 <li class="pokemon-nav-item moves-nav-item" onclick="showSection('pokemon-moves')">
                   <a class="text-decoration-none moves-nav-item-a" href="#">Moves</a>
                 </li>
-                <li class="pokemon-nav-item moves-nav-item" onclick="showSection('pokemon-moves')">
-                  <a class="text-decoration-none moves-nav-item-a" href="#">Growth rate</a>
+                <li class="pokemon-nav-item growth-rate-nav-item" onclick="showSection('growth-rate')">
+                  <a class="text-decoration-none growth-rate-nav-item-a" href="#">Growth rate</a>
                 </li>
               </ul>
               <div id="right-icon" class="nav-arrow-single" onclick="toRight()">
@@ -120,13 +120,17 @@
                 </dl>
               </div>
               <div class="pokemon-languages d-none">
+                <h3>Languages</h3>
                 <dl class="pokemon-languages-content"></dl>
               </div>
               <div class="pokemon-stats container-sm d-none">
+                <h4>A list of base stat values for this Pokémon.</h4>
+                <div class="pokemon-stats-content">
+                </div>
               </div>
               <div class="pokemon-evolution d-none">
                 <div class="pokemon-name-evolution"></div>
-                <h5>Evolution Chain</h5>
+                <h3>Evolution Chain</h3>
 
                 <div class="evolution-section">
                   <div class="evolution-single">
@@ -157,7 +161,25 @@
                 </div>
                   
               </div>
-              <div class="pokemon-moves d-none"></div>
+              <div class="pokemon-moves d-none">
+                <div class="pokemon-moves-content">
+                </div>
+              </div>
+              <div class="growth-rate d-none">
+                <h5>The rate at which this Pokémon species gains levels.</h5>
+
+                <dl class="growth-rate-dl">
+                  
+                  <dt class="growth-rate-dt">Growth rate:</dt>
+                  <dd class="growth-rate-content-dd"></dd>
+                  </dl>
+                <div class="growth-rate-list">
+                  <dl>
+                  <dt class="growth-rate-dt">The list of levels:</dt>
+                  <dd class="all-growth-rate-content-dd"></dd>
+                  </dl>
+                </div>
+              </div>
             </div>
         </div>
       </div>

@@ -2,6 +2,7 @@ let currentPokemon;
 let currentPokemonSpecies;
 let currentPokemonEvolution;
 let currentPokemonName;
+let pokemonGrowthRates;
 
 
 let currentPokemonType;
@@ -12,6 +13,8 @@ let currentPokemonAbilities;
 let currentPokemonMoves;
 let currentFemaleMale; //Mrs or Mr
 let currentPokemonEvolutionChain;
+let currentPokemonGrowth;
+let pokemonAllGrowthRates;
 
 let namePokemon;
 let defultEvolutionPokemonName
@@ -33,12 +36,19 @@ async function loadPokemon() {
     currentPokemonType = currentPokemon.types;
     currentPokemonStats = currentPokemon.stats;
     currentPokemonMoves = currentPokemon.moves;
-    // console.log(currentPokemonMoves)
+    console.log(currentPokemon)
     currentPokemonAbilities = currentPokemon.abilities;
     // Fetch Pokemon species data
     currentPokemonSpecies = await sendRequest(`/pokemon-species/${id}`)
     currentPokemonLanguages = currentPokemonSpecies.names; // Adjust this based on the structure of the response
     currentFemaleMale = currentPokemonSpecies.gender_rate
+    currentPokemonGrowth = currentPokemonSpecies.growth_rate
+    console.log(currentPokemonGrowth.name)
+
+    pokemonGrowthRates = await sendRequest(`/growth-rate/`)
+    pokemonAllGrowthRates = pokemonGrowthRates.results
+    console.log(pokemonGrowthRates)
+
     //Path to evolution_chain.url
     currentPokemonEvolutionChain = currentPokemonSpecies.evolution_chain.url
 
@@ -57,7 +67,7 @@ async function loadPokemon() {
     
     evolutionLoadTheImageThroughTheNameFromTheChain()
     // console.log('pokemon', currentPokemon);
-    // console.log('pokemon-species', currentPokemonSpecies);
+    console.log('pokemon-species', currentPokemonSpecies);
     
     renderPokemonInfo();
 }
@@ -148,6 +158,14 @@ function renderPokemonInfo() {
     pokemonStats();
     pokemonBreeding();
     pokemonMoves();
+    pokemonGrowth();
+    function pokemonAllGrowths() {
+        for (let i = 0; i < pokemonAllGrowthRates.length; i++) {
+            const element = pokemonAllGrowthRates[i].name;
+            document.querySelector('.growth-rate-list').innerHTML += `<dd class="all-growth-rate-content-dd">${element}</dd>`
+        }
+    }
+    pokemonAllGrowths()
 }
 
 //Name of the pokemon.
@@ -281,7 +299,7 @@ function nameOfThePokemonInOtherLanguages() {
 
 //Die function show the statistik.
 function pokemonStats() {
-    const statsEl = document.querySelector('.pokemon-stats');
+    const statsEl = document.querySelector('.pokemon-stats-content');
     statsEl.innerHTML = '';
 
     let totalSum = 0;
@@ -327,7 +345,7 @@ function pokemonStats() {
 }
 
 function pokemonMoves() {
-    const movesEl = document.querySelector(".pokemon-moves")
+    const movesEl = document.querySelector(".pokemon-moves-content")
     movesEl.innerHTML = '';
 
     for (let i = 0; i < currentPokemonMoves.length; i++) {
@@ -336,6 +354,9 @@ function pokemonMoves() {
     }
 }
 
+function pokemonGrowth() {
+    document.querySelector('.growth-rate-content-dd').innerHTML = `${currentPokemonGrowth.name}`
+}
 
 function nextImageRight() {
     id++
@@ -371,9 +392,9 @@ function toRight() {
   }
 
 function showSection(sectionClass) {
-    const sections = ['about-section', 'pokemon-languages', 'pokemon-stats', 'pokemon-evolution', 'pokemon-moves'];
-    const navMenu = ['about-nav-item', 'languages-nav-item', 'stats-nav-item', 'evolution-nav-item', 'moves-nav-item'];
-    const navMenuA = ['about-nav-item-a', 'languages-nav-item-a', 'stats-nav-item-a', 'evolution-nav-item-a', 'moves-nav-item-a'];
+    const sections = ['about-section', 'pokemon-languages', 'pokemon-stats', 'pokemon-evolution', 'pokemon-moves', 'growth-rate'];
+    const navMenu = ['about-nav-item', 'languages-nav-item', 'stats-nav-item', 'evolution-nav-item', 'moves-nav-item', 'growth-rate-nav-item'];
+    const navMenuA = ['about-nav-item-a', 'languages-nav-item-a', 'stats-nav-item-a', 'evolution-nav-item-a', 'moves-nav-item-a', 'growth-rate-nav-item-a'];
 
   
     sections.forEach((section, i) => {
