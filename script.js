@@ -146,8 +146,7 @@ function renderPokemonInfo() {
     nameOfPokemon()
     pokemonIdNumber()
     //Main picture from pokemon.
-    const imgEl = document.querySelector('.img')
-    imgEl.src = currentPokemon.sprites.other.home.front_default;
+    document.querySelector('.img').src = currentPokemon.sprites.other.home.front_default;
     pokemonFamaleOrMale()
     pokemonType()
     pokemonSpecies();
@@ -162,17 +161,69 @@ function renderPokemonInfo() {
     function pokemonAllGrowths() {
         for (let i = 0; i < pokemonAllGrowthRates.length; i++) {
             const element = pokemonAllGrowthRates[i].name;
-            document.querySelector('.growth-rate-list').innerHTML += `<dd class="all-growth-rate-content-dd">${element}</dd>`
+            document.querySelector('.all-growth-rate-content-dd').innerHTML += `<dd class="all-growth-rate-content-dd">${element}</dd>`
         }
     }
     pokemonAllGrowths()
+
+    function allPictures() {
+        const node1 = document.createElement("img");
+        const node2 = document.createElement("img");
+        const node3 = document.createElement("img");
+        const node4 = document.createElement("img");
+        const node5 = document.createElement("img");
+        const node6 = document.createElement("img");
+        const node7 = document.createElement("img");
+        const node8 = document.createElement("img");
+        const node9 = document.createElement("img");
+
+
+
+
+        node1.src = currentPokemon.sprites.back_default;
+        node2.src = currentPokemon.sprites.back_shiny        ;
+        node3.src = currentPokemon.sprites.front_default;
+        node4.src = currentPokemon.sprites.front_shiny
+        node5.src = currentPokemon.sprites.other.dream_world.front_default
+        node6.src = currentPokemon.sprites.other.home.front_default;
+        node7.src = currentPokemon.sprites.other.home.front_shiny;
+        node8.src = currentPokemon.sprites.other['official-artwork'].front_default;
+        node9.src = currentPokemon.sprites.other['official-artwork'].front_shiny;
+
+
+
+        node1.classList.add("all-picture");
+        node2.classList.add("all-picture");
+        node3.classList.add("all-picture");
+        node4.classList.add("all-picture");
+        node5.classList.add("all-picture");
+        node6.classList.add("all-picture");
+        node7.classList.add("all-picture");
+        node8.classList.add("all-picture");
+        node9.classList.add("all-picture");
+
+
+
+
+
+        document.querySelector(".picture").appendChild(node1);
+        document.querySelector(".picture").appendChild(node2);
+        document.querySelector(".picture").appendChild(node3);
+        document.querySelector(".picture").appendChild(node4);
+        document.querySelector(".picture").appendChild(node5);
+        document.querySelector(".picture").appendChild(node6);
+        document.querySelector(".picture").appendChild(node7);
+        document.querySelector(".picture").appendChild(node8);
+        document.querySelector(".picture").appendChild(node9);
+
+
+    }
+    allPictures()
 }
 
 //Name of the pokemon.
 function nameOfPokemon() {
-    const nameEL = document.querySelector('.pokemon-name');
-    nameEL.textContent = currentPokemon.name
-
+    document.querySelector('.pokemon-name').textContent = currentPokemon.name
 }
 
 //Number and Id of the pokemon.
@@ -392,9 +443,9 @@ function toRight() {
   }
 
 function showSection(sectionClass) {
-    const sections = ['about-section', 'pokemon-languages', 'pokemon-stats', 'pokemon-evolution', 'pokemon-moves', 'growth-rate'];
-    const navMenu = ['about-nav-item', 'languages-nav-item', 'stats-nav-item', 'evolution-nav-item', 'moves-nav-item', 'growth-rate-nav-item'];
-    const navMenuA = ['about-nav-item-a', 'languages-nav-item-a', 'stats-nav-item-a', 'evolution-nav-item-a', 'moves-nav-item-a', 'growth-rate-nav-item-a'];
+    const sections = ['about-section', 'pokemon-languages', 'pokemon-stats', 'pokemon-evolution', 'pokemon-moves', 'growth-rate', 'other-pictures'];
+    const navMenu = ['about-nav-item', 'languages-nav-item', 'stats-nav-item', 'evolution-nav-item', 'moves-nav-item', 'growth-rate-nav-item', 'other-pictures-nav-item'];
+    const navMenuA = ['about-nav-item-a', 'languages-nav-item-a', 'stats-nav-item-a', 'evolution-nav-item-a', 'moves-nav-item-a', 'growth-rate-nav-item-a', 'other-pictures-nav-item-a'];
 
   
     sections.forEach((section, i) => {

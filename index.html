@@ -78,13 +78,16 @@
                 <li class="pokemon-nav-item growth-rate-nav-item" onclick="showSection('growth-rate')">
                   <a class="text-decoration-none growth-rate-nav-item-a" href="#">Growth rate</a>
                 </li>
+                <li class="pokemon-nav-item other-pictures-nav-item" onclick="showSection('other-pictures')">
+                  <a class="text-decoration-none other-pictures-nav-item-a" href="#">Pictures</a>
+                </li>
               </ul>
               <div id="right-icon" class="nav-arrow-single" onclick="toRight()">
                 <a href="javascript:void(0)"><img class="nav-arrow" src="./icons/nav-arrow-right.svg" alt="right-icon"/> </a>
               </div>
             </div>
             <div class="all-sections">         
-              <div class="about-section">
+              <div class="about-section d-none">
                 
                 <h3>About</h3>
                 <dl class="about-dl">
@@ -132,7 +135,7 @@
                 <div class="pokemon-name-evolution"></div>
                 <h3>Evolution Chain</h3>
 
-                <div class="evolution-section">
+                <div class="evolution-section d-none">
                   <div class="evolution-single">
                     <img class="img-defult-name-evolution" src="" alt="" srcset="" />
                     <div class="defult-name-evolution"></div>
@@ -146,7 +149,7 @@
                   </div>
                 </div>
 
-                <div class="evolution-section" id="dupa">
+                <div class="evolution-section d-none" id="dupa">
                   <div class="evolution-single">
                     <img class="img-first-name-evolution" src="" alt="" srcset="" />
                     <div class="first-name-evolution"></div>
@@ -176,9 +179,12 @@
                 <div class="growth-rate-list">
                   <dl>
                   <dt class="growth-rate-dt">The list of levels:</dt>
-                  <dd class="all-growth-rate-content-dd"></dd>
+                    <dd class="all-growth-rate-content-dd"></dd>
                   </dl>
                 </div>
+              </div>
+              <div class="picture">
+                
               </div>
             </div>
         </div>

@@ -273,7 +273,12 @@ header {
   height: 55px;
 }
 
-.all-growth-rate-content-dd,
+.all-growth-rate-content-dd {
+    /* float: left; */
+    padding: 0;
+    margin: 0 0 0 20px;
+}
+
 .growth-rate-content-dd {
   /* float: left; */
   padding: 0;
@@ -474,6 +479,12 @@ right: 30px;
 .growth-rate {
   display: flex;
   flex-direction: column;
+}
+
+.all-picture {
+  height: 200px;
+  width: 200px;
+  border: 1px solid black
 }
 
 @media (max-height: 1100px) {
