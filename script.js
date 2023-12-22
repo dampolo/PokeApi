@@ -100,8 +100,6 @@ function evolutionLoadTheImageThroughTheNameFromTheChain() {
     const imgDefultName = document.querySelector('.img-defult-name-evolution')
     imgDefultName.src = defultPokemonName.sprites.other.home.front_default;
     
-    console.log("First Name:", firstEvolutionPokemonName)
-
     const imgFirstName = document.querySelectorAll('.img-first-name-evolution')
         for (let i = 0; i < imgFirstName.length; i++) {
             imgFirstName[i].src = firstPokemonName.sprites.other.home.front_default;
@@ -176,6 +174,11 @@ function renderPokemonInfo() {
         const node7 = document.createElement("img");
         const node8 = document.createElement("img");
         const node9 = document.createElement("img");
+        const node10 = document.createElement("img");
+        const node11 = document.createElement("img");
+        const node12 = document.createElement("img");
+        const node13 = document.createElement("img");
+
 
 
 
@@ -189,8 +192,13 @@ function renderPokemonInfo() {
         node7.src = currentPokemon.sprites.other.home.front_shiny;
         node8.src = currentPokemon.sprites.other['official-artwork'].front_default;
         node9.src = currentPokemon.sprites.other['official-artwork'].front_shiny;
+        node10.src = currentPokemon.sprites.other.showdown.back_default
+        node11.src = currentPokemon.sprites.other.showdown.back_shiny
+        node12.src = currentPokemon.sprites.other.showdown.front_default
+        node13.src = currentPokemon.sprites.other.showdown.front_shiny
 
 
+        
 
         node1.classList.add("all-picture");
         node2.classList.add("all-picture");
@@ -201,9 +209,10 @@ function renderPokemonInfo() {
         node7.classList.add("all-picture");
         node8.classList.add("all-picture");
         node9.classList.add("all-picture");
-
-
-
+        node10.classList.add("all-picture");
+        node11.classList.add("all-picture");
+        node12.classList.add("all-picture");
+        node13.classList.add("all-picture");
 
 
         document.querySelector(".picture").appendChild(node1);
@@ -215,6 +224,10 @@ function renderPokemonInfo() {
         document.querySelector(".picture").appendChild(node7);
         document.querySelector(".picture").appendChild(node8);
         document.querySelector(".picture").appendChild(node9);
+        document.querySelector(".picture").appendChild(node10);
+        document.querySelector(".picture").appendChild(node11);
+        document.querySelector(".picture").appendChild(node12);
+        document.querySelector(".picture").appendChild(node13);
 
 
     }
