@@ -180,6 +180,7 @@ header {
   list-style-type: none;
   max-width: 400px;
   overflow: hidden;
+  scroll-behavior: smooth;
 }
 
 .pokemon-nav-item {
