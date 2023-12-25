@@ -35,18 +35,16 @@ async function loadPokemon() {
     currentPokemonType = currentPokemon.types;
     currentPokemonStats = currentPokemon.stats;
     currentPokemonMoves = currentPokemon.moves;
-    console.log(currentPokemon)
+    console.log('Sprites: ', currentPokemon.sprites)
     currentPokemonAbilities = currentPokemon.abilities;
     // Fetch Pokemon species data
     currentPokemonSpecies = await sendRequest(`/pokemon-species/${id}`)
     currentPokemonLanguages = currentPokemonSpecies.names; // Adjust this based on the structure of the response
     currentFemaleMale = currentPokemonSpecies.gender_rate
     currentPokemonGrowth = currentPokemonSpecies.growth_rate
-    // console.log(currentPokemonGrowth.name)
 
     pokemonGrowthRates = await sendRequest(`/growth-rate/`)
     pokemonAllGrowthRates = pokemonGrowthRates.results
-    // console.log(pokemonGrowthRates)
 
     //Path to evolution_chain.url
     currentPokemonEvolutionChain = currentPokemonSpecies.evolution_chain.url
@@ -68,6 +66,7 @@ async function loadPokemon() {
     // console.log('pokemon', currentPokemon);
     // console.log('pokemon-species', currentPokemonSpecies);
     
+    loadAllPokemons()
     renderPokemonInfo();
 }
 
@@ -135,13 +134,58 @@ function evolutionLoadTheNameFromTheChain() {
     secondNameEl.textContent = secondEvolutionPokemonName;
     }
 
+function loadAllPokemons() {
+        
+        const content = document.querySelector('.content');
+
+        const pokemonImgContent = document.createElement('div')
+        pokemonImgContent.className = 'pokemon-img-content rounded-5'
+
+        const pokemonNameTypeNumber = document.createElement('div')
+        pokemonNameTypeNumber.className = 'pokemon-name-type-number mx-3'
+
+        const pokemonNameType = document.createElement('div')
+        pokemonNameType.className = 'pokemon-name-type'
+
+        const pokemonName = document.createElement('div')
+        pokemonName.className = 'pokemon-name'
+
+        const pokemonType = document.createElement('div')
+        pokemonType.className = 'pokemon-type'
+
+        const pokemonNumberContainer = document.createElement('div')
+        pokemonNumberContainer.className = 'pokemon-number-container'
+        
+        const pokemonNumber = document.createElement('span')
+        pokemonNumber.className = 'pokemon-number'
+        
+        const test = document.createElement('div')
+        test.className = 'test'
+        
+        const imgContent = document.createElement('img')
+        imgContent.className = 'img-content'
+        
+        content.appendChild(pokemonImgContent)
+        pokemonImgContent.appendChild(pokemonNameTypeNumber)
+        pokemonNameTypeNumber.appendChild(pokemonNameType)
+        pokemonNameType.appendChild(pokemonName)
+        pokemonNameType.appendChild(pokemonType)
+        pokemonNameTypeNumber.appendChild(pokemonNumberContainer)
+        pokemonNumberContainer.appendChild(pokemonNumber)
+
+        pokemonImgContent.appendChild(test)
+        test.appendChild(imgContent)
+
+}
+
 function renderPokemonInfo() {
-    document.querySelector('.pokemon-top-section').style.backgroundColor = currentPokemonSpecies.color.name;
+
+    pokemonBackGroundColor()
 
     nameOfPokemon()
     pokemonIdNumber()
     //Main picture from pokemon.
-    document.querySelector('.img').src = currentPokemon.sprites.other.home.front_default;
+    pokemonMainPicture()
     pokemonFamaleOrMale()
     pokemonType()
     pokemonSpecies();
@@ -153,111 +197,14 @@ function renderPokemonInfo() {
     pokemonBreeding();
     pokemonMoves();
     pokemonGrowth();
-    pokemonAllGrowths()
-
-    function allPictures() {
-        const parentElement = document.querySelector(".picture")
-
-        while (parentElement.firstChild) {
-            parentElement.removeChild(parentElement.firstChild);
-        }
-
-        const pictureContainer = document.querySelector(".picture");
-        const imageTypes = [
-        'back_default',
-        'back_shiny',
-        'front_default',
-        'front_shiny',
-        'other.dream_world.front_default',
-        'other.home.front_default',
-        'other.home.front_shiny',
-        'other.official-artwork.front_default',
-        'other.official-artwork.front_shiny',
-        'other.showdown.back_default',
-        'other.showdown.back_shiny',
-        'other.showdown.front_default',
-        'other.showdown.front_shiny'
-        ];
-
-        for (let i = 0; i < imageTypes.length; i++) {
-        const node = document.createElement("img");
-        node.src = getImageSource(currentPokemon.sprites, imageTypes[i]);
-        node.classList.add("all-picture");
-        pictureContainer.appendChild(node);
-        }
-
-        function getImageSource(sprites, type) {
-            const keys = type.split('.');
-            let result = sprites;
-          
-            for (let i = 0; i < keys.length; i++) {
-              result = result[keys[i]];
-            }
-          
-            return result;
-          }
-
-
-        // const node1 = document.createElement("img");
-        // const node2 = document.createElement("img");
-        // const node3 = document.createElement("img");
-        // const node4 = document.createElement("img");
-        // const node5 = document.createElement("img");
-        // const node6 = document.createElement("img");
-        // const node7 = document.createElement("img");
-        // const node8 = document.createElement("img");
-        // const node9 = document.createElement("img");
-        // const node10 = document.createElement("img");
-        // const node11 = document.createElement("img");
-        // const node12 = document.createElement("img");
-        // const node13 = document.createElement("img");
-
-
-        // node1.src = currentPokemon.sprites.back_default;
-        // node2.src = currentPokemon.sprites.back_shiny;
-        // node3.src = currentPokemon.sprites.front_default;
-        // node4.src = currentPokemon.sprites.front_shiny;
-        // node5.src = currentPokemon.sprites.other.dream_world.front_default;
-        // node6.src = currentPokemon.sprites.other.home.front_default;
-        // node7.src = currentPokemon.sprites.other.home.front_shiny;
-        // node8.src = currentPokemon.sprites.other['official-artwork'].front_default;
-        // node9.src = currentPokemon.sprites.other['official-artwork'].front_shiny;
-        // node10.src = currentPokemon.sprites.other.showdown.back_default;
-        // node11.src = currentPokemon.sprites.other.showdown.back_shiny;
-        // node12.src = currentPokemon.sprites.other.showdown.front_default;
-        // node13.src = currentPokemon.sprites.other.showdown.front_shiny;
-        
-
-        // node1.classList.add("all-picture");
-        // node2.classList.add("all-picture");
-        // node3.classList.add("all-picture");
-        // node4.classList.add("all-picture");
-        // node5.classList.add("all-picture");
-        // node6.classList.add("all-picture");
-        // node7.classList.add("all-picture");
-        // node8.classList.add("all-picture");
-        // node9.classList.add("all-picture");
-        // node10.classList.add("all-picture");
-        // node11.classList.add("all-picture");
-        // node12.classList.add("all-picture");
-        // node13.classList.add("all-picture");
-        
-        
-        // document.querySelector(".picture").appendChild(node1);
-        // document.querySelector(".picture").appendChild(node2);
-        // document.querySelector(".picture").appendChild(node3);
-        // document.querySelector(".picture").appendChild(node4);
-        // document.querySelector(".picture").appendChild(node5);
-        // document.querySelector(".picture").appendChild(node6);
-        // document.querySelector(".picture").appendChild(node7);
-        // document.querySelector(".picture").appendChild(node8);
-        // document.querySelector(".picture").appendChild(node9);
-        // document.querySelector(".picture").appendChild(node10);
-        // document.querySelector(".picture").appendChild(node11);
-        // document.querySelector(".picture").appendChild(node12);
-        // document.querySelector(".picture").appendChild(node13);
-    }
+    pokemonAllGrowths()        
     allPictures()
+    }
+
+function pokemonBackGroundColor(){
+    document.querySelector('.pokemon-top-section').style.backgroundColor = currentPokemonSpecies.color.name;
+    document.querySelector('.pokemon-img-content').style.backgroundColor = currentPokemonSpecies.color.name;
+
 }
 
 //Name of the pokemon.
@@ -279,6 +226,11 @@ function pokemonIdNumber() {
     }
 }
 
+function pokemonMainPicture() {
+    document.querySelector('.img').src = currentPokemon.sprites.other.home.front_default;
+    document.querySelector('.img-content').src = currentPokemon.sprites.other.home.front_default;
+
+}
 //height of the pokemon.
 function pokemonWeight() {
     const pokemonHeight = ((currentPokemon.height*10)/100).toFixed(2)
@@ -455,6 +407,34 @@ function pokemonAllGrowths() {
     }
 }
 
+function allPictures() {
+    const parentElement = document.querySelector(".picture")
+    
+    while (parentElement.firstChild) {
+        parentElement.removeChild(parentElement.firstChild);
+    }
+    
+    for (let i = 0; i < imageTypes.length; i++) {
+        
+        const node = document.createElement("img")
+        if((getImageSource(currentPokemon.sprites, imageTypes[i])) == null) {
+            node.classList.add("d-none");
+        } else {
+            node.src = getImageSource(currentPokemon.sprites, imageTypes[i]);
+            node.classList.add("all-picture");
+            document.querySelector(".picture").appendChild(node);
+        }
+    }
+}
+    function getImageSource(sprites, type) {
+        const keys = type.split('.');
+        let result = sprites;
+        for (let i = 0; i < keys.length; i++) {
+          result = result[keys[i]];
+        }
+        return result;
+      }
+
 function nextImageRight() {
     id++
     loadPokemon()
@@ -511,4 +491,58 @@ function showSection(sectionClass) {
         AElement.classList.remove('active-a');
         }
     });
-  }
+}
+//     const node1 = document.createElement("img");
+//     const node2 = document.createElement("img");
+//     const node3 = document.createElement("img");
+//     const node4 = document.createElement("img");
+//     const node5 = document.createElement("img");
+//     const node6 = document.createElement("img");
+//     const node7 = document.createElement("img");
+//     const node8 = document.createElement("img");
+//     const node9 = document.createElement("img");
+//     const node10 = document.createElement("img");
+
+
+//     node1.src = currentPokemon.sprites.back_default;
+//     node2.src = currentPokemon.sprites.back_shiny        ;
+//     node3.src = currentPokemon.sprites.front_default;
+//     node4.src = currentPokemon.sprites.front_shiny
+//     node5.src = currentPokemon.sprites.other.dream_world.front_default
+//     node6.src = currentPokemon.sprites.other.home.front_default;
+//     node7.src = currentPokemon.sprites.other.home.front_shiny;
+//     node8.src = currentPokemon.sprites.other['official-artwork'].front_default;
+//     node9.src = currentPokemon.sprites.other['official-artwork'].front_female;
+//     node10.src = currentPokemon.sprites.other['official-artwork'].front_shiny;
+
+
+//     node1.classList.add("all-picture");
+//     node2.classList.add("all-picture");
+//     node3.classList.add("all-picture");
+//     node4.classList.add("all-picture");
+//     node5.classList.add("all-picture");
+//     node6.classList.add("all-picture");
+//     node7.classList.add("all-picture");
+//     node8.classList.add("all-picture");
+//     node9.classList.add("all-picture");
+
+
+//     document.querySelector(".picture").appendChild(node1);
+//     document.querySelector(".picture").appendChild(node2);
+//     document.querySelector(".picture").appendChild(node3);
+//     document.querySelector(".picture").appendChild(node4);
+//     document.querySelector(".picture").appendChild(node5);
+//     document.querySelector(".picture").appendChild(node6);
+//     document.querySelector(".picture").appendChild(node7);
+//     document.querySelector(".picture").appendChild(node8);
+//     document.querySelector(".picture").appendChild(node9);
+//     document.querySelector(".picture").appendChild(node10);
+// }
+// allPictures()
+
+
+
+
+
+
+

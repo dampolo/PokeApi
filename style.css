@@ -95,7 +95,7 @@ header {
   right: 0;
   bottom: 0;
   top: 0;
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -119,6 +119,22 @@ header {
   height: 100%;
 }
 
+/* JESTEM TU */
+
+.pokemon-img-content {
+  display: flex;
+  flex-direction: column;
+  margin-inline: 15px;
+  max-width: 400px;
+  width: 100%;
+}
+
+.img-content {
+  position: relative;
+  transform: translateY(0);
+  z-index: 2;
+}
+
 .img {
   position: relative;
   transform: translateY(5%);
@@ -128,7 +144,7 @@ header {
 .pokemon-name-type-number {
   display: flex;
   justify-content: space-between;
-  width: 100%;
+  /* width: 100%; */
 }
 
 .pokemon-name-type {
