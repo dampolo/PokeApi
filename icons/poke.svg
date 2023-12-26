@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 100" width="200" height="100">
+    <!-- Hintergrund (weißer Kreis) -->
+    <circle cx="50" cy="50" r="40" fill="rgba(255, 255, 255, 0.5)" stroke="rgba(0, 0, 0, 0.5)" stroke-width="5" />
+
+    <!-- Schwarze Linie zwischen den beiden Farbhälften -->
+    <line x1="10" y1="50" x2="90" y2="50" stroke="rgba(0, 0, 0, 0.5)" stroke-width="5" />
+
+    <!-- Weißer Kreis in der Mitte des Pokeballs -->
+    <circle cx="50" cy="50" r="20" fill="rgba(255, 255, 255, 0.5)" stroke="rgba(0, 0, 0, 0.5)" stroke-width="5" />
+
+    <!-- Schwarzer Kreis im weißen Kreis -->
+    <circle cx="50" cy="50" r="7" fill="rgba(0, 0, 0, 0.5)" />
+</svg>

@@ -1,3 +1,4 @@
+let allPokemons;
 let currentPokemon;
 let currentPokemonSpecies;
 let currentPokemonEvolution;
@@ -13,7 +14,10 @@ let currentPokemonMoves;
 let currentFemaleMale; //Mrs or Mr
 let currentPokemonEvolutionChain;
 let currentPokemonGrowth;
+let currentColor;
 let pokemonAllGrowthRates;
+
+let listOfTheAllpokemons;
 
 let namePokemon;
 let defultEvolutionPokemonName
@@ -23,25 +27,37 @@ let secondEvolutionPokemonName;
 let temporaryId;
 
 const uri = 'https://pokeapi.co/api/v2';
-let id = 1;
+let i = 1;
+let id = "";
+let amountOfThePokemon = 20
 let defultName;
 let firstName;
 let secondName;
 
 
 async function loadPokemon() {
-    currentPokemon = await sendRequest(`/pokemon/${id}`);
-    
+
+    for (let i = 1; i <= amountOfThePokemon; i++) {
+        currentPokemon = await sendRequest(`/pokemon/${i}`);
+        loadAllPokemons(i)
+        pokemonBackGroundColor(i)
+        console.log(currentColor)
+        nameOfPokemon(i)
+        pokemonIdNumber(i)
+        pokemonMainPicture(i)
+    }
+
     currentPokemonType = currentPokemon.types;
     currentPokemonStats = currentPokemon.stats;
     currentPokemonMoves = currentPokemon.moves;
-    console.log('Sprites: ', currentPokemon.sprites)
     currentPokemonAbilities = currentPokemon.abilities;
     // Fetch Pokemon species data
-    currentPokemonSpecies = await sendRequest(`/pokemon-species/${id}`)
+    currentPokemonSpecies = await sendRequest(`/pokemon-species/${i}`)
     currentPokemonLanguages = currentPokemonSpecies.names; // Adjust this based on the structure of the response
     currentFemaleMale = currentPokemonSpecies.gender_rate
     currentPokemonGrowth = currentPokemonSpecies.growth_rate
+    currentColor = currentPokemonSpecies.color.name
+    console.log(currentColor)
 
     pokemonGrowthRates = await sendRequest(`/growth-rate/`)
     pokemonAllGrowthRates = pokemonGrowthRates.results
@@ -66,7 +82,6 @@ async function loadPokemon() {
     // console.log('pokemon', currentPokemon);
     // console.log('pokemon-species', currentPokemonSpecies);
     
-    loadAllPokemons()
     renderPokemonInfo();
 }
 
@@ -75,6 +90,55 @@ async function sendRequest(endpoint) {
     const response = await fetch(url)
     return await response.json();
 }
+
+
+function loadAllPokemons(i) {
+    const content = document.querySelector('.content-single');
+
+    const pokemonImgContent = document.createElement('div')
+    pokemonImgContent.className = `pokemon-img-content${i} pokemon-img-content rounded-5`;
+
+    const pokemonNameTypeNumber = document.createElement('div')
+    pokemonNameTypeNumber.className = 'pokemon-name-type-number mx-3'
+
+    const pokemonNameType = document.createElement('div')
+    pokemonNameType.className = 'pokemon-name-type'
+
+    const pokemonName = document.createElement('div')
+    pokemonName.className = `pokemon-name${i} pokemon-name`
+
+    const pokemonType = document.createElement('div')
+    pokemonType.className = 'pokemon-type pokemon-type-content'
+
+    const pokemonNumberImgContainer = document.createElement('div')
+    pokemonNumberImgContainer.className = 'number-img-container'
+
+    const pokemonNumberContent = document.createElement('div')
+    pokemonNumberContent.className = 'pokemon-number-content'
+    
+    const pokemonNumber = document.createElement('span')
+    pokemonNumber.className = `pokemon-number${i} pokemon-number`
+    
+    const imgContainer = document.createElement('div')
+    imgContainer.className = 'img-container'
+    
+    const imgContent = document.createElement('img')
+    imgContent.className = `img-content${i} img-content`
+    
+    content.appendChild(pokemonImgContent)
+    pokemonImgContent.appendChild(pokemonNameTypeNumber)
+    pokemonNameTypeNumber.appendChild(pokemonNameType)
+    pokemonNameType.appendChild(pokemonName)
+    pokemonNameType.appendChild(pokemonType)
+
+    pokemonImgContent.appendChild(pokemonNumberImgContainer)
+    pokemonNumberImgContainer.appendChild(pokemonNumberContent)
+    pokemonNumberContent.appendChild(pokemonNumber)
+
+    pokemonNumberImgContainer.appendChild(imgContainer)
+    imgContainer.appendChild(imgContent)
+    }
+
 
 function extractNumberFromUrl(url) {
     // Match the last sequence of digits in the URL
@@ -132,50 +196,10 @@ function evolutionLoadTheNameFromTheChain() {
 
     const secondNameEl = document.querySelector('.second-name-evolution');
     secondNameEl.textContent = secondEvolutionPokemonName;
-    }
+}
 
-function loadAllPokemons() {
-        
-        const content = document.querySelector('.content');
 
-        const pokemonImgContent = document.createElement('div')
-        pokemonImgContent.className = 'pokemon-img-content rounded-5'
-
-        const pokemonNameTypeNumber = document.createElement('div')
-        pokemonNameTypeNumber.className = 'pokemon-name-type-number mx-3'
-
-        const pokemonNameType = document.createElement('div')
-        pokemonNameType.className = 'pokemon-name-type'
-
-        const pokemonName = document.createElement('div')
-        pokemonName.className = 'pokemon-name'
-
-        const pokemonType = document.createElement('div')
-        pokemonType.className = 'pokemon-type'
-
-        const pokemonNumberContainer = document.createElement('div')
-        pokemonNumberContainer.className = 'pokemon-number-container'
-        
-        const pokemonNumber = document.createElement('span')
-        pokemonNumber.className = 'pokemon-number'
-        
-        const test = document.createElement('div')
-        test.className = 'test'
-        
-        const imgContent = document.createElement('img')
-        imgContent.className = 'img-content'
-        
-        content.appendChild(pokemonImgContent)
-        pokemonImgContent.appendChild(pokemonNameTypeNumber)
-        pokemonNameTypeNumber.appendChild(pokemonNameType)
-        pokemonNameType.appendChild(pokemonName)
-        pokemonNameType.appendChild(pokemonType)
-        pokemonNameTypeNumber.appendChild(pokemonNumberContainer)
-        pokemonNumberContainer.appendChild(pokemonNumber)
-
-        pokemonImgContent.appendChild(test)
-        test.appendChild(imgContent)
-
+function createSinglePokemon() {
 }
 
 function renderPokemonInfo() {
@@ -201,34 +225,34 @@ function renderPokemonInfo() {
     allPictures()
     }
 
-function pokemonBackGroundColor(){
-    document.querySelector('.pokemon-top-section').style.backgroundColor = currentPokemonSpecies.color.name;
-    document.querySelector('.pokemon-img-content').style.backgroundColor = currentPokemonSpecies.color.name;
-
+function pokemonBackGroundColor(i){
+    // document.querySelector(`.pokemon-top-section${i}`).style.backgroundColor = currentPokemonSpecies.color.name;
+    document.querySelector(`.pokemon-img-content${i}`).style.backgroundColor = 'green';
 }
 
 //Name of the pokemon.
-function nameOfPokemon() {
-    document.querySelector('.pokemon-name').textContent = currentPokemon.name
+function nameOfPokemon(i) {
+    document.querySelector(`.pokemon-name${i}`).textContent = currentPokemon.name
 }
+
 
 //Number and Id of the pokemon.
-function pokemonIdNumber() {
-    const numberEl = document.querySelector('.pokemon-number')
-    if (currentPokemon.id <= 9) {
-        numberEl.textContent = `#000${currentPokemon.id}`
-    } else if (currentPokemon.id <= 99) {
-        numberEl.textContent = `#00${currentPokemon.id}`
-    } else if (currentPokemon.id <= 9999) {
-        numberEl.textContent = `#0${currentPokemon.id}`
-    } else {
-        numberEl.textContent = `#${currentPokemon.id}`
-    }
+function pokemonIdNumber(i) {
+    const numberEl = document.querySelector(`.pokemon-number${i}`)
+        if (currentPokemon.id <= 9) {
+            numberEl.textContent = `#000${currentPokemon.id}`
+        } else if (currentPokemon.id <= 99) {
+            numberEl.textContent = `#00${currentPokemon.id}`
+        } else if (currentPokemon.id <= 9999) {
+            numberEl.textContent = `#0${currentPokemon.id}`
+        } else {
+            numberEl.textContent = `#${currentPokemon.id}`
+        }
 }
 
-function pokemonMainPicture() {
-    document.querySelector('.img').src = currentPokemon.sprites.other.home.front_default;
-    document.querySelector('.img-content').src = currentPokemon.sprites.other.home.front_default;
+function pokemonMainPicture(i) {
+    // document.querySelector('.img').src = currentPokemon.sprites.other.home.front_default;
+    document.querySelector(`.img-content${i}`).src = currentPokemon.sprites.other.home.front_default;
 
 }
 //height of the pokemon.
