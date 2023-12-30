@@ -26,7 +26,7 @@ function pokemonTypeBig(currentPokemonType) {
     typeEl.innerHTML = '';
     for (let i = 0; i < currentPokemonType.length; i++) {
         const element = currentPokemonType[i];
-        typeEl.innerHTML += `<div class="pokemon-type-name">${element.type.name}</div>`;
+        typeEl.innerHTML += `<div class="pokemon-type-name rounded-3 px-2 py-1">${element.type.name}</div>`;
     }
 }
 
@@ -107,7 +107,7 @@ function nameOfThePokemonInOtherLanguages(pokemonSpeciesNames) {
     }
 }
 
-//##8 Die function show the statistik.
+//##9 Die function show the statistik.
 function pokemonStats(currentPokemonStats) {
     const statsEl = document.querySelector('.pokemon-stats-content');
     statsEl.innerHTML = '';
@@ -154,8 +154,62 @@ function pokemonStats(currentPokemonStats) {
             </div>`
 }
 
-//##9 Species of pokemon
+//##10 Species of pokemon
 function pokemonSpeciesGenera(pokemonSpeciesGenera) {
     const pokemonSpeciesArt = pokemonSpeciesGenera[7].genus;
     document.querySelector('.species').innerHTML = pokemonSpeciesArt;
 }
+
+//##11 Species of pokemon
+function pokemonAbilities(pokemonAbilities) {
+    const abilitiesEl = document.querySelector(".pokemon-abilities")
+    abilitiesEl.textContent = '';
+
+    for (let i = 0; i < pokemonAbilities.length; i++) {
+        const element = pokemonAbilities[i];
+        if (i > 0) {
+            abilitiesEl.textContent += ', ';
+        }
+        abilitiesEl.textContent += `${element.ability.name}`
+    }
+}
+
+//##12 Height of the pokemon calculation.
+function calculatePokemonHeight(pokemonHeight) {
+    const pokemonHeightResult = ((pokemonHeight*10)/100).toFixed(2)
+    return pokemonHeightResult + ' cm'
+}
+
+//##12 Height of the pokemon display.
+function displayPokemonHeight(pokemonHeight) {
+    const result = calculatePokemonHeight(pokemonHeight)
+    document.querySelector('.pokemon-height').textContent = result;
+}
+
+//##13 Weight of the pokemon calculation.
+function calculatePokemonWeight(pokemonWeight) {
+    const pokemonWeightResult = (pokemonWeight)/10;
+    return pokemonWeightResult
+}
+
+//##13 Weight of the pokemon display.
+function displayPokemonWeight(pokemonWeight) {
+    const result = calculatePokemonWeight(pokemonWeight)
+    document.querySelector('.pokemon-weight').textContent = result  + ' kg';
+}
+
+function calculateFemaleMale(currentFemaleMale) {
+    const femalePercent = (currentFemaleMale*100)/8;
+    const malePercent = 100 - femalePercent;
+    return {
+        female: femalePercent,
+        male: malePercent
+    }
+}
+
+function displayPokemonFemaleMale(currentFemaleMale) {
+    const result = calculateFemaleMale(currentFemaleMale)
+    document.querySelector('.pokemon-gender-female').textContent = result.female + ' %';
+    document.querySelector('.pokemon-gender-male').textContent = result.male + ' %'
+}
+

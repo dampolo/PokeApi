@@ -44,42 +44,6 @@ async function renderPokemonInfo(id) {
     loadPokemonInfo(id)   
 }
 
-//height of the pokemon.
-function pokemonWeight() {
-    const pokemonHeight = ((currentPokemon.height*10)/100).toFixed(2)
-    document.querySelector('.pokemon-height').innerHTML = pokemonHeight + ' cm';
-}
-
-//weight of the pokemon.
-function pokemonHeight() {
-    const pokemonWeight = (currentPokemon.weight)/10;
-    document.querySelector('.pokemon-weight').innerHTML = pokemonWeight + ' kg';
-}
-
-
-// Mrs or Mr
-function pokemonFamaleOrMale() {
-    const famalePrecent = (currentFemaleMale*100)/8;
-    const malePrecent = (100 - famalePrecent);
-    document.querySelector('.pokemon-gender-female').textContent = famalePrecent + '%';
-    document.querySelector('.pokemon-gender-male').textContent = malePrecent + '%';
-}
-
-
-function pokemonAbilities() {
-    const abilitiesEl = document.querySelector(".pokemon-abilities")
-    abilitiesEl.textContent = '';
-
-    for (let i = 0; i < currentPokemonAbilities.length; i++) {
-        const element = currentPokemonAbilities[i];
-        if (i > 0) {
-            abilitiesEl.textContent += ', ';
-        }
-        abilitiesEl.textContent += `${element.ability.name}`
-    }
-}
-
-
 
 function pokemonMoves() {
     const movesEl = document.querySelector(".pokemon-moves-content")

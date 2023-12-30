@@ -32,9 +32,9 @@ async function loadPokemons(id){
 
 async function loadPokemonInfo(id){
     const pokemon = await createNewPokemonApi(id);
-    console.log('1', pokemon)
+    console.log('1pokemon', pokemon)
     const pokemonSpecies = await createNewPokemonSpeciesApi(id);
-    console.log('2', pokemonSpecies.genera[7])
+    console.log('2pokemonSpecies', pokemonSpecies)
 
     
     nameOfPokemonBig(pokemon.name) //##3 load-single-pokemon.js
@@ -42,9 +42,13 @@ async function loadPokemonInfo(id){
     pokemonIdNumberBig(pokemon.id)  //##5 load-single-pokemon.js
     pokemonMainPictureBig(pokemon.sprites.other.home.front_default)  //##6 load-single-pokemon.js
     pokemonStats(pokemon.stats) //##9 load-single-pokemon.js
+    pokemonAbilities(pokemon.abilities) //##11 load-single-pokemon.js
+    displayPokemonHeight(pokemon.height) //##12 load-single-pokemon.js
+    displayPokemonWeight(pokemon.weight) //##13 load-single-pokemon.js
     
     pokemonBackGroundColorBig(pokemonSpecies.color.name) //##2 load-single-pokemon.js
     pokemonBreeding(pokemonSpecies.egg_groups) //##7 load-single-pokemon.js
     nameOfThePokemonInOtherLanguages(pokemonSpecies.names) //##8 load-single-pokemon.js
-    pokemonSpeciesGenera(pokemonSpecies.genera) //##9 load-single-pokemon.js
+    pokemonSpeciesGenera(pokemonSpecies.genera) //##10 load-single-pokemon.js
+    displayPokemonFemaleMale(pokemonSpecies.gender_rate)
 }
