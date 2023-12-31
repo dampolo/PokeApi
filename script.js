@@ -4,8 +4,6 @@ let currentPokemonSpecies;
 let currentPokemonEvolution;
 
 let currentPokemonEvolutionChain;
-let currentPokemonGrowth;
-let pokemonAllGrowthRates;
 
 let defultEvolutionPokemonName
 let firstEvolutionPokemonName;
@@ -44,27 +42,6 @@ async function renderPokemonInfo(id) {
     loadPokemonInfo(id)   
 }
 
-
-function pokemonMoves() {
-    const movesEl = document.querySelector(".pokemon-moves-content")
-    movesEl.innerHTML = '';
-
-    for (let i = 0; i < currentPokemonMoves.length; i++) {
-        const element = currentPokemonMoves[i];
-        movesEl.innerHTML += `<div class="pokemon-move-name">${element.move.name}</div>`
-    }
-}
-
-function pokemonGrowth() {
-    document.querySelector('.growth-rate-content-dd').innerHTML = `${currentPokemonGrowth.name}`
-}
-
-function pokemonAllGrowths() {
-    for (let i = 0; i < pokemonAllGrowthRates.length; i++) {
-        const element = pokemonAllGrowthRates[i].name;
-        document.querySelector('.all-growth-rate-content-dd').innerHTML += `<dd class="all-growth-rate-content-dd">${element}</dd>`
-    }
-}
 
 function allPictures() {
     const parentElement = document.querySelector(".picture")

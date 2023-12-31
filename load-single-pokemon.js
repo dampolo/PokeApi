@@ -198,6 +198,7 @@ function displayPokemonWeight(pokemonWeight) {
     document.querySelector('.pokemon-weight').textContent = result  + ' kg';
 }
 
+//##14 Female or Male
 function calculateFemaleMale(currentFemaleMale) {
     const femalePercent = (currentFemaleMale*100)/8;
     const malePercent = 100 - femalePercent;
@@ -207,9 +208,36 @@ function calculateFemaleMale(currentFemaleMale) {
     }
 }
 
+//##14 Female or Male
 function displayPokemonFemaleMale(currentFemaleMale) {
     const result = calculateFemaleMale(currentFemaleMale)
     document.querySelector('.pokemon-gender-female').textContent = result.female + ' %';
     document.querySelector('.pokemon-gender-male').textContent = result.male + ' %'
 }
 
+//##15 Moves
+function pokemonMoves(pokemonMoveName) {
+    const movesEl = document.querySelector(".pokemon-moves-content")
+    movesEl.innerHTML = '';
+
+    for (let i = 0; i < pokemonMoveName.length; i++) {
+        const element = pokemonMoveName[i];
+        movesEl.innerHTML += `<div class="pokemon-move-name">${element.move.name}</div>`
+    }
+}
+
+//##16 Growth Rate
+function pokemonGrowth(growthRate) {
+    document.querySelector('.growth-rate-content-dd').innerHTML = `${growthRate}`
+}
+
+//##17 All Growth Rate
+function pokemonAllGrowthRates(pokemonAllRatesList) {
+    const allGrowthRateContentDdEl = document.querySelector('.all-growth-rate-content-dd');
+    allGrowthRateContentDdEl.innerHTML = '';
+
+    for (let i = 0; i < pokemonAllRatesList.length; i++) {
+        const element = pokemonAllRatesList[i].name;
+        allGrowthRateContentDdEl.innerHTML += `<dd class="all-growth-rate-content-dd">${element}</dd>`
+    }
+}
