@@ -5,30 +5,11 @@ let currentPokemonEvolution;
 
 let currentPokemonEvolutionChain;
 
-let defultEvolutionPokemonName
-let firstEvolutionPokemonName;
-let secondEvolutionPokemonName;
+// let defultEvolutionPokemonName
+// let firstEvolutionPokemonName;
+// let secondEvolutionPokemonName;
 
-let temporaryId;
-
-let amountOfThePokemon = 10;
-let defultName;
-let firstName;
-let secondName;
-
-// async function mainEvolutionAPI() {
-//         pokemonGrowthRates = await sendRequest(`/growth-rate/`)
-//         pokemonAllGrowthRates = pokemonGrowthRates.results
-//         currentPokemonEvolutionChain = currentPokemonSpecies.evolution_chain.url
-//         extractNumberFromUrl(currentPokemonEvolutionChain)
-//         currentPokemonEvolution = await sendRequest(`/evolution-chain/${temporaryId}`)
-//         namePokemon = currentPokemonEvolution.chain.species.name
-//         evolutionLoadTheNameFromTheChain()
-//         defultPokemonName = await sendRequest(`/pokemon/${defultName}`);
-//         firstPokemonName = await sendRequest(`/pokemon/${firstName}`);
-//         secondPokemonName = await sendRequest(`/pokemon/${secondName}`);
-//         evolutionLoadTheImageThroughTheNameFromTheChain()
-// }
+let amountOfThePokemon = 30;
 
 async function loadAllPokemonsApi() {
     for (let id = 1; id <= amountOfThePokemon; id++) {
@@ -150,45 +131,39 @@ function extractNumberFromUrl(url) {
     }
 }
 
-function evolutionLoadTheImageThroughTheNameFromTheChain() {
-    // console.log("Name:", currentPokemonEvolution)
+function evolutionLoadTheImageThroughTheNameFromTheChain(defultPokemonImg, firstPokemonImg, secondPokemonImg ) {
     const imgDefultName = document.querySelector('.img-defult-name-evolution')
-    imgDefultName.src = defultPokemonName.sprites.other.home.front_default;
+    imgDefultName.src = defultPokemonImg.sprites.other.home.front_default;
     
     const imgFirstName = document.querySelectorAll('.img-first-name-evolution')
         for (let i = 0; i < imgFirstName.length; i++) {
-            imgFirstName[i].src = firstPokemonName.sprites.other.home.front_default;
+            imgFirstName[i].src = firstPokemonImg.sprites.other.home.front_default;
         }
     
     const imgSecondName = document.querySelector('.img-second-name-evolution')
-    imgSecondName.src = secondPokemonName.sprites.other.home.front_default;
+    imgSecondName.src = secondPokemonImg.sprites.other.home.front_default;
     }
 
-function evolutionLoadTheNameFromTheChain() {
+function evolutionLoadTheNameFromTheChain(defultName, firstName, secondName) {
 
-    defultEvolutionPokemonName = currentPokemonEvolution.chain.species.name;
-    defultName = defultEvolutionPokemonName;
-
-    firstEvolutionPokemonName = currentPokemonEvolution.chain.evolves_to[0].species.name
-    firstName = firstEvolutionPokemonName
-    
-    if(currentPokemonEvolution.chain.evolves_to[0].evolves_to == 0) {
-        document.getElementById('dupa').classList.add('d-none')
-    } else {
-        document.getElementById('dupa').classList.remove('d-none')
-        secondEvolutionPokemonName = currentPokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name;
-        secondName = secondEvolutionPokemonName;
-    }
+    // if(currentPokemonEvolution.chain.evolves_to[0].evolves_to == 0) {
+    //     document.getElementById('dupa').classList.add('d-none')
+    // } else {
+    //     document.getElementById('dupa').classList.remove('d-none')
+    //     secondEvolutionPokemonName = currentPokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name;
+    //     secondName = secondEvolutionPokemonName;
+    // }
 
 
     const defultNameEl = document.querySelector('.defult-name-evolution');
-    defultNameEl.textContent = defultEvolutionPokemonName;
+    defultNameEl.textContent = defultName;
+    console.log(defultName)
 
     const firstNameEl = document.querySelectorAll('.first-name-evolution');
         for (let i = 0; i < firstNameEl.length; i++) {
-            firstNameEl[i].textContent = firstEvolutionPokemonName;;
+            firstNameEl[i].textContent = firstName;;
         }
 
     const secondNameEl = document.querySelector('.second-name-evolution');
-    secondNameEl.textContent = secondEvolutionPokemonName;
+    secondNameEl.textContent = secondName;
 }

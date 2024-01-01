@@ -98,7 +98,7 @@ header {
   right: 0;
   bottom: 0;
   top: 0;
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -474,7 +474,6 @@ right: 30px;
 }
 
 /* Evolution Section */
-
 .pokemon-evolution {
   width: 100%;
   overflow-y: auto;
@@ -565,7 +564,7 @@ right: 30px;
     height: 330px;
   }
   .img {
-    transform: translateY(-5%);
+    transform: translateY(-20%);
     height: 250px;
   }
 }

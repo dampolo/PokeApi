@@ -14,6 +14,7 @@ async function createNewPokemonApi(id){
 
 async function createNewPokemonSpeciesApi(id){
     const pokemonSpecies = await sendRequest(`/pokemon-species/${id}`);
+    console.log(pokemonSpecies)
     return pokemonSpecies;
     }
 
@@ -22,6 +23,29 @@ async function createAllPokemonGrowthRatesApi() {
     return pokemonGrowthRates.results
 }
 
+async function mainEvolutionAPI(id) {
+    const pokemonSpecies = await sendRequest(`/pokemon-species/${id}`);
+    const currentPokemonEvolutionChain = pokemonSpecies.evolution_chain.url;
+    const chainNumber = extractNumberFromUrl(currentPokemonEvolutionChain)
+    const currentPokemonEvolution = await sendRequest(`/evolution-chain/${chainNumber}`)
+
+    const defultName = currentPokemonEvolution.chain.species.name
+    console.log('Defult Pokemon:', defultName)
+
+    const firstName = currentPokemonEvolution.chain.evolves_to[0].species.name
+    console.log('First Pokemon:', firstName)
+
+    const secondName = currentPokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name
+    console.log('Second Pokemon:', secondName)
+
+    evolutionLoadTheNameFromTheChain(defultName, firstName, secondName)
+    // console.log(evolutionLoadTheNameFromTheChain())
+
+    const defultPokemonImg = await sendRequest(`/pokemon/${defultName}`);
+    const firstPokemonImg = await sendRequest(`/pokemon/${firstName}`);
+    const secondPokemonImg = await sendRequest(`/pokemon/${secondName}`);
+    evolutionLoadTheImageThroughTheNameFromTheChain(defultPokemonImg, firstPokemonImg, secondPokemonImg)
+}
 
 async function loadPokemons(id){
     const pokemon = await createNewPokemonApi(id);
@@ -37,11 +61,12 @@ async function loadPokemons(id){
 
 async function loadPokemonInfo(id){
     const pokemon = await createNewPokemonApi(id);
-    console.log('1pokemon', pokemon)
+    // console.log('1pokemon', pokemon)
     const pokemonSpecies = await createNewPokemonSpeciesApi(id);
-    console.log('2pokemonSpecies', pokemonSpecies)
+    // console.log('2pokemonSpecies', pokemonSpecies)
     const pokemonAllRatesList = await createAllPokemonGrowthRatesApi();
-    console.log('Rates', pokemonAllRatesList)
+    // console.log('Rates', pokemonAllRatesList)
+    mainEvolutionAPI(id)
     
     nameOfPokemonBig(pokemon.name) //##3 load-single-pokemon.js
     pokemonTypeBig(pokemon.types) //##4 load-single-pokemon.js
