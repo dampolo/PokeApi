@@ -96,13 +96,13 @@ function showSection(sectionClass) {
       const menuElement = document.querySelector(`.${navMenu[i]}`);
       const AElement = document.querySelector(`.${navMenuA[i]}`);
 
-  
       if (section === sectionClass) {
         element.classList.remove('d-none');
         menuElement.classList.add('active'); // Highlight corresponding nav menu item
         AElement.classList.add('active-a'); // Highlight corresponding nav menu item
         
-    } else {
+    } 
+    else {
         element.classList.add('d-none');
         menuElement.classList.remove('active'); // Remove active class from other nav menu items
         AElement.classList.remove('active-a');
