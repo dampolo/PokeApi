@@ -241,3 +241,53 @@ function pokemonAllGrowthRates(pokemonAllRatesList) {
         allGrowthRateContentDdEl.innerHTML += `<dd class="all-growth-rate-content-dd">${element}</dd>`
     }
 }
+
+// ##18 - 1 part load-single-pokemon.js
+function extractNumberFromUrl(url) {
+    // Match the last sequence of digits in the URL
+    const match = url.match(/\/(\d+)\/$/);
+    // Check if there is a match
+    if (match && match[1]) {
+        // Extracted number
+        const number = parseInt(match[1], 10);
+        return number;
+    } else {
+        // Return an error or handle the case where no number is found
+        return null;
+    }
+}
+
+// ##18 - 2 part load-single-pokemon.js
+function evolutionLoadTheNameFromTheChain(defultName, firstName, secondName) {
+    const defultNameEl = document.querySelector('.defult-name-evolution');
+    defultNameEl.textContent = defultName;
+
+    const firstNameEl = document.querySelectorAll('.first-name-evolution');
+        for (let i = 0; i < firstNameEl.length; i++) {
+            firstNameEl[i].textContent = firstName;;
+        }
+
+    const secondNameEl = document.querySelector('.second-name-evolution');
+    secondNameEl.textContent = secondName;
+}
+
+// ##18 - 3 part load-single-pokemon.js
+function evolutionLoadTheImageThroughTheNameFromTheChainOneEvolution(defultPokemonImg, firstPokemonImg) {
+    document.querySelector('.img-defult-name-evolution').src = defultPokemonImg.sprites.other.home.front_default;
+    
+    const imgFirstName = document.querySelectorAll('.img-first-name-evolution')
+        for (let i = 0; i < imgFirstName.length; i++) {
+            imgFirstName[i].src = firstPokemonImg.sprites.other.home.front_default;
+        }
+}
+
+// ##18 - 4 part load-single-pokemon.js
+function evolutionLoadTheImageThroughTheNameFromTheChainTwoEvolution(defultPokemonImg, firstPokemonImg, secondPokemonImg ) {
+    document.querySelector('.img-defult-name-evolution').src = defultPokemonImg.sprites.other.home.front_default;
+    
+    const imgFirstName = document.querySelectorAll('.img-first-name-evolution')
+        for (let i = 0; i < imgFirstName.length; i++) {
+            imgFirstName[i].src = firstPokemonImg.sprites.other.home.front_default;
+        }
+        document.querySelector('.img-second-name-evolution').src = secondPokemonImg.sprites.other.home.front_default;
+}

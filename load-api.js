@@ -22,9 +22,12 @@ async function createAllPokemonGrowthRatesApi() {
     return pokemonGrowthRates.results
 }
 
+// ##18
 async function mainEvolutionAPI(id) {
     const pokemonSpecies = await sendRequest(`/pokemon-species/${id}`);
     const currentPokemonEvolutionChain = pokemonSpecies.evolution_chain.url;
+    
+    // ##18 - 1 part load-single-pokemon.js
     const chainNumber = extractNumberFromUrl(currentPokemonEvolutionChain)
 
     const currentPokemonEvolution = await sendRequest(`/evolution-chain/${chainNumber}`)
@@ -41,7 +44,8 @@ async function mainEvolutionAPI(id) {
         firstName = currentPokemonEvolution.chain.evolves_to[0].species.name
         secondName = currentPokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name;
     }
-    
+
+    // ##18 - 2 part load-single-pokemon.js
     evolutionLoadTheNameFromTheChain(defultName, firstName, secondName)
     await loadPokemonImages(defultName, firstName, secondName);
 }
@@ -50,9 +54,11 @@ async function loadPokemonImages(defultName, firstName, secondName) {
     const defultPokemonImg = await sendRequest(`/pokemon/${defultName}`);
     const firstPokemonImg = await sendRequest(`/pokemon/${firstName}`);
     if (secondName == '') {
+        // ##18 - 3 part load-single-pokemon.js
         evolutionLoadTheImageThroughTheNameFromTheChainOneEvolution(defultPokemonImg, firstPokemonImg)
     } else {
         const secondPokemonImg = await sendRequest(`/pokemon/${secondName}`);
+        // ##18 - 4 part load-single-pokemon.js
         evolutionLoadTheImageThroughTheNameFromTheChainTwoEvolution(defultPokemonImg, firstPokemonImg, secondPokemonImg)
     }
 }
@@ -76,7 +82,7 @@ async function loadPokemonInfo(id){
     // console.log('2pokemonSpecies', pokemonSpecies)
     const pokemonAllRatesList = await createAllPokemonGrowthRatesApi();
     // console.log('Rates', pokemonAllRatesList)
-    mainEvolutionAPI(id)
+    mainEvolutionAPI(id) //#18 load-api.js
     
     nameOfPokemonBig(pokemon.name) //##3 load-single-pokemon.js
     pokemonTypeBig(pokemon.types) //##4 load-single-pokemon.js
