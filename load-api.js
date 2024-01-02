@@ -30,8 +30,8 @@ async function mainEvolutionAPI(id) {
     const currentPokemonEvolution = await sendRequest(`/evolution-chain/${chainNumber}`)
 
     const defultName = currentPokemonEvolution.chain.species.name
-    let firstName = ''
-    let secondName = ''
+    let firstName = '';
+    let secondName = '';
 
     if(currentPokemonEvolution.chain.evolves_to[0].evolves_to == 0) {
         firstName = currentPokemonEvolution.chain.evolves_to[0].species.name
@@ -41,13 +41,20 @@ async function mainEvolutionAPI(id) {
         firstName = currentPokemonEvolution.chain.evolves_to[0].species.name
         secondName = currentPokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name;
     }
-
+    
     evolutionLoadTheNameFromTheChain(defultName, firstName, secondName)
+    await loadPokemonImages(defultName, firstName, secondName);
+}
 
+async function loadPokemonImages(defultName, firstName, secondName) {
     const defultPokemonImg = await sendRequest(`/pokemon/${defultName}`);
     const firstPokemonImg = await sendRequest(`/pokemon/${firstName}`);
-    const secondPokemonImg = await sendRequest(`/pokemon/${secondName}`);
-    evolutionLoadTheImageThroughTheNameFromTheChain(defultPokemonImg, firstPokemonImg, secondPokemonImg)
+    if (secondName == '') {
+        evolutionLoadTheImageThroughTheNameFromTheChainOneEvolution(defultPokemonImg, firstPokemonImg)
+    } else {
+        const secondPokemonImg = await sendRequest(`/pokemon/${secondName}`);
+        evolutionLoadTheImageThroughTheNameFromTheChainTwoEvolution(defultPokemonImg, firstPokemonImg, secondPokemonImg)
+    }
 }
 
 async function loadPokemons(id){
@@ -64,7 +71,7 @@ async function loadPokemons(id){
 
 async function loadPokemonInfo(id){
     const pokemon = await createNewPokemonApi(id);
-    // console.log('1pokemon', pokemon)
+    console.log('1pokemon', pokemon)
     const pokemonSpecies = await createNewPokemonSpeciesApi(id);
     // console.log('2pokemonSpecies', pokemonSpecies)
     const pokemonAllRatesList = await createAllPokemonGrowthRatesApi();
