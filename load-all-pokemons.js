@@ -60,8 +60,13 @@ function pokemonBackGroundColorSmall(id, BackGroundColor){
         document.querySelector(`.pokemon-img-content${id}`).style.backgroundColor = 'rgb(160, 181, 54)';
     } else if (BackGroundColor == "yellow") {
         document.querySelector(`.pokemon-img-content${id}`).style.backgroundColor = 'rgb(207, 152, 58)';
+    }  else if (BackGroundColor == "brown") {
+        document.querySelector(`.pokemon-img-content${id}`).style.backgroundColor = 'rgb(207, 152, 58)';
+    } else if (BackGroundColor == "purple") {
+        document.querySelector(`.pokemon-img-content${id}`).style.backgroundColor = 'rgb(233, 168, 242)';
+
     } else {
-        document.querySelector(`.pokemon-img-content${id}`).style.backgroundColor = currentColor;
+        document.querySelector(`.pokemon-img-content${id}`).style.backgroundColor = BackGroundColor;
     }
 }
 

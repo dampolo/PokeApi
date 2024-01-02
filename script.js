@@ -5,10 +5,6 @@ let currentPokemonEvolution;
 
 let currentPokemonEvolutionChain;
 
-// let defultEvolutionPokemonName
-// let firstEvolutionPokemonName;
-// let secondEvolutionPokemonName;
-
 let amountOfThePokemon = 30;
 
 async function loadAllPokemonsApi() {
@@ -132,32 +128,19 @@ function extractNumberFromUrl(url) {
 }
 
 function evolutionLoadTheImageThroughTheNameFromTheChain(defultPokemonImg, firstPokemonImg, secondPokemonImg ) {
-    const imgDefultName = document.querySelector('.img-defult-name-evolution')
-    imgDefultName.src = defultPokemonImg.sprites.other.home.front_default;
+    document.querySelector('.img-defult-name-evolution').src = defultPokemonImg.sprites.other.home.front_default;
     
     const imgFirstName = document.querySelectorAll('.img-first-name-evolution')
         for (let i = 0; i < imgFirstName.length; i++) {
             imgFirstName[i].src = firstPokemonImg.sprites.other.home.front_default;
         }
     
-    const imgSecondName = document.querySelector('.img-second-name-evolution')
-    imgSecondName.src = secondPokemonImg.sprites.other.home.front_default;
-    }
+    document.querySelector('.img-second-name-evolution').src = secondPokemonImg.sprites.other.home.front_default;
+}
 
 function evolutionLoadTheNameFromTheChain(defultName, firstName, secondName) {
-
-    // if(currentPokemonEvolution.chain.evolves_to[0].evolves_to == 0) {
-    //     document.getElementById('dupa').classList.add('d-none')
-    // } else {
-    //     document.getElementById('dupa').classList.remove('d-none')
-    //     secondEvolutionPokemonName = currentPokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name;
-    //     secondName = secondEvolutionPokemonName;
-    // }
-
-
     const defultNameEl = document.querySelector('.defult-name-evolution');
     defultNameEl.textContent = defultName;
-    console.log(defultName)
 
     const firstNameEl = document.querySelectorAll('.first-name-evolution');
         for (let i = 0; i < firstNameEl.length; i++) {

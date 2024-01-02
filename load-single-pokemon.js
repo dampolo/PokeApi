@@ -11,7 +11,7 @@ function pokemonBackGroundColorBig(BackGroundColor){
     } else if (BackGroundColor == "yellow") {
         document.querySelector('.pokemon-top-section').style.backgroundColor = 'rgb(207, 152, 58)';
     } else {
-        document.querySelector('.pokemon-top-section').style.backgroundColor = currentColor;
+        document.querySelector('.pokemon-top-section').style.backgroundColor = BackGroundColor;
     }
 }
 

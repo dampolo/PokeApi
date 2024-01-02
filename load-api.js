@@ -1,4 +1,3 @@
-
 const uri = 'https://pokeapi.co/api/v2';
 
 async function sendRequest(endpoint) {
@@ -14,7 +13,7 @@ async function createNewPokemonApi(id){
 
 async function createNewPokemonSpeciesApi(id){
     const pokemonSpecies = await sendRequest(`/pokemon-species/${id}`);
-    console.log(pokemonSpecies)
+    console.log(pokemonSpecies, id)
     return pokemonSpecies;
     }
 
@@ -27,19 +26,23 @@ async function mainEvolutionAPI(id) {
     const pokemonSpecies = await sendRequest(`/pokemon-species/${id}`);
     const currentPokemonEvolutionChain = pokemonSpecies.evolution_chain.url;
     const chainNumber = extractNumberFromUrl(currentPokemonEvolutionChain)
+
     const currentPokemonEvolution = await sendRequest(`/evolution-chain/${chainNumber}`)
 
     const defultName = currentPokemonEvolution.chain.species.name
-    console.log('Defult Pokemon:', defultName)
+    let firstName = ''
+    let secondName = ''
 
-    const firstName = currentPokemonEvolution.chain.evolves_to[0].species.name
-    console.log('First Pokemon:', firstName)
-
-    const secondName = currentPokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name
-    console.log('Second Pokemon:', secondName)
+    if(currentPokemonEvolution.chain.evolves_to[0].evolves_to == 0) {
+        firstName = currentPokemonEvolution.chain.evolves_to[0].species.name
+        document.getElementById('dupa').classList.add('d-none')
+    } else {
+        document.getElementById('dupa').classList.remove('d-none')
+        firstName = currentPokemonEvolution.chain.evolves_to[0].species.name
+        secondName = currentPokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name;
+    }
 
     evolutionLoadTheNameFromTheChain(defultName, firstName, secondName)
-    // console.log(evolutionLoadTheNameFromTheChain())
 
     const defultPokemonImg = await sendRequest(`/pokemon/${defultName}`);
     const firstPokemonImg = await sendRequest(`/pokemon/${firstName}`);
