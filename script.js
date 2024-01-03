@@ -18,33 +18,52 @@ async function renderPokemonInfo(id) {
 }
 
 
-function allPictures() {
-    const parentElement = document.querySelector(".picture")
+function allPictures(images) {
+    const parentElement = document.querySelector(".other-pictures")
     
     while (parentElement.firstChild) {
         parentElement.removeChild(parentElement.firstChild);
     }
     
     for (let i = 0; i < imageTypes.length; i++) {
-        
+        const element = imageTypes[i]
+        console.log(images.element)
+
         const node = document.createElement("img")
-        if((getImageSource(currentPokemon.sprites, imageTypes[i])) == null) {
+        if((getImageSource(images, imageTypes[i])) == null) {
             node.classList.add("d-none");
         } else {
-            node.src = getImageSource(currentPokemon.sprites, imageTypes[i]);
+            node.src = getImageSource(images, imageTypes[i]);
             node.classList.add("all-picture");
-            document.querySelector(".picture").appendChild(node);
+            document.querySelector(".other-pictures").appendChild(node);
         }
     }
 }
-    function getImageSource(sprites, type) {
-        const keys = type.split('.');
-        let result = sprites;
-        for (let i = 0; i < keys.length; i++) {
-          result = result[keys[i]];
-        }
-        return result;
-      }
+
+// for (let i = 0; i < imageTypes.length; i++) {
+//     const element = imageTypes[i]
+
+//     console.log(element)
+//     const node = document.createElement("img")
+//     if((getImageSource(images, imageTypes[i])) == null) {
+//         node.classList.add("d-none");
+//     } else {
+//         node.src = getImageSource(images, imageTypes[i]);
+//         node.classList.add("all-picture");
+//         document.querySelector(".other-pictures").appendChild(node);
+//     }
+// }
+
+function getImageSource(sprites, type) {
+    const keys = type.split('.');
+    let result = sprites;
+    // console.log('RESULT: ', result)
+    for (let i = 0; i < keys.length; i++) {
+        result = result[keys[i]];
+        // console.log('LINK: ', result)
+    }
+    return result;
+    }
 
 function nextImageRight() {
     id++

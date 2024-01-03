@@ -13,7 +13,6 @@ async function createNewPokemonApi(id){
 
 async function createNewPokemonSpeciesApi(id){
     const pokemonSpecies = await sendRequest(`/pokemon-species/${id}`);
-    console.log(pokemonSpecies, id)
     return pokemonSpecies;
     }
 
@@ -77,7 +76,7 @@ async function loadPokemons(id){
 
 async function loadPokemonInfo(id){
     const pokemon = await createNewPokemonApi(id);
-    console.log('1pokemon', pokemon)
+    console.log('1pokemon', pokemon.sprites)
     const pokemonSpecies = await createNewPokemonSpeciesApi(id);
     // console.log('2pokemonSpecies', pokemonSpecies)
     const pokemonAllRatesList = await createAllPokemonGrowthRatesApi();
@@ -101,4 +100,5 @@ async function loadPokemonInfo(id){
     displayPokemonFemaleMale(pokemonSpecies.gender_rate) //##14 load-single-pokemon.js
     pokemonGrowth(pokemonSpecies.growth_rate.name) //##16 load-single-pokemon.js
     pokemonAllGrowthRates(pokemonAllRatesList) //##17 load-single-pokemon.js
+    allPictures(pokemon.sprites)
 }
