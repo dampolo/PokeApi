@@ -562,7 +562,6 @@ right: 30px;
 .all-picture {
   height: 200px;
   width: 200px;
-  /* border: 1px solid black */
 }
 
 @media (max-height: 1100px) {

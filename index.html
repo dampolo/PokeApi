@@ -65,6 +65,9 @@
                 <li class="pokemon-nav-item about-nav-item active" onclick="showSection('about-section')">
                   <a class="text-decoration-none about-nav-item-a active-a" href="#">About</a>
                 </li>
+                <li class="pokemon-nav-item description-nav-item" onclick="showSection('description-section')">
+                  <a class="text-decoration-none description-nav-item-a" href="#">Description</a>
+                </li>
                 <li class="pokemon-nav-item languages-nav-item" onclick="showSection('pokemon-languages')">
                   <a class="text-decoration-none languages-nav-item-a" href="#">Languages</a>
                 </li>
@@ -89,7 +92,7 @@
               </div>
             </div>
             <div class="all-sections">         
-              <section class="about-sectiond d-none">
+              <section class="about-section">
                 
                 <h3>About</h3>
                 <dl class="about-dl">
@@ -123,6 +126,10 @@
                   <dt class="about-dt">Egg Cycle</dt>
                   <dd class="pokemon-egg-cycle about-dd"></dd>
                 </dl>
+              </section>
+              <section class="description-section d-none">
+                <h5>Description of <span class="pokemon-name-big text-capitalize text-center"></span> in following languages:</h5>
+                <div class="description-section-list"></div>
               </section>
               <section class="pokemon-languages d-none">
                 <h3>Languages</h3>
@@ -187,10 +194,9 @@
                   </dl>
                 </div>
               </section>
-              <section class="other-pictures container-sm">
-                <h5>You can find <span class="amount-of-pictures"></span> diffrent pictures and from <span class="pokemon-name-big text-capitalize"></span></picture> </h3>
+              <section class="other-pictures container-sm d-none">
+                <h5>You can find <span class="amount-of-pictures"></span> different pictures and from <span class="pokemon-name-big text-capitalize"></span></picture> </h3>
                 <div class="other-pictures-list row">
-
                 </div>
               </section>
             </div>

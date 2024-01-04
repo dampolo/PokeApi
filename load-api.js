@@ -76,9 +76,9 @@ async function loadPokemons(id){
 
 async function loadPokemonInfo(id){
     const pokemon = await createNewPokemonApi(id);
-    console.log('1pokemon', pokemon.sprites)
+    // console.log('1pokemon', pokemon)
     const pokemonSpecies = await createNewPokemonSpeciesApi(id);
-    // console.log('2pokemonSpecies', pokemonSpecies)
+    console.log('2pokemonSpecies', pokemonSpecies.flavor_text_entries)
     const pokemonAllRatesList = await createAllPokemonGrowthRatesApi();
     // console.log('Rates', pokemonAllRatesList)
     mainEvolutionAPI(id) //#18 load-api.js
@@ -101,4 +101,5 @@ async function loadPokemonInfo(id){
     pokemonGrowth(pokemonSpecies.growth_rate.name) //##16 load-single-pokemon.js
     pokemonAllGrowthRates(pokemonAllRatesList) //##17 load-single-pokemon.js
     allPictures(pokemon.sprites) //##19 load-single-pokemon.js
+    descriptionOfThePokemon(pokemonSpecies.flavor_text_entries)
 }

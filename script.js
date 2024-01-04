@@ -1,7 +1,3 @@
-let allPokemons;
-
-let currentPokemonSpecies;
-let currentPokemonEvolution;
 
 let amountOfThePokemon = 30;
 
@@ -57,9 +53,9 @@ function toRight() {
   }
 
 function showSection(sectionClass) {
-    const sections = ['about-section', 'pokemon-languages', 'pokemon-stats', 'pokemon-evolution', 'pokemon-moves', 'growth-rate', 'other-pictures'];
-    const navMenu = ['about-nav-item', 'languages-nav-item', 'stats-nav-item', 'evolution-nav-item', 'moves-nav-item', 'growth-rate-nav-item', 'other-pictures-nav-item'];
-    const navMenuA = ['about-nav-item-a', 'languages-nav-item-a', 'stats-nav-item-a', 'evolution-nav-item-a', 'moves-nav-item-a', 'growth-rate-nav-item-a', 'other-pictures-nav-item-a'];
+    const sections = ['about-section', 'description-section', 'pokemon-languages', 'pokemon-stats', 'pokemon-evolution', 'pokemon-moves', 'growth-rate', 'other-pictures'];
+    const navMenu = ['about-nav-item', 'description-nav-item', 'languages-nav-item', 'stats-nav-item', 'evolution-nav-item', 'moves-nav-item', 'growth-rate-nav-item', 'other-pictures-nav-item'];
+    const navMenuA = ['about-nav-item-a', 'description-nav-item-a', 'languages-nav-item-a', 'stats-nav-item-a', 'evolution-nav-item-a', 'moves-nav-item-a', 'growth-rate-nav-item-a', 'other-pictures-nav-item-a'];
 
   
     sections.forEach((section, i) => {
@@ -79,4 +75,16 @@ function showSection(sectionClass) {
         AElement.classList.remove('active-a');
         }
     });
+}
+
+function descriptionOfThePokemon(languages) {
+
+    const description = document.querySelector('.description-section')
+
+    for (let i = 0; i < languages.length; i++) {
+        const element = languages[i];
+
+        if(element.language.name == 'de')
+        description.innerHTML += `<span>${element.flavor_text}</span>`
+    }
 }
