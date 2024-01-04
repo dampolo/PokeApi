@@ -100,5 +100,5 @@ async function loadPokemonInfo(id){
     displayPokemonFemaleMale(pokemonSpecies.gender_rate) //##14 load-single-pokemon.js
     pokemonGrowth(pokemonSpecies.growth_rate.name) //##16 load-single-pokemon.js
     pokemonAllGrowthRates(pokemonAllRatesList) //##17 load-single-pokemon.js
-    allPictures(pokemon.sprites)
+    allPictures(pokemon.sprites) //##19 load-single-pokemon.js
 }

@@ -17,7 +17,10 @@ function pokemonBackGroundColorBig(BackGroundColor){
 
 //##3 load-single-pokemon
 function nameOfPokemonBig(pokemon) {
-    document.querySelector('.pokemon-name-big').textContent = pokemon
+    const nodeList = document.querySelectorAll('.pokemon-name-big')
+    for (let i = 0; i < nodeList.length; i++) {
+        nodeList[i].textContent = pokemon
+    }
 }
 
 //##4  A list of details showing types this Pokémon has.
@@ -290,4 +293,51 @@ function evolutionLoadTheImageThroughTheNameFromTheChainTwoEvolution(defultPokem
             imgFirstName[i].src = firstPokemonImg.sprites.other.home.front_default;
         }
         document.querySelector('.img-second-name-evolution').src = secondPokemonImg.sprites.other.home.front_default;
+}
+
+//##19 load-single-pokemon.js
+function allPictures(images) {
+    const parentElement = document.querySelector(".other-pictures-list")
+    
+    while (parentElement.firstChild) {
+        parentElement.removeChild(parentElement.firstChild);
+    }
+    
+    for (let i = 0; i < imageTypes.length; i++) {
+        const node = document.createElement("img")
+        if((getImageSource(images, imageTypes[i])) == null) {
+            node.classList.add("d-none");
+        } else {
+            node.src = getImageSource(images, imageTypes[i]);
+            node.classList.add("all-picture");
+            node.classList.add("img-fluid");
+            node.classList.add("w-50");
+            document.querySelector(".other-pictures-list").appendChild(node);
+        }
+    }
+    amountOfPictures(images)
+}
+
+//##19 load-single-pokemon.js
+function getImageSource(sprites, type) {
+    const keys = type.split('.');
+    let result = sprites;
+    for (let i = 0; i < keys.length; i++) {
+        result = result[keys[i]];
+    }
+    return result;
+    }
+
+//##19 load-single-pokemon.js
+function amountOfPictures(images) {
+    let numberOfImages = 0;
+
+    for (let i = 0; i < imageTypes.length; i++) {
+        const imageSource = getImageSource(images, imageTypes[i]);
+        
+        if (imageSource !== null) {
+            numberOfImages++;
+        }
+        document.querySelector('.amount-of-pictures').textContent = numberOfImages;
+    }
 }
