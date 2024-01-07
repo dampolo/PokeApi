@@ -1,5 +1,8 @@
 
-let amountOfThePokemon = 30;
+const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
+const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
+
+let amountOfThePokemon = 10;
 
 async function loadAllPokemonsApi() {
     for (let id = 1; id <= amountOfThePokemon; id++) {
@@ -77,37 +80,10 @@ function showSection(sectionClass) {
     });
 }
 
-function descriptionOfThePokemon(languages) {
-
-    const descriptionGerman = document.querySelector('.description-section-german')
-    const descriptionEnglish = document.querySelector('.description-section-english')
-    const descriptionSpanish = document.querySelector('.description-section-spain')
-    const descriptionFrench = document.querySelector('.description-section-french')
-    const descriptionItalian = document.querySelector('.description-section-italian')
-
-
-    for (let i = 0; i < languages.length; i++) {
-        const element = languages[i];
-
-        if(element.language.name == 'de') {
-            descriptionGerman.innerHTML += `<span>${element.flavor_text}</span>`
-        } else if (element.language.name == 'en') {
-            descriptionEnglish.innerHTML += `<span>${element.flavor_text}</span>`
-        } else if (element.language.name == 'es') {
-            descriptionSpanish.innerHTML += `<span>${element.flavor_text}</span>`
-        } else if (element.language.name == 'fr') {
-            descriptionFrench.innerHTML += `<span>${element.flavor_text}</span>`
-        } else if (element.language.name == 'it') {
-            descriptionItalian.innerHTML += `<span>${element.flavor_text}</span>`
-        }
-
-    }
-}
 
 function pokemonLanguages(sectionClass) {
-    debugger
-    const sections = ['english', 'german', 'spain', 'french', 'italian']
-    const showSection = ['description-section-english', 'description-section-german', 'description-section-spain', 'description-section-french', 'description-section-italian']
+    const sections = ['english', 'german', 'spanish', 'french', 'italian', 'japanese', 'koreanish', 'chinesisch']
+    const showSection = ['description-section-english', 'description-section-german', 'description-section-spanish', 'description-section-french', 'description-section-italian', 'description-section-japan', 'description-section-korean', 'description-section-china']
 
     sections.forEach((section, i) => {
         const element = document.querySelector(`.${sections[i]}`)

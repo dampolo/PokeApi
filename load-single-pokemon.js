@@ -328,7 +328,7 @@ function getImageSource(sprites, type) {
     return result;
     }
 
-//##19 load-single-pokemon.js
+//##19 part 2 load-single-pokemon.js
 function amountOfPictures(images) {
     let numberOfImages = 0;
 
@@ -339,5 +339,43 @@ function amountOfPictures(images) {
             numberOfImages++;
         }
         document.querySelector('.amount-of-pictures').textContent = numberOfImages;
+    }
+}
+
+//##20 load-single-pokemon.js
+function descriptionOfThePokemon(languages) {
+
+    const descriptionEnglish = document.querySelector('.description-section-english')
+    const descriptionGerman = document.querySelector('.description-section-german')
+    const descriptionSpanish = document.querySelector('.description-section-spanish')
+    const descriptionFrench = document.querySelector('.description-section-french')
+    const descriptionItalian = document.querySelector('.description-section-italian')
+    const descriptionJapan = document.querySelector('.description-section-japan')
+    const descriptionKorean = document.querySelector('.description-section-korean')
+    const descriptionChina = document.querySelector('.description-section-china')
+
+    for (let i = 0; i < languages.length; i++) {
+        const element = languages[i];
+
+        if(element.language.name == 'en') {
+            descriptionEnglish.innerHTML += `<span>${element.flavor_text}</span>`
+        } else if (element.language.name == 'de') {
+            descriptionGerman.innerHTML += `<span>${element.flavor_text}</span>`
+        } else if (element.language.name == 'es') {
+            descriptionSpanish.innerHTML += `<span>${element.flavor_text}</span>`
+        } else if (element.language.name == 'fr') {
+            descriptionFrench.innerHTML += `<span>${element.flavor_text}</span>`
+        } else if (element.language.name == 'it') {
+            descriptionItalian.innerHTML += `<span>${element.flavor_text}</span>`
+        } else if (element.language.name == 'ja') {
+            descriptionJapan.innerHTML += `<span>${element.flavor_text}</span>`
+        } else if (element.language.name == 'ko') {
+            descriptionKorean.innerHTML += `<span>${element.flavor_text}</span>`
+        } else if (element.language.name == 'zh-Hant') {
+            descriptionChina.innerHTML += `<span>${element.flavor_text}</span>`
+        } else if (element.language.name == '') {
+            descriptionChina.textContent += 'This languages is not avilabel'
+        }
+
     }
 }
