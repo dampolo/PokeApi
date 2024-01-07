@@ -79,12 +79,46 @@ function showSection(sectionClass) {
 
 function descriptionOfThePokemon(languages) {
 
-    const description = document.querySelector('.description-section')
+    const descriptionGerman = document.querySelector('.description-section-german')
+    const descriptionEnglish = document.querySelector('.description-section-english')
+    const descriptionSpanish = document.querySelector('.description-section-spain')
+    const descriptionFrench = document.querySelector('.description-section-french')
+    const descriptionItalian = document.querySelector('.description-section-italian')
+
 
     for (let i = 0; i < languages.length; i++) {
         const element = languages[i];
 
-        if(element.language.name == 'de')
-        description.innerHTML += `<span>${element.flavor_text}</span>`
+        if(element.language.name == 'de') {
+            descriptionGerman.innerHTML += `<span>${element.flavor_text}</span>`
+        } else if (element.language.name == 'en') {
+            descriptionEnglish.innerHTML += `<span>${element.flavor_text}</span>`
+        } else if (element.language.name == 'es') {
+            descriptionSpanish.innerHTML += `<span>${element.flavor_text}</span>`
+        } else if (element.language.name == 'fr') {
+            descriptionFrench.innerHTML += `<span>${element.flavor_text}</span>`
+        } else if (element.language.name == 'it') {
+            descriptionItalian.innerHTML += `<span>${element.flavor_text}</span>`
+        }
+
     }
 }
+
+function pokemonLanguages(sectionClass) {
+    debugger
+    const sections = ['english', 'german', 'spain', 'french', 'italian']
+    const showSection = ['description-section-english', 'description-section-german', 'description-section-spain', 'description-section-french', 'description-section-italian']
+
+    sections.forEach((section, i) => {
+        const element = document.querySelector(`.${sections[i]}`)
+        const showEl = document.querySelector(`.${showSection[i]}`)
+
+        if (section === sectionClass) {
+            element.classList.add('flag-active')
+            showEl.classList.remove('d-none')
+        } else {
+            showEl.classList.add('d-none')
+            element.classList.remove('flag-active')
+        }
+    });
+};

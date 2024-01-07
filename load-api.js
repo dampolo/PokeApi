@@ -101,5 +101,6 @@ async function loadPokemonInfo(id){
     pokemonGrowth(pokemonSpecies.growth_rate.name) //##16 load-single-pokemon.js
     pokemonAllGrowthRates(pokemonAllRatesList) //##17 load-single-pokemon.js
     allPictures(pokemon.sprites) //##19 load-single-pokemon.js
-    descriptionOfThePokemon(pokemonSpecies.flavor_text_entries)
+    descriptionOfThePokemon(pokemonSpecies.flavor_text_entries) //##20 load-single-pokemon.js
 }
+

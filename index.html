@@ -129,7 +129,39 @@
               </section>
               <section class="description-section d-none">
                 <h5>Description of <span class="pokemon-name-big text-capitalize text-center"></span> in following languages:</h5>
-                <div class="description-section-list"></div>
+                <div class="d-flex py-3 justify-content-center">
+                   <button type="button" class="btn btn-light p-0 rounded-1">
+                     <img class="flag english flag-active" src="./icons/english-flag.png" alt="english-flag" onclick="pokemonLanguages('english')">
+                   </button>
+                   <button type="button" class="btn btn-light p-0 rounded-1">
+                     <img class="flag german" src="./icons/german-flag.png" alt="german-flag" onclick="pokemonLanguages('german')">
+                   </button>
+                   <button type="button" class="btn btn-light p-0 rounded-1">
+                     <img class="flag spain" src="./icons/spain-flag.png" alt="spain-flag" onclick="pokemonLanguages('spain')">
+                    </button>
+                   <button type="button" class="btn btn-light p-0 rounded-1">
+                     <img class="flag french" src="./icons/french-flag.png" alt="french-flag" onclick="pokemonLanguages('french')">      
+                   </button>
+                   <button type="button" class="btn btn-light p-0 rounded-1">
+                     <img class="flag italian"src="./icons/italian-flag.png" alt="italian-flag" onclick="pokemonLanguages('italian')">
+                   </button>
+
+
+
+                </div>
+
+                <div class="description-section-list">
+                  <div class="description-section-english">
+                  </div>
+                  <div class="description-section-german d-none">
+                  </div>
+                  <div class="description-section-spain d-none">
+                  </div>
+                  <div class="description-section-french d-none">
+                  </div>
+                  <div class="description-section-italian d-none">
+                  </div>
+                </div>
               </section>
               <section class="pokemon-languages d-none">
                 <h3>Languages</h3>
