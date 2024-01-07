@@ -1,11 +1,11 @@
-
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
+let firstPokemon = 1
 let amountOfThePokemon = 10;
 
 async function loadAllPokemonsApi() {
-    for (let id = 1; id <= amountOfThePokemon; id++) {
+    for (let id = firstPokemon; id <= amountOfThePokemon; id++) {
         loadAllPokemonsHtml(id)
         loadPokemons(id)
     }
@@ -59,7 +59,6 @@ function showSection(sectionClass) {
     const sections = ['about-section', 'description-section', 'pokemon-languages', 'pokemon-stats', 'pokemon-evolution', 'pokemon-moves', 'growth-rate', 'other-pictures'];
     const navMenu = ['about-nav-item', 'description-nav-item', 'languages-nav-item', 'stats-nav-item', 'evolution-nav-item', 'moves-nav-item', 'growth-rate-nav-item', 'other-pictures-nav-item'];
     const navMenuA = ['about-nav-item-a', 'description-nav-item-a', 'languages-nav-item-a', 'stats-nav-item-a', 'evolution-nav-item-a', 'moves-nav-item-a', 'growth-rate-nav-item-a', 'other-pictures-nav-item-a'];
-
   
     sections.forEach((section, i) => {
       const element = document.querySelector(`.${section}`);
@@ -98,3 +97,9 @@ function pokemonLanguages(sectionClass) {
         }
     });
 };
+
+function loadMorePokemons() {
+    firstPokemon = firstPokemon + 10
+    amountOfThePokemon = amountOfThePokemon + 10
+    loadAllPokemonsApi()
+}
