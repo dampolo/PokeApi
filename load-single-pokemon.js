@@ -195,15 +195,6 @@ function calculatePokemonWeight(pokemonWeight) {
     return pokemonWeightResult
 }
 
-function calculatePokemonWeightIbs(pokemonWeight) {
-    const pounds = ((pokemonWeight * 2.20462)/10).toFixed(1);
-    return pounds
-}
-
-function displayPokemonWeightIbs(pokemonWeight) {
-    const result = calculatePokemonWeightIbs(pokemonWeight)
-    document.querySelector('.pokemon-weight-ibs').textContent = result  + ' Ibs ';
-}
 
 //##13 Weight of the pokemon display.
 function displayPokemonWeight(pokemonWeight) {
@@ -405,9 +396,19 @@ function calculatePokemonHeightFett(pokemonHeight) {
 }
 
 //##21 load-single-pokemon.js
-
 function displayPokemonHeightFeet(pokemonHeight) {
     const result = calculatePokemonHeightFett(pokemonHeight)
     document.querySelector('.pokemon-height-feet').textContent = result.feet + "'" + result.inchesNumber + '"';
 
+}
+
+//##22 load-single-pokemon.js
+function calculatePokemonWeightIbs(pokemonWeight) {
+    const pounds = ((pokemonWeight * 2.20462)/10).toFixed(1);
+    return pounds
+}
+
+function displayPokemonWeightIbs(pokemonWeight) {
+    const result = calculatePokemonWeightIbs(pokemonWeight)
+    document.querySelector('.pokemon-weight-ibs').textContent = result  + ' Ibs ';
 }

@@ -21,6 +21,36 @@ async function createAllPokemonGrowthRatesApi() {
     return pokemonGrowthRates.results
 }
 
+async function searchPokemonApi(post) {
+    const pokemonSearch = await sendRequest(`/pokemon-species/?limit=${post}`)
+    return pokemonSearch.results
+}
+
+
+function searchFunction() {
+    let search = document.getElementById("search").value;
+    search = search.toLowerCase();
+
+    const findPokemon = loadPokemons(search)
+  
+    const content = document.querySelector('.content-single');
+    content.innerHTML = "";
+    
+
+    for (let i = 0; i < findPokemon.length; i++) {
+      const name = findPokemon[i];
+      console.log(name)
+
+      if(name.toLowerCase().includes(search)) {
+        content.appendChild(loadAllPokemonsApi(name));
+
+      }
+        
+  }
+}
+
+
+
 // ##18
 async function mainEvolutionAPI(id) {
     const pokemonSpecies = await sendRequest(`/pokemon-species/${id}`);
@@ -78,7 +108,7 @@ async function loadPokemonInfo(id){
     const pokemon = await createNewPokemonApi(id);
     // console.log('1pokemon', pokemon)
     const pokemonSpecies = await createNewPokemonSpeciesApi(id);
-    console.log('2pokemonSpecies', pokemonSpecies.flavor_text_entries)
+    // console.log('2pokemonSpecies', pokemonSpecies.flavor_text_entries)
     const pokemonAllRatesList = await createAllPokemonGrowthRatesApi();
     // console.log('Rates', pokemonAllRatesList)
     mainEvolutionAPI(id) //#18 load-api.js

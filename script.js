@@ -4,6 +4,8 @@ const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstra
 let firstPokemon = 1
 let amountOfThePokemon = 10;
 
+let id;
+
 async function loadAllPokemonsApi() {
     for (let id = firstPokemon; id <= amountOfThePokemon; id++) {
         loadAllPokemonsHtml(id)
@@ -14,19 +16,17 @@ async function loadAllPokemonsApi() {
 async function renderPokemonInfo(id) {
     document.querySelector('.main-slider-container').style.display = 'flex';
     document.querySelector('body').style.overflow = 'hidden';
-    loadPokemonInfo(id)   
+    loadPokemonInfo(id)
 }
 
-function nextImageRight(event) {
-    event.stopPropagation();
+function nextImageRight(id) {
     id++
-    loadPokemon()
+    loadPokemonInfo(id)
 }
 
-function lastImageLeft(event) {
-    event.stopPropagation();
+function lastImageLeft(id) {
     id--;
-    loadPokemon()
+    loadPokemonInfo(id)
 }
 
 function closeImage() {

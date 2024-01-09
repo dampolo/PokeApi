@@ -10,7 +10,13 @@
   </head>
   <body onload="loadAllPokemonsApi()">
       
-      <header>Pokemons</header>
+      <header class="d-flex flex-column align-items-center pb-5 pt-3">
+      
+        <h2 class="">Pokemons</h2>
+
+        <input class="input row px-2 rounded-5" type="text" id="search" placeholder="suchen..." onkeyup="searchFunction()">
+
+      </header>
         
         <div class="main-content flex-grow-1 rounded-5 py-5">
           <div class="content container-xxl">
@@ -32,7 +38,7 @@
               <img class="icon-heart" src="./icons/heart-regular.svg" alt="heart-regular">
             </div>
 
-            <button id="imageLeft" class="arrow-left rounded-5 d-none" onclick="lastImageLeft(event)">
+            <button id="imageLeft" class="arrow-left rounded-5 d-none" onclick="lastImageLeft()">
               <img class="icons" src="./icons/arrow-left.svg" alt="left">
             </button>
 
@@ -52,7 +58,7 @@
 
             </div>
 
-            <button id="imageRight" class="arrow-right rounded-5" onclick="nextImageRight(event)">
+            <button id="imageRight" class="arrow-right rounded-5" onclick="nextImageRight()">
               <img class="icons" src="./icons/arrow-right.svg" alt="right">
             </button>
 
