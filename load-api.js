@@ -92,7 +92,10 @@ async function loadPokemonInfo(id){
     displayPokemonHeight(pokemon.height) //##12 load-single-pokemon.js
     displayPokemonWeight(pokemon.weight) //##13 load-single-pokemon.js
     pokemonMoves(pokemon.moves) //##15 load-single-pokemon.js
-    
+    displayPokemonHeightFeet(pokemon.height) //##21 load-single-pokemon.js
+    displayPokemonWeightIbs(pokemon.weight) //##22 load-single-pokemon.js
+
+
     pokemonBackGroundColorBig(pokemonSpecies.color.name) //##2 load-single-pokemon.js
     pokemonBreeding(pokemonSpecies.egg_groups) //##7 load-single-pokemon.js
     nameOfThePokemonInOtherLanguages(pokemonSpecies.names) //##8 load-single-pokemon.js

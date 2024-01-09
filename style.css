@@ -25,6 +25,7 @@
     scroll-behavior: smooth;
     -webkit-font-smoothing: antialiased;
     font-family: 'Roboto', sans-serif;
+    scrollbar-gutter: stable;
   }
   /*
     5. Improve media defaults
@@ -438,6 +439,12 @@ footer {
   color: rgb(255, 255, 255);
   margin-top: -30px;
   background-color: rgb(146, 100, 100);
+}
+
+.load-more {
+  position: fixed;
+  bottom: 50px;
+  z-index: 1;
 }
 
 /* *{

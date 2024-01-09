@@ -180,13 +180,13 @@ function pokemonAbilities(pokemonAbilities) {
 //##12 Height of the pokemon calculation.
 function calculatePokemonHeight(pokemonHeight) {
     const pokemonHeightResult = ((pokemonHeight*10)/100).toFixed(2)
-    return pokemonHeightResult + ' cm'
+    return pokemonHeightResult
 }
 
 //##12 Height of the pokemon display.
 function displayPokemonHeight(pokemonHeight) {
     const result = calculatePokemonHeight(pokemonHeight)
-    document.querySelector('.pokemon-height').textContent = result;
+    document.querySelector('.pokemon-height-cm').textContent = '(' + result + ' cm)';
 }
 
 //##13 Weight of the pokemon calculation.
@@ -195,10 +195,20 @@ function calculatePokemonWeight(pokemonWeight) {
     return pokemonWeightResult
 }
 
+function calculatePokemonWeightIbs(pokemonWeight) {
+    const pounds = ((pokemonWeight * 2.20462)/10).toFixed(1);
+    return pounds
+}
+
+function displayPokemonWeightIbs(pokemonWeight) {
+    const result = calculatePokemonWeightIbs(pokemonWeight)
+    document.querySelector('.pokemon-weight-ibs').textContent = result  + ' Ibs ';
+}
+
 //##13 Weight of the pokemon display.
 function displayPokemonWeight(pokemonWeight) {
     const result = calculatePokemonWeight(pokemonWeight)
-    document.querySelector('.pokemon-weight').textContent = result  + ' kg';
+    document.querySelector('.pokemon-weight-kg').textContent = '(' + result  + ' kg)';
 }
 
 //##14 Female or Male
@@ -344,7 +354,6 @@ function amountOfPictures(images) {
 
 //##20 load-single-pokemon.js
 function descriptionOfThePokemon(languages) {
-
     const descriptionEnglish = document.querySelector('.description-section-english')
     const descriptionGerman = document.querySelector('.description-section-german')
     const descriptionSpanish = document.querySelector('.description-section-spanish')
@@ -378,4 +387,27 @@ function descriptionOfThePokemon(languages) {
         }
 
     }
+}
+
+//##21 load-single-pokemon.js
+function calculatePokemonHeightFett(pokemonHeight) {
+    // 1 inch = 2.54 cm
+    // 1 foot = 12 inches
+    // Convert height to inches
+    const heightInInches = (pokemonHeight*10) / 2.54;
+
+    // Calculate feet and inches
+    const feet = Math.round(heightInInches / 12);
+    const inches = (heightInInches % 12).toFixed(1);
+    const inchesNumber = parseFloat(inches);
+
+    return { feet, inchesNumber };
+}
+
+//##21 load-single-pokemon.js
+
+function displayPokemonHeightFeet(pokemonHeight) {
+    const result = calculatePokemonHeightFett(pokemonHeight)
+    document.querySelector('.pokemon-height-feet').textContent = result.feet + "'" + result.inchesNumber + '"';
+
 }

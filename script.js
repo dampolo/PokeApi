@@ -13,26 +13,29 @@ async function loadAllPokemonsApi() {
 
 async function renderPokemonInfo(id) {
     document.querySelector('.main-slider-container').style.display = 'flex';
+    document.querySelector('body').style.overflow = 'hidden';
     loadPokemonInfo(id)   
 }
 
-function nextImageRight() {
+function nextImageRight(event) {
+    event.stopPropagation();
     id++
     loadPokemon()
 }
 
-function lastImageLeft() {
+function lastImageLeft(event) {
+    event.stopPropagation();
     id--;
     loadPokemon()
 }
 
 function closeImage() {
     document.querySelector('.main-slider-container').style.display = 'none';
-    document.querySelector('.main-slider-container').style.display = 'none';
-
+    document.querySelector('body').style.overflow = 'auto';
 }
 
-function toRight() {
+function toRight(event) {
+    event.stopPropagation();
     const listContainer = document.querySelector(".pokemon-navbar");
     listContainer.scrollLeft += 115;
     document.getElementById("left-icon").style.display = "flex";
@@ -44,7 +47,8 @@ function toRight() {
   }
   
   // Scroll to left 
-  function toLeft() {
+  function toLeft(event) {
+    event.stopPropagation();
     const listContainer = document.querySelector(".pokemon-navbar");
     listContainer.scrollLeft -= 115;
   
@@ -69,7 +73,6 @@ function showSection(sectionClass) {
         element.classList.remove('d-none');
         menuElement.classList.add('active'); // Highlight corresponding nav menu item
         AElement.classList.add('active-a'); // Highlight corresponding nav menu item
-        
     } 
     else {
         element.classList.add('d-none');
@@ -80,7 +83,8 @@ function showSection(sectionClass) {
 }
 
 
-function pokemonLanguages(sectionClass) {
+function pokemonLanguages(sectionClass, event) {
+    event.stopPropagation();
     const sections = ['english', 'german', 'spanish', 'french', 'italian', 'japanese', 'koreanish', 'chinesisch']
     const showSection = ['description-section-english', 'description-section-german', 'description-section-spanish', 'description-section-french', 'description-section-italian', 'description-section-japan', 'description-section-korean', 'description-section-china']
 
@@ -102,4 +106,8 @@ function loadMorePokemons() {
     firstPokemon = firstPokemon + 10
     amountOfThePokemon = amountOfThePokemon + 10
     loadAllPokemonsApi()
+}
+
+function doNotCLose(event) {
+    event.stopPropagation();
 }

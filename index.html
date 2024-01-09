@@ -23,16 +23,16 @@
 
           <div class="main-slider-container">
             <button class="close-button rounded-5">
-              <img class="icons" src="./icons/x.svg" alt="close" onclick="closeImage()">
+              <img class="icons" src="./icons/x.svg" alt="close" onclick="closeImage(event)">
           </button>
           <div class="pokemon-top-section">
             
             <div class="pokemon-arrow-heart pe">
-              <img class="icon-arrow" onclick="closeImage()" src="./icons/arrow-narrow-left.svg" alt="heart-regular">
+              <img class="icon-arrow" onclick="closeImage(event)" src="./icons/arrow-narrow-left.svg" alt="heart-regular">
               <img class="icon-heart" src="./icons/heart-regular.svg" alt="heart-regular">
             </div>
 
-            <button id="imageLeft" class="arrow-left rounded-5 d-none" onclick="lastImageLeft()">
+            <button id="imageLeft" class="arrow-left rounded-5 d-none" onclick="lastImageLeft(event)">
               <img class="icons" src="./icons/arrow-left.svg" alt="left">
             </button>
 
@@ -52,14 +52,14 @@
 
             </div>
 
-            <button id="imageRight" class="arrow-right rounded-5" onclick="nextImageRight()">
+            <button id="imageRight" class="arrow-right rounded-5" onclick="nextImageRight(event)">
               <img class="icons" src="./icons/arrow-right.svg" alt="right">
             </button>
 
           </div>
           <div class="pokemon-bottom">
           <div class="navbar-section">
-            <div id="left-icon" class="nav-arrow-single" onclick="toLeft()">
+            <div id="left-icon" class="nav-arrow-single" onclick="toLeft(event)">
               <a href="javascript:void(0)">
                 <img class="nav-arrow" src="./icons/nav-arrow-left.svg" alt="left-icon"/>
             </a>
@@ -90,7 +90,7 @@
                   <a class="text-decoration-none other-pictures-nav-item-a" href="#">Pictures</a>
                 </li>
               </ul>
-              <div id="right-icon" class="nav-arrow-single" onclick="toRight()">
+              <div id="right-icon" class="nav-arrow-single" onclick="toRight(event)">
                 <a href="javascript:void(0)"><img class="nav-arrow" src="./icons/nav-arrow-right.svg" alt="right-icon"/> </a>
               </div>
             </div>
@@ -104,10 +104,10 @@
                   <dd class="species about-dd"></dd>
                   
                   <dt class="about-dt">Height</dt>
-                  <dd class="pokemon-height about-dd"></dd>
+                  <dd class="about-dd"><span class="pokemon-height-feet"></span> <span class="pokemon-height-cm"></span></dd>
                   
                   <dt class="about-dt">Weight</dt>
-                  <dd class="pokemon-weight about-dd"></dd>
+                  <dd class="pokemon-weight about-dd"><span class="pokemon-weight-ibs"></span><span class="pokemon-weight-kg"></span></dd>
                                     
                   <dt class="about-dt">Abilities</dt>
                   <dd class="pokemon-abilities about-dd"></dd>
@@ -134,28 +134,28 @@
                 <h5>Description of <span class="pokemon-name-big text-capitalize text-center"></span> in following languages:</h5>
                 <div class="d-flex py-3 justify-content-center">
                    <button type="button" class="btn btn-outline-dark p-0 rounded-1" data-bs-toggle="tooltip" data-bs-title="English">
-                     <img class="flag english flag-active" src="./icons/english-flag.png" alt="english-flag" onclick="pokemonLanguages('english')">
+                     <img class="flag english flag-active" src="./icons/english-flag.png" alt="english-flag" onclick="pokemonLanguages('english', event)">
                    </button>
                    <button type="button" class="btn btn-outline-dark p-0 rounded-1" data-bs-toggle="tooltip" data-bs-title="German">
-                     <img class="flag german" src="./icons/german-flag.png" alt="german-flag" onclick="pokemonLanguages('german')">
+                     <img class="flag german" src="./icons/german-flag.png" alt="german-flag" onclick="pokemonLanguages('german', event)">
                    </button>
                    <button type="button" class="btn btn-outline-dark p-0 rounded-1" data-bs-toggle="tooltip" data-bs-title="Spanish">
-                     <img class="flag spanish" src="./icons/spain-flag.png" alt="spain-flag" onclick="pokemonLanguages('spanish')">
+                     <img class="flag spanish" src="./icons/spain-flag.png" alt="spain-flag" onclick="pokemonLanguages('spanish', event)">
                     </button>
                    <button type="button" class="btn btn-outline-dark p-0 rounded-1" data-bs-toggle="tooltip" data-bs-title="French">
-                     <img class="flag french" src="./icons/french-flag.png" alt="french-flag" onclick="pokemonLanguages('french')">      
+                     <img class="flag french" src="./icons/french-flag.png" alt="french-flag" onclick="pokemonLanguages('french', event)">      
                    </button>
                    <button type="button" class="btn btn-outline-dark p-0 rounded-1" data-bs-toggle="tooltip" data-bs-title="Italian">
-                     <img class="flag italian" src="./icons/italian-flag.png" alt="italian-flag" onclick="pokemonLanguages('italian')">
+                     <img class="flag italian" src="./icons/italian-flag.png" alt="italian-flag" onclick="pokemonLanguages('italian', event)">
                    </button>
                    <button type="button" class="btn btn-outline-dark p-0 rounded-1" data-bs-toggle="tooltip" data-bs-title="Japanese">
-                    <img class="flag japanese" src="./icons/japan-flag.png" alt="japan-flag" onclick="pokemonLanguages('japanese')">
+                    <img class="flag japanese" src="./icons/japan-flag.png" alt="japan-flag" onclick="pokemonLanguages('japanese', event)">
                   </button>
                   <button type="button" class="btn btn-outline-dark p-0 rounded-1" data-bs-toggle="tooltip" data-bs-title="Koreanish">
-                    <img class="flag koreanish" src="./icons/korean-flag.png" alt="korean-flag" onclick="pokemonLanguages('koreanish')">
+                    <img class="flag koreanish" src="./icons/korean-flag.png" alt="korean-flag" onclick="pokemonLanguages('koreanish', event)">
                   </button>
                   <button type="button" class="btn btn-outline-dark p-0 rounded-1" data-bs-toggle="tooltip" data-bs-title="Chinesisch">
-                    <img class="flag chinesisch" src="./icons/china-flag.png" alt="china-flag" onclick="pokemonLanguages('chinesisch')">
+                    <img class="flag chinesisch" src="./icons/china-flag.png" alt="china-flag" onclick="pokemonLanguages('chinesisch', event)">
                   </button>
 
 
@@ -257,7 +257,7 @@
 
 
       <footer>
-        <div class="d-flex justify-content-center align-items-center">
+        <div class="d-flex justify-content-center align-items-center load-more">
           <button type="button" class="btn btn-secondary btn-lg" onclick="loadMorePokemons()">Load more</button>
         </div>
       </footer>
