@@ -13,6 +13,14 @@ async function loadAllPokemonsApi() {
     }
 }
 
+async function loadAllPokemonsApiNew(names) {
+    for (const id of names) {
+        loadAllPokemonsHtml(id)
+        loadPokemons(id)
+    }
+}
+
+
 async function renderPokemonInfo(id) {
     document.querySelector('.main-slider-container').style.display = 'flex';
     document.querySelector('body').style.overflow = 'hidden';

@@ -21,35 +21,27 @@ async function createAllPokemonGrowthRatesApi() {
     return pokemonGrowthRates.results
 }
 
-async function searchPokemonApi(post) {
-    const pokemonSearch = await sendRequest(`/pokemon-species/?limit=${post}`)
+async function searchPokemonApi() {
+    const pokemonSearch = await sendRequest(`/pokemon-species?limit=1100`)
     return pokemonSearch.results
 }
 
-
-function searchFunction() {
+async function searchFunction() {
     let search = document.getElementById("search").value;
     search = search.toLowerCase();
 
-    const findPokemon = loadPokemons(search)
-  
-    const content = document.querySelector('.content-single');
-    content.innerHTML = "";
+    document.querySelector('.content-single').innerHTML = '';
+
+    const allPokemonsList = await searchPokemonApi()
+
+    const namesArray = allPokemonsList.map((pokemon) => pokemon.name);
     
+    const filteredResults = namesArray.filter((name) => name.includes(search));
 
-    for (let i = 0; i < findPokemon.length; i++) {
-      const name = findPokemon[i];
-      console.log(name)
+    console.log('filteredResults', filteredResults)
+    loadAllPokemonsApiNew(filteredResults)
 
-      if(name.toLowerCase().includes(search)) {
-        content.appendChild(loadAllPokemonsApi(name));
-
-      }
-        
-  }
 }
-
-
 
 // ##18
 async function mainEvolutionAPI(id) {
@@ -67,9 +59,9 @@ async function mainEvolutionAPI(id) {
 
     if(currentPokemonEvolution.chain.evolves_to[0].evolves_to == 0) {
         firstName = currentPokemonEvolution.chain.evolves_to[0].species.name
-        document.getElementById('dupa').classList.add('d-none')
+        document.getElementById('show-pokemon-evolution').classList.add('d-none')
     } else {
-        document.getElementById('dupa').classList.remove('d-none')
+        document.getElementById('show-pokemon-evolution').classList.remove('d-none')
         firstName = currentPokemonEvolution.chain.evolves_to[0].species.name
         secondName = currentPokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name;
     }
