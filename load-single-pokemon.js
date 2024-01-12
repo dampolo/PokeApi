@@ -49,7 +49,13 @@ function pokemonIdNumberBig(pokemonId) {
 
 //##6 load-single-pokemon
 function pokemonMainPictureBig(PokemonImg) {
-    document.querySelector(`.img`).src = PokemonImg;
+    if (PokemonImg.other.home.front_default === null) {
+        document.querySelector(`.img`).src = PokemonImg.other.official-artwork.front_default;
+        
+    } else {
+        document.querySelector(`.img`).src = PokemonImg.other.home.front_default;
+        
+    }
 }
 
 //##7 load-single-pokemon

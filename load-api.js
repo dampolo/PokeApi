@@ -8,6 +8,7 @@ async function sendRequest(endpoint) {
 
 async function createNewPokemonApi(id){
     const pokemon = await sendRequest(`/pokemon/${id}`);
+    console.log(pokemon)
     return pokemon;
     }
 
@@ -116,7 +117,7 @@ async function loadPokemonInfo(id){
     nameOfPokemonBig(pokemon.name) //##3 load-single-pokemon.js
     pokemonTypeBig(pokemon.types) //##4 load-single-pokemon.js
     pokemonIdNumberBig(pokemon.id)  //##5 load-single-pokemon.js
-    pokemonMainPictureBig(pokemon.sprites.other.home.front_default)  //##6 load-single-pokemon.js
+    pokemonMainPictureBig(pokemon.sprites)  //##6 load-single-pokemon.js
     pokemonStats(pokemon.stats) //##9 load-single-pokemon.js
     pokemonAbilities(pokemon.abilities) //##11 load-single-pokemon.js
     displayPokemonHeight(pokemon.height) //##12 load-single-pokemon.js
