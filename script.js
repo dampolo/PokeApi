@@ -120,3 +120,14 @@ function loadMorePokemons() {
 function doNotCLose(event) {
     event.stopPropagation();
 }
+
+document.querySelector(".input").addEventListener("keyup", activeButton)
+
+function activeButton()  {
+    let nameInput = document.querySelector('.input').value;
+    if (nameInput != "") {
+        document.querySelector('.search-button').removeAttribute("disabled");
+    } else {
+        document.querySelector('.search-button').setAttribute("disabled", null);
+    }
+};
