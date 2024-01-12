@@ -87,16 +87,7 @@ function pokemonType(id, currentPokemonType) {
 
 //##5  Number and Id of the pokemon.
 function pokemonIdNumber(id, pokemonId) {
-    const numberEl = document.querySelector(`.pokemon-number${id}`)
-        if (pokemonId <= 9) {
-            numberEl.textContent = `#000${pokemonId}`
-        } else if (pokemonId <= 99) {
-            numberEl.textContent = `#00${pokemonId}`
-        } else if (pokemonId <= 9999) {
-            numberEl.textContent = `#0${pokemonId}`
-        } else {
-            numberEl.textContent = `#${pokemonId}`
-        }
+        document.querySelector(`.pokemon-number${id}`).textContent = `#${pokemonId.toString().padStart(4, '0')}`
 }
 
 //##6  The main picture of pokemon

@@ -35,16 +35,7 @@ function pokemonTypeBig(currentPokemonType) {
 
 //##5 load-single-pokemon
 function pokemonIdNumberBig(pokemonId) {
-    const numberEl = document.querySelector('.pokemon-number-big')
-        if (pokemonId <= 9) {
-            numberEl.textContent = `#000${pokemonId}`
-        } else if (pokemonId <= 99) {
-            numberEl.textContent = `#00${pokemonId}`
-        } else if (pokemonId <= 9999) {
-            numberEl.textContent = `#0${pokemonId}`
-        } else {
-            numberEl.textContent = `#${pokemonId}`
-        }
+    document.querySelector('.pokemon-number-big').textContent = `#${pokemonId.toString().padStart(4, '0')}`;
 }
 
 //##6 load-single-pokemon
