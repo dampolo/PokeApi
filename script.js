@@ -2,26 +2,27 @@ const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
 let firstPokemon = 1
-let amountOfThePokemon = 10;
+let amountOfThePokemon = 20;
 
 let id;
 
-async function loadAllPokemonsApi() {
+function loadAllPokemonsApi() {
     for (let id = firstPokemon; id <= amountOfThePokemon; id++) {
         loadAllPokemonsHtml(id)
         loadPokemons(id)
     }
 }
 
-async function loadAllPokemonsApiNew(names) {
-    for (const id of names) {
-        loadAllPokemonsHtml(id)
-        loadPokemons(id)
+function loadAllPokemonsApiNew(names) {
+    for (let i = 0; i < names.length; i++) {
+        const element = names[i];
+        loadAllPokemonsHtml(element)
+        loadPokemons(element)
     }
 }
 
 
-async function renderPokemonInfo(id) {
+function renderPokemonInfo(id) {
     document.querySelector('.main-slider-container').style.display = 'flex';
     document.querySelector('body').style.overflow = 'hidden';
     loadPokemonInfo(id)

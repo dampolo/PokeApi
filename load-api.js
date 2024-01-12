@@ -26,22 +26,30 @@ async function searchPokemonApi() {
     return pokemonSearch.results
 }
 
+
 async function searchFunction() {
     let search = document.getElementById("search").value;
     search = search.toLowerCase();
 
     document.querySelector('.content-single').innerHTML = '';
 
-    const allPokemonsList = await searchPokemonApi()
+    const allPokemonsListId = await searchPokemonApi()
 
-    const namesArray = allPokemonsList.map((pokemon) => pokemon.name);
+    const combinedArray = allPokemonsListId.map((pokemon) => ({
+        name: pokemon.name,
+        url: extractNumberFromUrl(pokemon.url)
+      }));
+
+    const filteredResults = combinedArray.filter((pokemon) => pokemon.name.includes(search));
     
-    const filteredResults = namesArray.filter((name) => name.includes(search));
+    const urlArray = filteredResults.map((pokemon) => pokemon.url);
+    console.log(urlArray)
 
-    console.log('filteredResults', filteredResults)
-    loadAllPokemonsApiNew(filteredResults)
-
+    loadAllPokemonsApiNew(urlArray)
 }
+
+// searchFunction()
+
 
 // ##18
 async function mainEvolutionAPI(id) {

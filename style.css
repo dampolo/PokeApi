@@ -66,7 +66,7 @@
 }
 
 header {
-  min-height: 160px;
+  min-height: 180px;
   margin-bottom: -30px;
   color: black;
   background-color: rgb(143, 146, 100);
@@ -132,7 +132,20 @@ header {
   
 }
 
-/* JESTEM TU */
+.input {
+  min-height: 40px;
+  padding: 12px 20px;
+  margin: 8px 0;
+  box-sizing: border-box;
+  border: 3px solid #ccc;
+  -webkit-transition: 0.5s;
+  transition: 0.5s;
+  outline: none;
+}
+
+.input:focus {
+  border: 3px solid #555;
+}
 
 .pokemon-img-content {
   display: flex;
