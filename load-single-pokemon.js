@@ -165,8 +165,21 @@ function pokemonStats(currentPokemonStats) {
 
 //##10 Species of pokemon
 function pokemonSpeciesGenera(pokemonSpeciesGenera) {
-    const pokemonSpeciesArt = pokemonSpeciesGenera[7].genus;
-    document.querySelector('.species').innerHTML = pokemonSpeciesArt;
+    let foundEnglishGenera = false;
+
+    for (let i = 0; i < pokemonSpeciesGenera.length; i++) {
+        const genera = pokemonSpeciesGenera[i];
+
+        if (genera.language.name === 'en') {
+            document.querySelector('.species').innerHTML = genera.genus;
+            foundEnglishGenera = true;
+            break;
+        }
+    }
+
+    if (!foundEnglishGenera) {
+        document.querySelector('.species').textContent = '---------';
+    }
 }
 
 //##11 Species of pokemon

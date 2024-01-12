@@ -8,12 +8,13 @@ async function sendRequest(endpoint) {
 
 async function createNewPokemonApi(id){
     const pokemon = await sendRequest(`/pokemon/${id}`);
-    console.log(pokemon)
+    // console.log(pokemon)
     return pokemon;
     }
 
 async function createNewPokemonSpeciesApi(id){
     const pokemonSpecies = await sendRequest(`/pokemon-species/${id}`);
+    console.log(pokemonSpecies)
     return pokemonSpecies;
     }
 
