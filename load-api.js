@@ -14,7 +14,7 @@ async function createNewPokemonApi(id){
 
 async function createNewPokemonSpeciesApi(id){
     const pokemonSpecies = await sendRequest(`/pokemon-species/${id}`);
-    console.log(pokemonSpecies)
+    // console.log(pokemonSpecies)
     return pokemonSpecies;
     }
 
@@ -108,12 +108,15 @@ async function loadPokemons(id){
 
 async function loadPokemonInfo(id){
     const pokemon = await createNewPokemonApi(id);
-    // console.log('1pokemon', pokemon)
+    console.log('1pokemon', pokemon)
     const pokemonSpecies = await createNewPokemonSpeciesApi(id);
-    // console.log('2pokemonSpecies', pokemonSpecies.flavor_text_entries)
+    console.log('2pokemonSpecies', pokemonSpecies)
+    console.log('2pokemonSpecies', pokemonSpecies.flavor_text_entries)
+
+    
     const pokemonAllRatesList = await createAllPokemonGrowthRatesApi();
     // console.log('Rates', pokemonAllRatesList)
-    mainEvolutionAPI(id) //#18 load-api.js
+    // mainEvolutionAPI(id) //#18 load-api.js
     
     nameOfPokemonBig(pokemon.name) //##3 load-single-pokemon.js
     pokemonTypeBig(pokemon.types) //##4 load-single-pokemon.js

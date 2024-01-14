@@ -6,6 +6,8 @@ function loadAllPokemonsHtml(id) {
     const pokemonImgContent = document.createElement('div')
     pokemonImgContent.className = `pokemon-img-content${id} pokemon-img-content rounded-5`;
     pokemonImgContent.setAttribute('onclick', `renderPokemonInfo(${id})`);
+    // pokemonImgContent.setAttribute('data-bs-toggle', "modal");
+    // pokemonImgContent.setAttribute('data-bs-target', "#staticBackdrop");
 
     const pokemonNameTypeNumber = document.createElement('div')
     pokemonNameTypeNumber.className = 'pokemon-name-type-number mx-3'

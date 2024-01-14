@@ -22,7 +22,7 @@
     flex-direction: column;
     height: 100vh;
     line-height: 1.5;
-    scroll-behavior: smooth;
+    /* scroll-behavior: smooth; */
     -webkit-font-smoothing: antialiased;
     font-family: 'Roboto', sans-serif;
     scrollbar-gutter: stable;
@@ -72,6 +72,13 @@ header {
   background-color: rgb(143, 146, 100);
 }
 
+.no-scroll {
+  position: fixed;
+  overflow: hidden;
+  overflow-y: scroll;
+  width: 100%;
+}
+
 .main-content {
   z-index: 1;
   background-color: cadetblue;
@@ -99,12 +106,16 @@ header {
 }
 
   /* Popup */
+
+.pokemon-bigger {
+  }
+
 .main-slider-container {
   background-color: rgba(0, 0, 0, 0.8);
   z-index: 999;
   position: fixed;
   opacity: 1;
-  inset: 0; /*top:0; left:0; bottom: 0; right: 0;*/
+  inset: 0;
   display: none;
   flex-direction: column;
   justify-content: center;
@@ -657,3 +668,64 @@ right: 30px;
   }
 }
 
+
+
+.c-scroll-top--visible {
+  display: flex;
+}
+
+.c-scroll-top {
+  position: fixed;
+  z-index: 10;
+  bottom: 4rem;
+  right: 4rem;
+  display: none;
+  color: #4a4a4a;
+  background: rgba(220,225,229,.9);
+  padding: 0.8rem;
+  border-radius: 50%;
+  box-shadow: 0 0 0 rgba(220,225,229,.6);
+  -webkit-animation: pulse 6s infinite;
+  animation: pulse 6s infinite;
+}
+
+.c-scroll-top__icon {
+  transition: transform .4s;
+}
+
+.c-icon {
+  width: 2.5rem;
+  height: 2.5rem;
+  fill: currentColor;
+  transition: all .2s;
+}
+
+.c-scroll-top:hover .c-scroll-top__icon {
+  transform: rotate(-360deg);
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(220,225,229,.6);
+  }
+  10% {
+    box-shadow: 0 0 0 10px rgba(220,225,229,.2);
+}
+  20% {
+    box-shadow: 0 0 0 10px rgba(220,225,229,0);
+}
+ 100% {
+  box-shadow: 0 0 0 0 rgba(220,225,229,0);
+ }
+}
+
+@media (max-width: 1100px) {
+  .c-scroll-top {
+    bottom: 1rem;
+    right: 1rem;
+  }
+  .c-icon {
+    width: 1.5rem;
+    height: 1.5rem;
+  }
+}

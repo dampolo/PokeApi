@@ -1,8 +1,8 @@
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
-let firstPokemon = 1
-let amountOfThePokemon = 20;
+let firstPokemon = 1015
+let amountOfThePokemon = 1025;
 
 let id;
 
@@ -25,7 +25,9 @@ function loadAllPokemonsApiNew(names) {
 function renderPokemonInfo(id) {
     document.querySelector('.main-slider-container').style.display = 'flex';
     document.querySelector('body').style.overflow = 'hidden';
+
     loadPokemonInfo(id)
+    showScrollY()
 }
 
 function nextImageRight(id) {
@@ -41,6 +43,9 @@ function lastImageLeft(id) {
 function closeImage() {
     document.querySelector('.main-slider-container').style.display = 'none';
     document.querySelector('body').style.overflow = 'auto';
+
+
+    // document.querySelector('body').style.top = Math.round(window.scrollY) + 'px';
 }
 
 function toRight(event) {
@@ -56,8 +61,7 @@ function toRight(event) {
   }
   
   // Scroll to left 
-  function toLeft(event) {
-    event.stopPropagation();
+function toLeft() {
     const listContainer = document.querySelector(".pokemon-navbar");
     listContainer.scrollLeft -= 115;
   
@@ -92,8 +96,7 @@ function showSection(sectionClass) {
 }
 
 
-function pokemonLanguages(sectionClass, event) {
-    event.stopPropagation();
+function pokemonLanguages(sectionClass) {
     const sections = ['english', 'german', 'spanish', 'french', 'italian', 'japanese', 'koreanish', 'chinesisch']
     const showSection = ['description-section-english', 'description-section-german', 'description-section-spanish', 'description-section-french', 'description-section-italian', 'description-section-japan', 'description-section-korean', 'description-section-china']
 
@@ -118,7 +121,7 @@ function loadMorePokemons() {
 }
 
 function doNotCLose(event) {
-    event.stopPropagation();
+    event.preventDefult();
 }
 
 document.querySelector(".input").addEventListener("keyup", activeButton)
@@ -131,3 +134,34 @@ function activeButton()  {
         document.querySelector('.search-button').setAttribute("disabled", null);
     }
 };
+
+function showScrollY() {
+    console.log(window.scrollY)
+}
+
+showScrollY()
+
+// Get the button
+let mybutton = document.querySelector(".c-scroll-top");
+// When the user scrolls down 100px from the top of the document, show the button
+window.onscroll = function() {scrollFunction()};
+
+function scrollFunction() {
+
+  if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+
+    mybutton.style.display = "flex";
+  } else {
+    mybutton.style.display = "none";
+
+  }
+
+}
+
+// When the user clicks on the button, scroll to the top of the document
+document.querySelector('.c-scroll-top').addEventListener('click', topFunction);
+
+function topFunction() {
+  document.body.scrollTop = 0;
+  document.documentElement.scrollTop = 0;
+}
