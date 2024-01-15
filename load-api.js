@@ -50,8 +50,6 @@ async function searchFunction() {
     loadAllPokemonsApiNew(urlArray)
 }
 
-// searchFunction()
-
 
 // ##18
 async function mainEvolutionAPI(id) {
@@ -60,18 +58,23 @@ async function mainEvolutionAPI(id) {
     
     // ##18 - 1 part load-single-pokemon.js
     const chainNumber = extractNumberFromUrl(currentPokemonEvolutionChain)
-
     const currentPokemonEvolution = await sendRequest(`/evolution-chain/${chainNumber}`)
+    console.log('Evolution:', currentPokemonEvolution)
 
     const defultName = currentPokemonEvolution.chain.species.name
     let firstName = '';
     let secondName = '';
 
-    if(currentPokemonEvolution.chain.evolves_to[0].evolves_to == 0) {
+    if (currentPokemonEvolution.chain.evolves_to == 0) {
+        document.querySelector('.no-evolution').textContent = 'This pokemon do not have evolution'
+        document.querySelector('.evolution-section-first').classList.add('d-none')
+        document.querySelector('.evolution-section-second').classList.add('d-none')
+
+    } else if (currentPokemonEvolution.chain.evolves_to[0].evolves_to == 0) {
         firstName = currentPokemonEvolution.chain.evolves_to[0].species.name
-        document.getElementById('show-pokemon-evolution').classList.add('d-none')
+        document.querySelector('.evolution-section-second').classList.add('d-none')
     } else {
-        document.getElementById('show-pokemon-evolution').classList.remove('d-none')
+        document.querySelector('.evolution-section-second').classList.remove('d-none')
         firstName = currentPokemonEvolution.chain.evolves_to[0].species.name
         secondName = currentPokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name;
     }
@@ -102,21 +105,21 @@ async function loadPokemons(id){
     pokemonType(id, pokemon.types) //##4 load-all-pokemons.js
     pokemonIdNumber(id, pokemon.id)  //##5 load-all-pokemons.js
 
-    pokemonMainPictureSmall(id, pokemon.sprites.other.home.front_default)  //##6 load-all-pokemons.js
+    pokemonMainPictureSmall(id, pokemon.sprites)  //##6 load-all-pokemons.js
     pokemonBackGroundColorSmall(id, pokemonSpecies.color.name) //##2 load-all-pokemons.js
 }
 
 async function loadPokemonInfo(id){
     const pokemon = await createNewPokemonApi(id);
-    console.log('1pokemon', pokemon)
+    // console.log('1pokemon', pokemon)
     const pokemonSpecies = await createNewPokemonSpeciesApi(id);
-    console.log('2pokemonSpecies', pokemonSpecies)
-    console.log('2pokemonSpecies', pokemonSpecies.flavor_text_entries)
+    // console.log('2pokemonSpecies', pokemonSpecies)
+    console.log('Description', pokemonSpecies.flavor_text_entries)
 
     
     const pokemonAllRatesList = await createAllPokemonGrowthRatesApi();
     // console.log('Rates', pokemonAllRatesList)
-    // mainEvolutionAPI(id) //#18 load-api.js
+    mainEvolutionAPI(id) //#18 load-api.js
     
     nameOfPokemonBig(pokemon.name) //##3 load-single-pokemon.js
     pokemonTypeBig(pokemon.types) //##4 load-single-pokemon.js

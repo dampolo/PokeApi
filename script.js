@@ -1,8 +1,9 @@
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
-let firstPokemon = 1015
-let amountOfThePokemon = 1025;
+let firstPokemon = 1
+let amountOfThePokemon = 20;
+let blockLoadMorePokemons = false
 
 let id;
 
@@ -10,6 +11,10 @@ function loadAllPokemonsApi() {
     for (let id = firstPokemon; id <= amountOfThePokemon; id++) {
         loadAllPokemonsHtml(id)
         loadPokemons(id)
+    }
+
+    if(amountOfThePokemon >= 1025) {
+        document.querySelector('.load-more-pokemons').setAttribute("disabled", null)
     }
 }
 
@@ -115,8 +120,8 @@ function pokemonLanguages(sectionClass) {
 };
 
 function loadMorePokemons() {
-    firstPokemon = firstPokemon + 10
-    amountOfThePokemon = amountOfThePokemon + 10
+    firstPokemon = firstPokemon + 20
+    amountOfThePokemon = amountOfThePokemon + 20
     loadAllPokemonsApi()
 }
 
@@ -147,21 +152,9 @@ let mybutton = document.querySelector(".c-scroll-top");
 window.onscroll = function() {scrollFunction()};
 
 function scrollFunction() {
-
   if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
-
     mybutton.style.display = "flex";
   } else {
     mybutton.style.display = "none";
-
   }
-
-}
-
-// When the user clicks on the button, scroll to the top of the document
-document.querySelector('.c-scroll-top').addEventListener('click', topFunction);
-
-function topFunction() {
-  document.body.scrollTop = 0;
-  document.documentElement.scrollTop = 0;
 }

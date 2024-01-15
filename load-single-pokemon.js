@@ -39,15 +39,16 @@ function pokemonIdNumberBig(pokemonId) {
 }
 
 //##6 load-single-pokemon
-function pokemonMainPictureBig(PokemonImg) {
-    if (PokemonImg.other.home.front_default === null) {
-        document.querySelector(`.img`).src = PokemonImg.other.official-artwork.front_default;
-        
+function pokemonMainPictureBig(pokemonImg) {
+    const imgElement = document.querySelector('.img');
+    
+    if (pokemonImg.other.home.front_default === null) {
+        imgElement.src = pokemonImg.other.official-artwork.front_default;
     } else {
-        document.querySelector(`.img`).src = PokemonImg.other.home.front_default;
-        
+        imgElement.src = pokemonImg.other.home.front_default;
     }
 }
+
 
 //##7 load-single-pokemon
 function pokemonBreeding(eggGroupsCycle) {
@@ -365,14 +366,18 @@ function descriptionOfThePokemon(languages) {
     const descriptionChina = document.querySelector('.description-section-china')
 
     if(languages.length === 0) {
-        console.log('Test')
         descriptionEnglish.textContent = 'There is no description in this language'
         descriptionGerman.textContent = 'There is no description in this language'
         descriptionSpanish.textContent = 'There is no description in this language'
+        descriptionFrench.textContent = 'There is no description in this language'
+        descriptionItalian.textContent = 'There is no description in this language'
+        descriptionJapan.textContent = 'There is no description in this language'
+        descriptionKorean.textContent = 'There is no description in this language'
+        descriptionChina.textContent = 'There is no description in this language'
+
     } else {
         for (let i = 0; i < languages.length; i++) {
             const element = languages[i];
-            console.log(languages)
                 if(element.language.name == 'en') {
                     descriptionEnglish.innerHTML += `<span>${element.flavor_text}</span>`
                 } else if (element.language.name == 'de') {

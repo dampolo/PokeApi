@@ -94,5 +94,11 @@ function pokemonIdNumber(id, pokemonId) {
 
 //##6  The main picture of pokemon
 function pokemonMainPictureSmall(id, pokemonImg) {
-    document.querySelector(`.img-content${id}`).src = `${pokemonImg}`;
+    const imgElement = document.querySelector(`.img-content${id}`);
+    
+    if (pokemonImg.other.home.front_default === null) {
+        imgElement.src = pokemonImg.other.official-artwork.front_default;
+    } else {
+        imgElement.src = pokemonImg.other.home.front_default;
+    }
 }

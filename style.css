@@ -557,7 +557,8 @@ right: 30px;
   height: 100px;
 }
 
-.evolution-section {
+.evolution-section-first,
+.evolution-section-second {
   display: flex;
   align-items: center;
   justify-content: space-evenly;
