@@ -289,7 +289,9 @@ function evolutionLoadTheNameFromTheChain(defultName, firstName, secondName) {
 // ##18 - 3 part load-single-pokemon.js
 function evolutionLoadTheImageThroughTheNameFromTheChainOneEvolution(defultPokemonImg, firstPokemonImg) {
     document.querySelector('.img-defult-name-evolution').src = defultPokemonImg.sprites.other.home.front_default;
+    debugger
     
+
     const imgFirstName = document.querySelectorAll('.img-first-name-evolution')
         for (let i = 0; i < imgFirstName.length; i++) {
             imgFirstName[i].src = firstPokemonImg.sprites.other.home.front_default;

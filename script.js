@@ -1,8 +1,8 @@
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
-let firstPokemon = 1
-let amountOfThePokemon = 20;
+let firstPokemon = 770;
+let amountOfThePokemon = 780;
 let blockLoadMorePokemons = false
 
 let id;

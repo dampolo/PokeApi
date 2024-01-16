@@ -64,9 +64,12 @@ async function mainEvolutionAPI(id) {
     const defultName = currentPokemonEvolution.chain.species.name
     let firstName = '';
     let secondName = '';
+    console.log('defultName:' + defultName)
+    console.log('firstName:' + firstName)
+    console.log('secondName:' + secondName)
+
 
     if (currentPokemonEvolution.chain.evolves_to == 0) {
-        document.querySelector('.no-evolution').textContent = 'This pokemon do not have evolution'
         document.querySelector('.evolution-section-first').classList.add('d-none')
         document.querySelector('.evolution-section-second').classList.add('d-none')
 
@@ -87,7 +90,10 @@ async function mainEvolutionAPI(id) {
 async function loadPokemonImages(defultName, firstName, secondName) {
     const defultPokemonImg = await sendRequest(`/pokemon/${defultName}`);
     const firstPokemonImg = await sendRequest(`/pokemon/${firstName}`);
-    if (secondName == '') {
+
+    if (firstName == '') {
+        document.querySelector('.no-evolution').textContent = 'This pokemon do not have evolution';
+    } else if (secondName == '') {
         // ##18 - 3 part load-single-pokemon.js
         evolutionLoadTheImageThroughTheNameFromTheChainOneEvolution(defultPokemonImg, firstPokemonImg)
     } else {
@@ -111,10 +117,10 @@ async function loadPokemons(id){
 
 async function loadPokemonInfo(id){
     const pokemon = await createNewPokemonApi(id);
-    // console.log('1pokemon', pokemon)
+    console.log('1pokemon', pokemon)
     const pokemonSpecies = await createNewPokemonSpeciesApi(id);
     // console.log('2pokemonSpecies', pokemonSpecies)
-    console.log('Description', pokemonSpecies.flavor_text_entries)
+    // console.log('Description', pokemonSpecies.flavor_text_entries)
 
     
     const pokemonAllRatesList = await createAllPokemonGrowthRatesApi();
