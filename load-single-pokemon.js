@@ -423,13 +423,20 @@ function displayPokemonHeightFeet(pokemonHeight) {
 
 }
 
-//##22 load-single-pokemon.js
+//##22 part1 - load-single-pokemon.js
 function calculatePokemonWeightIbs(pokemonWeight) {
     const pounds = ((pokemonWeight * 2.20462)/10).toFixed(1);
     return pounds
 }
 
+//##22 part2 - load-single-pokemon.js
 function displayPokemonWeightIbs(pokemonWeight) {
     const result = calculatePokemonWeightIbs(pokemonWeight)
     document.querySelector('.pokemon-weight-ibs').textContent = result  + ' Ibs ';
 }
+
+//##23 - load-single-pokemon.js
+function addNumberToNextImageRight(id) {
+    document.getElementById('imageRight').setAttribute('onclick', `nextImageRight(${id})`)
+  }
+

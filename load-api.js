@@ -43,6 +43,7 @@ function throttle(func, delay) {
 
 
 async function searchFunction() {
+    document.querySelector('.load-more-pokemons').setAttribute("disabled", null)
     let search = document.getElementById("search").value;
     search = search.toLowerCase();
 
@@ -50,25 +51,20 @@ async function searchFunction() {
 
     const allPokemonsListId = await searchPokemonApi()
 
-    console.log('allPokemonsListId', allPokemonsListId)
-
     const combinedArray = allPokemonsListId.map((pokemon) => ({
         name: pokemon.name,
         url: extractNumberFromUrl(pokemon.url)
         }));
 
     const filteredResults = combinedArray.filter((pokemon) => pokemon.name.includes(search));
-    console.log('filteredResults:'. filteredResults)
 
-    
     const urlArray = filteredResults.map((pokemon) => pokemon.url);
-    console.log('urlArray', urlArray)
 
     loadAllPokemonsApiNew(urlArray)
     
 }
 
-const throttledSearchFunction = throttle(searchFunction, 2000); // Throttle to once per second
+const throttledSearchFunction = throttle(searchFunction, 1000); // Throttle to twice per second
 
 // Add event listener with the throttled function
 document.getElementById("search").addEventListener('input', throttledSearchFunction);
@@ -161,6 +157,7 @@ async function loadPokemonInfo(id){
     pokemonMoves(pokemon.moves) //##15 load-single-pokemon.js
     displayPokemonHeightFeet(pokemon.height) //##21 load-single-pokemon.js
     displayPokemonWeightIbs(pokemon.weight) //##22 load-single-pokemon.js
+    addNumberToNextImageRight(pokemon.id) //##23 load-single-pokemon.js
 
 
     pokemonBackGroundColorBig(pokemonSpecies.color.name) //##2 load-single-pokemon.js
