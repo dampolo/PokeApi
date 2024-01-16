@@ -74,7 +74,7 @@ function pokemonBackGroundColorSmall(id, BackGroundColor){
 
 //##3  Name of the pokemon.
 function nameOfPokemon(id, pokemonName) {
-    document.querySelector(`.pokemon-name${id}`).textContent = pokemonName
+    document.querySelector(`.pokemon-name${id}`).innerHTML = `${pokemonName}`
 }
 
 //##4  A list of details showing types this Pokémon has.

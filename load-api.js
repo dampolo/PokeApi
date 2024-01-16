@@ -28,6 +28,20 @@ async function searchPokemonApi() {
     return pokemonSearch.results
 }
 
+function throttle(func, delay) {
+    let lastTime = 0;
+  
+    return function () {
+      const currentTime = Date.now();
+  
+      if (currentTime - lastTime >= delay) {
+        func.apply(this, arguments);
+        lastTime = currentTime;
+      }
+    };
+  }
+
+
 async function searchFunction() {
     let search = document.getElementById("search").value;
     search = search.toLowerCase();
@@ -36,18 +50,28 @@ async function searchFunction() {
 
     const allPokemonsListId = await searchPokemonApi()
 
+    console.log('allPokemonsListId', allPokemonsListId)
+
     const combinedArray = allPokemonsListId.map((pokemon) => ({
         name: pokemon.name,
         url: extractNumberFromUrl(pokemon.url)
-      }));
+        }));
 
     const filteredResults = combinedArray.filter((pokemon) => pokemon.name.includes(search));
+    console.log('filteredResults:'. filteredResults)
+
     
     const urlArray = filteredResults.map((pokemon) => pokemon.url);
-    console.log(urlArray)
+    console.log('urlArray', urlArray)
 
     loadAllPokemonsApiNew(urlArray)
+    
 }
+
+const throttledSearchFunction = throttle(searchFunction, 2000); // Throttle to once per second
+
+// Add event listener with the throttled function
+document.getElementById("search").addEventListener('input', throttledSearchFunction);
 
 
 // ##18
