@@ -1,9 +1,10 @@
 const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]')
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl))
 
-let firstPokemon = 770;
-let amountOfThePokemon = 780;
+let firstPokemon = 1;
+let amountOfThePokemon = 20;
 let blockLoadMorePokemons = false
+let maxAmountOfThePokemons = 1025;
 
 let id;
 
@@ -12,9 +13,18 @@ function loadAllPokemonsApi() {
         loadAllPokemonsHtml(id)
         loadPokemons(id)
     }
+}
 
-    if(amountOfThePokemon >= 1025) {
+function loadMorePokemons() {
+    if(amountOfThePokemon === 1020) {
+        firstPokemon = firstPokemon + 20
+        amountOfThePokemon = amountOfThePokemon + 5
         document.querySelector('.load-more-pokemons').setAttribute("disabled", null)
+        loadAllPokemonsApi()
+    } else {
+        firstPokemon = firstPokemon + 20
+        amountOfThePokemon = amountOfThePokemon + 20
+        loadAllPokemonsApi()
     }
 }
 
@@ -119,11 +129,6 @@ function pokemonLanguages(sectionClass) {
     });
 };
 
-function loadMorePokemons() {
-    firstPokemon = firstPokemon + 20
-    amountOfThePokemon = amountOfThePokemon + 20
-    loadAllPokemonsApi()
-}
 
 function doNotCLose(event) {
     event.preventDefult();

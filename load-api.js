@@ -28,7 +28,6 @@ async function searchPokemonApi() {
     return pokemonSearch.results
 }
 
-
 async function searchFunction() {
     let search = document.getElementById("search").value;
     search = search.toLowerCase();
