@@ -1,8 +1,8 @@
 const uri = 'https://pokeapi.co/api/v2';
 
 async function sendRequest(endpoint) {
-    const url = `${uri}${endpoint}`
-    const response = await fetch(url)
+    const url = `${uri}${endpoint}`;
+    const response = await fetch(url);
     return await response.json();
 }
 
@@ -19,56 +19,48 @@ async function createNewPokemonSpeciesApi(id){
     }
 
 async function createAllPokemonGrowthRatesApi() {
-    const pokemonGrowthRates = await sendRequest(`/growth-rate/`)
-    return pokemonGrowthRates.results
+    const pokemonGrowthRates = await sendRequest(`/growth-rate/`);
+    return pokemonGrowthRates.results;
 }
 
 async function searchPokemonApi() {
-    const pokemonSearch = await sendRequest(`/pokemon-species?limit=1100`)
-    return pokemonSearch.results
+    const pokemonSearch = await sendRequest(`/pokemon-species?limit=1100`);
+    return pokemonSearch.results;
 }
 
-function throttle(func, delay) {
-    let lastTime = 0;
-  
-    return function () {
-      const currentTime = Date.now();
-  
-      if (currentTime - lastTime >= delay) {
-        func.apply(this, arguments);
-        lastTime = currentTime;
-      }
-    };
-  }
+let searchTimeout;
 
+document.querySelector('input[type="search"]').addEventListener('input', ()=>{
+clearTimeout(searchTimeout);
 
-async function searchFunction() {
-    document.querySelector('.load-more-pokemons').setAttribute("disabled", null)
-    let search = document.getElementById("search").value;
-    search = search.toLowerCase();
+searchTimeout = setTimeout(()=> {
+    const search = document.getElementById("search").value.toLowerCase();
+    searchFunction(search);
+    }, 1000);
+})
 
-    document.querySelector('.content-single').innerHTML = '';
-
-    const allPokemonsListId = await searchPokemonApi()
-
-    const combinedArray = allPokemonsListId.map((pokemon) => ({
-        name: pokemon.name,
-        url: extractNumberFromUrl(pokemon.url)
-        }));
-
-    const filteredResults = combinedArray.filter((pokemon) => pokemon.name.includes(search));
-
-    const urlArray = filteredResults.map((pokemon) => pokemon.url);
-
-    loadAllPokemonsApiNew(urlArray)
+async function searchFunction(search) {
+    document.querySelector('.load-more-pokemons').setAttribute("disabled", null);
+    // search = search.toLowerCase();
+    if (search !== '') {
+        document.querySelector('.content-single').innerHTML = '';
+        const allPokemonsListId = await searchPokemonApi();
     
+        const combinedArray = allPokemonsListId.map((pokemon) => ({
+            name: pokemon.name,
+            url: extractNumberFromUrl(pokemon.url)
+            }));
+    
+        const filteredResults = combinedArray.filter((pokemon) => pokemon.name.includes(search));
+        const urlArray = filteredResults.map((pokemon) => pokemon.url);
+        loadAllPokemonsApiNew(urlArray);
+
+    } else {
+        document.querySelector('.content-single').innerHTML = '';
+        document.querySelector('.load-more-pokemons').removeAttribute("disabled");
+        loadPokemonsAfterSearch()
+    }
 }
-
-const throttledSearchFunction = throttle(searchFunction, 1000); // Throttle to twice per second
-
-// Add event listener with the throttled function
-document.getElementById("search").addEventListener('input', throttledSearchFunction);
-
 
 // ##18
 async function mainEvolutionAPI(id) {
@@ -76,17 +68,13 @@ async function mainEvolutionAPI(id) {
     const currentPokemonEvolutionChain = pokemonSpecies.evolution_chain.url;
     
     // ##18 - 1 part load-single-pokemon.js
-    const chainNumber = extractNumberFromUrl(currentPokemonEvolutionChain)
-    const currentPokemonEvolution = await sendRequest(`/evolution-chain/${chainNumber}`)
-    console.log('Evolution:', currentPokemonEvolution)
+    const chainNumber = extractNumberFromUrl(currentPokemonEvolutionChain);
+    const currentPokemonEvolution = await sendRequest(`/evolution-chain/${chainNumber}`);
+    console.log('Evolution:', currentPokemonEvolution);
 
-    const defultName = currentPokemonEvolution.chain.species.name
+    const defultName = currentPokemonEvolution.chain.species.name;
     let firstName = '';
     let secondName = '';
-    console.log('defultName:' + defultName)
-    console.log('firstName:' + firstName)
-    console.log('secondName:' + secondName)
-
 
     if (currentPokemonEvolution.chain.evolves_to == 0) {
         document.querySelector('.evolution-section-first').classList.add('d-none')
@@ -102,7 +90,7 @@ async function mainEvolutionAPI(id) {
     }
 
     // ##18 - 2 part load-single-pokemon.js
-    evolutionLoadTheNameFromTheChain(defultName, firstName, secondName)
+    evolutionLoadTheNameFromTheChain(defultName, firstName, secondName);
     await loadPokemonImages(defultName, firstName, secondName);
 }
 
@@ -126,17 +114,17 @@ async function loadPokemons(id){
     const pokemon = await createNewPokemonApi(id);
     const pokemonSpecies = await createNewPokemonSpeciesApi(id);
     
-    nameOfPokemon(id, pokemon.name) //##3 load-all-pokemons.js
-    pokemonType(id, pokemon.types) //##4 load-all-pokemons.js
-    pokemonIdNumber(id, pokemon.id)  //##5 load-all-pokemons.js
+    nameOfPokemon(id, pokemon.name); //##3 load-all-pokemons.js
+    pokemonType(id, pokemon.types); //##4 load-all-pokemons.js
+    pokemonIdNumber(id, pokemon.id);  //##5 load-all-pokemons.js
 
-    pokemonMainPictureSmall(id, pokemon.sprites)  //##6 load-all-pokemons.js
-    pokemonBackGroundColorSmall(id, pokemonSpecies.color.name) //##2 load-all-pokemons.js
+    pokemonMainPictureSmall(id, pokemon.sprites);  //##6 load-all-pokemons.js
+    pokemonBackGroundColorSmall(id, pokemonSpecies.color.name); //##2 load-all-pokemons.js
 }
 
 async function loadPokemonInfo(id){
     const pokemon = await createNewPokemonApi(id);
-    console.log('1pokemon', pokemon)
+    console.log('1pokemon', pokemon);
     const pokemonSpecies = await createNewPokemonSpeciesApi(id);
     // console.log('2pokemonSpecies', pokemonSpecies)
     // console.log('Description', pokemonSpecies.flavor_text_entries)
@@ -144,30 +132,30 @@ async function loadPokemonInfo(id){
     
     const pokemonAllRatesList = await createAllPokemonGrowthRatesApi();
     // console.log('Rates', pokemonAllRatesList)
-    mainEvolutionAPI(id) //#18 load-api.js
+    mainEvolutionAPI(id); //#18 load-api.js
     
-    nameOfPokemonBig(pokemon.name) //##3 load-single-pokemon.js
-    pokemonTypeBig(pokemon.types) //##4 load-single-pokemon.js
-    pokemonIdNumberBig(pokemon.id)  //##5 load-single-pokemon.js
-    pokemonMainPictureBig(pokemon.sprites)  //##6 load-single-pokemon.js
-    pokemonStats(pokemon.stats) //##9 load-single-pokemon.js
-    pokemonAbilities(pokemon.abilities) //##11 load-single-pokemon.js
-    displayPokemonHeight(pokemon.height) //##12 load-single-pokemon.js
-    displayPokemonWeight(pokemon.weight) //##13 load-single-pokemon.js
-    pokemonMoves(pokemon.moves) //##15 load-single-pokemon.js
-    displayPokemonHeightFeet(pokemon.height) //##21 load-single-pokemon.js
-    displayPokemonWeightIbs(pokemon.weight) //##22 load-single-pokemon.js
-    addNumberToNextImageRight(pokemon.id) //##23 load-single-pokemon.js
+    nameOfPokemonBig(pokemon.name); //##3 load-single-pokemon.js
+    pokemonTypeBig(pokemon.types); //##4 load-single-pokemon.js
+    pokemonIdNumberBig(pokemon.id);  //##5 load-single-pokemon.js
+    pokemonMainPictureBig(pokemon.sprites);  //##6 load-single-pokemon.js
+    pokemonStats(pokemon.stats); //##9 load-single-pokemon.js
+    pokemonAbilities(pokemon.abilities); //##11 load-single-pokemon.js
+    displayPokemonHeight(pokemon.height); //##12 load-single-pokemon.js
+    displayPokemonWeight(pokemon.weight); //##13 load-single-pokemon.js
+    pokemonMoves(pokemon.moves); //##15 load-single-pokemon.js
+    displayPokemonHeightFeet(pokemon.height); //##21 load-single-pokemon.js
+    displayPokemonWeightIbs(pokemon.weight); //##22 load-single-pokemon.js
+    addNumberToNextImageRight(pokemon.id); //##23 load-single-pokemon.js
+    addNumberToNextImageLeft(pokemon.id); //##23 load-single-pokemon.js
 
-
-    pokemonBackGroundColorBig(pokemonSpecies.color.name) //##2 load-single-pokemon.js
-    pokemonBreeding(pokemonSpecies.egg_groups) //##7 load-single-pokemon.js
-    nameOfThePokemonInOtherLanguages(pokemonSpecies.names) //##8 load-single-pokemon.js
-    pokemonSpeciesGenera(pokemonSpecies.genera) //##10 load-single-pokemon.js
-    displayPokemonFemaleMale(pokemonSpecies.gender_rate) //##14 load-single-pokemon.js
-    pokemonGrowth(pokemonSpecies.growth_rate.name) //##16 load-single-pokemon.js
-    pokemonAllGrowthRates(pokemonAllRatesList) //##17 load-single-pokemon.js
-    allPictures(pokemon.sprites) //##19 load-single-pokemon.js
-    descriptionOfThePokemon(pokemonSpecies.flavor_text_entries) //##20 load-single-pokemon.js
+    pokemonBackGroundColorBig(pokemonSpecies.color.name); //##2 load-single-pokemon.js
+    pokemonBreeding(pokemonSpecies.egg_groups); //##7 load-single-pokemon.js
+    nameOfThePokemonInOtherLanguages(pokemonSpecies.names); //##8 load-single-pokemon.js
+    pokemonSpeciesGenera(pokemonSpecies.genera); //##10 load-single-pokemon.js
+    displayPokemonFemaleMale(pokemonSpecies.gender_rate); //##14 load-single-pokemon.js
+    pokemonGrowth(pokemonSpecies.growth_rate.name); //##16 load-single-pokemon.js
+    pokemonAllGrowthRates(pokemonAllRatesList); //##17 load-single-pokemon.js
+    allPictures(pokemon.sprites); //##19 load-single-pokemon.js
+    descriptionOfThePokemon(pokemonSpecies.flavor_text_entries); //##20 load-single-pokemon.js
 }
 

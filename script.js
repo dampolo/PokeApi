@@ -2,39 +2,45 @@ const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]
 
 const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstrap.Tooltip(tooltipTriggerEl, { trigger: 'hover' }))
 
-
+let originPokemon = 1;
 let firstPokemon = 1;
 let amountOfThePokemon = 20;
-let blockLoadMorePokemons = false
 let maxAmountOfThePokemons = 1025;
 
 let id;
 
 function loadAllPokemonsApi() {
     for (let id = firstPokemon; id <= amountOfThePokemon; id++) {
-        loadAllPokemonsHtml(id)
-        loadPokemons(id)
+        loadAllPokemonsHtml(id);
+        loadPokemons(id);
+    }
+}
+
+function loadPokemonsAfterSearch() {
+    for (let id = originPokemon; id <= amountOfThePokemon; id++) {
+        loadAllPokemonsHtml(id);
+        loadPokemons(id);
     }
 }
 
 function loadMorePokemons() {
     if(amountOfThePokemon === 1020) {
-        firstPokemon = firstPokemon + 20
-        amountOfThePokemon = amountOfThePokemon + 5
-        document.querySelector('.load-more-pokemons').setAttribute("disabled", null)
-        loadAllPokemonsApi()
+        firstPokemon = firstPokemon + 20;
+        amountOfThePokemon = amountOfThePokemon + 5;
+        document.querySelector('.load-more-pokemons').setAttribute("disabled", null);
+        loadAllPokemonsApi();
     } else {
-        firstPokemon = firstPokemon + 20
-        amountOfThePokemon = amountOfThePokemon + 20
-        loadAllPokemonsApi()
+        firstPokemon = firstPokemon + 20;
+        amountOfThePokemon = amountOfThePokemon + 20;
+        loadAllPokemonsApi();
     }
 }
 
 function loadAllPokemonsApiNew(names) {
     for (let i = 0; i < names.length; i++) {
         const element = names[i];
-        loadAllPokemonsHtml(element)
-        loadPokemons(element)
+        loadAllPokemonsHtml(element);
+        loadPokemons(element);
     }
 }
 
@@ -43,18 +49,28 @@ function renderPokemonInfo(id) {
     document.querySelector('.main-slider-container').style.display = 'flex';
     document.querySelector('body').style.overflow = 'hidden';
 
-    loadPokemonInfo(id)
-    showScrollY()
+    loadPokemonInfo(id);
+    showScrollY();
 }
 
 function nextImageRight(id) {
-    id++
-    loadPokemonInfo(id)
+    if( id == 1025) {
+        id = 1;
+        loadPokemonInfo(id);
+    } else {
+        id++
+        loadPokemonInfo(id);
+    }
 }
 
-function lastImageLeft(id) {
-    id--;
-    loadPokemonInfo(id)
+function nextImageLeft(id) {
+    if( id == 1) {
+        id = 1025;
+        loadPokemonInfo(id);
+    } else {
+        id--
+        loadPokemonInfo(id);
+    }
 }
 
 function closeImage() {
@@ -114,19 +130,19 @@ function showSection(sectionClass) {
 
 
 function pokemonLanguages(sectionClass) {
-    const sections = ['english', 'german', 'spanish', 'french', 'italian', 'japanese', 'koreanish', 'chinesisch']
-    const showSection = ['description-section-english', 'description-section-german', 'description-section-spanish', 'description-section-french', 'description-section-italian', 'description-section-japan', 'description-section-korean', 'description-section-china']
+    const sections = ['english', 'german', 'spanish', 'french', 'italian', 'japanese', 'koreanish', 'chinesisch'];
+    const showSection = ['description-section-english', 'description-section-german', 'description-section-spanish', 'description-section-french', 'description-section-italian', 'description-section-japan', 'description-section-korean', 'description-section-china'];
 
     sections.forEach((section, i) => {
-        const element = document.querySelector(`.${sections[i]}`)
-        const showEl = document.querySelector(`.${showSection[i]}`)
+        const element = document.querySelector(`.${sections[i]}`);
+        const showEl = document.querySelector(`.${showSection[i]}`);
 
         if (section === sectionClass) {
-            element.classList.add('flag-active')
-            showEl.classList.remove('d-none')
+            element.classList.add('flag-active');
+            showEl.classList.remove('d-none');
         } else {
-            showEl.classList.add('d-none')
-            element.classList.remove('flag-active')
+            showEl.classList.add('d-none');
+            element.classList.remove('flag-active');
         }
     });
 };

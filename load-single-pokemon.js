@@ -38,15 +38,10 @@ function pokemonIdNumberBig(pokemonId) {
     document.querySelector('.pokemon-number-big').textContent = `#${pokemonId.toString().padStart(4, '0')}`;
 }
 
-//##6 load-single-pokemon
+// ##6 load-single-pokemon
 function pokemonMainPictureBig(pokemonImg) {
     const imgElement = document.querySelector('.img');
-    
-    if (pokemonImg.other.home.front_default === null) {
-        imgElement.src = pokemonImg.other.official-artwork.front_default;
-    } else {
-        imgElement.src = pokemonImg.other.home.front_default;
-    }
+    imgElement.src = pokemonImg.other.home.front_default ?? pokemonImg.other.official-artwork.front_default
 }
 
 
@@ -117,7 +112,7 @@ function pokemonStats(currentPokemonStats) {
 
     for (let i = 0; i < currentPokemonStats.length; i++) {
         const element = currentPokemonStats[i];
-        totalSum += element.base_stat
+        totalSum += element.base_stat;
 
         if(element.stat.name === 'hp' || element.stat.name === 'defense' || element.stat.name === 'speed') {
         statsEl.innerHTML += /*html*/ `
@@ -176,7 +171,7 @@ function pokemonSpeciesGenera(pokemonSpeciesGenera) {
 
 //##11 Species of pokemon
 function pokemonAbilities(pokemonAbilities) {
-    const abilitiesEl = document.querySelector(".pokemon-abilities")
+    const abilitiesEl = document.querySelector(".pokemon-abilities");
     abilitiesEl.textContent = '';
 
     for (let i = 0; i < pokemonAbilities.length; i++) {
@@ -184,32 +179,32 @@ function pokemonAbilities(pokemonAbilities) {
         if (i > 0) {
             abilitiesEl.textContent += ', ';
         }
-        abilitiesEl.textContent += `${element.ability.name}`
+        abilitiesEl.textContent += `${element.ability.name}`;
     }
 }
 
 //##12 Height of the pokemon calculation.
 function calculatePokemonHeight(pokemonHeight) {
-    const pokemonHeightResult = ((pokemonHeight*10)/100).toFixed(2)
-    return pokemonHeightResult
+    const pokemonHeightResult = ((pokemonHeight*10)/100).toFixed(2);
+    return pokemonHeightResult;
 }
 
 //##12 Height of the pokemon display.
 function displayPokemonHeight(pokemonHeight) {
-    const result = calculatePokemonHeight(pokemonHeight)
+    const result = calculatePokemonHeight(pokemonHeight);
     document.querySelector('.pokemon-height-cm').textContent = '(' + result + ' cm)';
 }
 
 //##13 Weight of the pokemon calculation.
 function calculatePokemonWeight(pokemonWeight) {
     const pokemonWeightResult = (pokemonWeight)/10;
-    return pokemonWeightResult
+    return pokemonWeightResult;
 }
 
 
 //##13 Weight of the pokemon display.
 function displayPokemonWeight(pokemonWeight) {
-    const result = calculatePokemonWeight(pokemonWeight)
+    const result = calculatePokemonWeight(pokemonWeight);
     document.querySelector('.pokemon-weight-kg').textContent = '(' + result  + ' kg)';
 }
 
@@ -225,14 +220,14 @@ function calculateFemaleMale(currentFemaleMale) {
 
 //##14 Female or Male
 function displayPokemonFemaleMale(currentFemaleMale) {
-    const result = calculateFemaleMale(currentFemaleMale)
+    const result = calculateFemaleMale(currentFemaleMale);
     document.querySelector('.pokemon-gender-female').textContent = result.female + ' %';
-    document.querySelector('.pokemon-gender-male').textContent = result.male + ' %'
+    document.querySelector('.pokemon-gender-male').textContent = result.male + ' %';
 }
 
 //##15 Moves
 function pokemonMoves(pokemonMoveName) {
-    const movesEl = document.querySelector(".pokemon-moves-content")
+    const movesEl = document.querySelector(".pokemon-moves-content");
     movesEl.innerHTML = '';
 
     for (let i = 0; i < pokemonMoveName.length; i++) {
@@ -309,7 +304,7 @@ function evolutionLoadTheImageThroughTheNameFromTheChainTwoEvolution(defultPokem
 
 //##19 load-single-pokemon.js
 function allPictures(images) {
-    const parentElement = document.querySelector(".other-pictures-list")
+    const parentElement = document.querySelector(".other-pictures-list");
     
     while (parentElement.firstChild) {
         parentElement.removeChild(parentElement.firstChild);
@@ -379,23 +374,23 @@ function descriptionOfThePokemon(languages) {
         for (let i = 0; i < languages.length; i++) {
             const element = languages[i];
                 if(element.language.name == 'en') {
-                    descriptionEnglish.innerHTML += `<span>${element.flavor_text}</span>`
+                    descriptionEnglish.innerHTML += `<span>${element.flavor_text}</span>`;
                 } else if (element.language.name == 'de') {
-                    descriptionGerman.innerHTML += `<span>${element.flavor_text}</span>`
+                    descriptionGerman.innerHTML += `<span>${element.flavor_text}</span>`;
                 } else if (element.language.name == 'es') {
-                    descriptionSpanish.innerHTML += `<span>${element.flavor_text}</span>`
+                    descriptionSpanish.innerHTML += `<span>${element.flavor_text}</span>`;
                 } else if (element.language.name == 'fr') {
-                    descriptionFrench.innerHTML += `<span>${element.flavor_text}</span>`
+                    descriptionFrench.innerHTML += `<span>${element.flavor_text}</span>`;
                 } else if (element.language.name == 'it') {
-                    descriptionItalian.innerHTML += `<span>${element.flavor_text}</span>`
+                    descriptionItalian.innerHTML += `<span>${element.flavor_text}</span>`;
                 } else if (element.language.name == 'ja') {
-                    descriptionJapan.innerHTML += `<span>${element.flavor_text}</span>`
+                    descriptionJapan.innerHTML += `<span>${element.flavor_text}</span>`;
                 } else if (element.language.name == 'ko') {
-                    descriptionKorean.innerHTML += `<span>${element.flavor_text}</span>`
+                    descriptionKorean.innerHTML += `<span>${element.flavor_text}</span>`;
                 } else if (element.language.name == 'zh-Hant') {
-                    descriptionChina.innerHTML += `<span>${element.flavor_text}</span>`
+                    descriptionChina.innerHTML += `<span>${element.flavor_text}</span>`;
                 } else if (element.language.name == '') {
-                    descriptionChina.textContent += 'This languages is not avilabel'
+                    descriptionChina.textContent += 'This languages is not avilabel';
                 }
             }
     }
@@ -418,7 +413,7 @@ function calculatePokemonHeightFett(pokemonHeight) {
 
 //##21 load-single-pokemon.js
 function displayPokemonHeightFeet(pokemonHeight) {
-    const result = calculatePokemonHeightFett(pokemonHeight)
+    const result = calculatePokemonHeightFett(pokemonHeight);
     document.querySelector('.pokemon-height-feet').textContent = result.feet + "'" + result.inchesNumber + '"';
 
 }
@@ -431,12 +426,17 @@ function calculatePokemonWeightIbs(pokemonWeight) {
 
 //##22 part2 - load-single-pokemon.js
 function displayPokemonWeightIbs(pokemonWeight) {
-    const result = calculatePokemonWeightIbs(pokemonWeight)
+    const result = calculatePokemonWeightIbs(pokemonWeight);
     document.querySelector('.pokemon-weight-ibs').textContent = result  + ' Ibs ';
 }
 
 //##23 - load-single-pokemon.js
 function addNumberToNextImageRight(id) {
-    document.getElementById('imageRight').setAttribute('onclick', `nextImageRight(${id})`)
+    document.getElementById('imageRight').setAttribute('onclick', `nextImageRight(${id})`);
   }
+
+//##24 - load-single-pokemon.js
+function addNumberToNextImageLeft(id) {
+    document.getElementById('imageLeft').setAttribute('onclick', `nextImageLeft(${id})`);
+}
 
