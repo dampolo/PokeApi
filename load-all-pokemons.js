@@ -56,19 +56,18 @@ function loadAllPokemonsHtml(id) {
 function pokemonBackGroundColorSmall(id, BackGroundColor){
     if (BackGroundColor == 'green') {
         document.querySelector(`.pokemon-img-content${id}`).style.backgroundColor = 'rgb(70, 209, 178)';
-    } else if (BackGroundColor == "red") {
+    } else if (BackGroundColor == 'red') {
         document.querySelector(`.pokemon-img-content${id}`).style.backgroundColor = 'rgb(249,103,103)';
-    } else if (BackGroundColor == "blue") {
+    } else if (BackGroundColor == 'blue') {
         document.querySelector(`.pokemon-img-content${id}`).style.backgroundColor = 'rgb(119,190,254)';
-    } else if (BackGroundColor == "white") {
+    } else if (BackGroundColor == 'white') {
         document.querySelector(`.pokemon-img-content${id}`).style.backgroundColor = 'rgb(160, 181, 54)';
-    } else if (BackGroundColor == "yellow") {
+    } else if (BackGroundColor == 'yellow') {
         document.querySelector(`.pokemon-img-content${id}`).style.backgroundColor = 'rgb(207, 152, 58)';
-    }  else if (BackGroundColor == "brown") {
+    }  else if (BackGroundColor == 'brown') {
         document.querySelector(`.pokemon-img-content${id}`).style.backgroundColor = 'rgb(207, 152, 58)';
-    } else if (BackGroundColor == "purple") {
+    } else if (BackGroundColor == 'purple') {
         document.querySelector(`.pokemon-img-content${id}`).style.backgroundColor = 'rgb(233, 168, 242)';
-
     } else {
         document.querySelector(`.pokemon-img-content${id}`).style.backgroundColor = BackGroundColor;
     }
@@ -81,13 +80,12 @@ function nameOfPokemon(id, pokemonName) {
 
 //##4  A list of details showing types this Pokémon has.
 function pokemonType(id, currentPokemonType) {
-    let type = '';
-    const typeEl = document.querySelector(`.pokemon-type[data-id="${id}"]`);
-
+    let types = '';
     for (let i = 0; i < currentPokemonType.length; i++) {
         const element = currentPokemonType[i];
-        typeEl.innerHTML += `<div class="pokemon-type-name rounded-3 px-1 py-1">${element.type.name}</div>`;
+        types += `<div class="pokemon-type-name rounded-3 px-1 py-1">${element.type.name}</div>`;
     }
+    document.querySelector(`.pokemon-type[data-id="${id}"]`).innerHTML = types;
 }
 
 //##5  Number and Id of the pokemon.
