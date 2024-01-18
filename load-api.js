@@ -41,7 +41,6 @@ searchTimeout = setTimeout(()=> {
 
 async function searchFunction(search) {
     document.querySelector('.load-more-pokemons').setAttribute("disabled", null);
-    // search = search.toLowerCase();
     if (search !== '') {
         document.querySelector('.content-single').innerHTML = '';
         const allPokemonsListId = await searchPokemonApi();
@@ -58,7 +57,7 @@ async function searchFunction(search) {
     } else {
         document.querySelector('.content-single').innerHTML = '';
         document.querySelector('.load-more-pokemons').removeAttribute("disabled");
-        loadPokemonsAfterSearch()
+        loadPokemonsAfterSearch();
     }
 }
 
@@ -77,15 +76,15 @@ async function mainEvolutionAPI(id) {
     let secondName = '';
 
     if (currentPokemonEvolution.chain.evolves_to == 0) {
-        document.querySelector('.evolution-section-first').classList.add('d-none')
-        document.querySelector('.evolution-section-second').classList.add('d-none')
+        document.querySelector('.evolution-section-first').classList.add('d-none');
+        document.querySelector('.evolution-section-second').classList.add('d-none');
 
     } else if (currentPokemonEvolution.chain.evolves_to[0].evolves_to == 0) {
-        firstName = currentPokemonEvolution.chain.evolves_to[0].species.name
-        document.querySelector('.evolution-section-second').classList.add('d-none')
+        firstName = currentPokemonEvolution.chain.evolves_to[0].species.name;
+        document.querySelector('.evolution-section-second').classList.add('d-none');
     } else {
-        document.querySelector('.evolution-section-second').classList.remove('d-none')
-        firstName = currentPokemonEvolution.chain.evolves_to[0].species.name
+        document.querySelector('.evolution-section-second').classList.remove('d-none');
+        firstName = currentPokemonEvolution.chain.evolves_to[0].species.name;
         secondName = currentPokemonEvolution.chain.evolves_to[0].evolves_to[0].species.name;
     }
 
@@ -102,11 +101,11 @@ async function loadPokemonImages(defultName, firstName, secondName) {
         document.querySelector('.no-evolution').textContent = 'This pokemon do not have evolution';
     } else if (secondName == '') {
         // ##18 - 3 part load-single-pokemon.js
-        evolutionLoadTheImageThroughTheNameFromTheChainOneEvolution(defultPokemonImg, firstPokemonImg)
+        evolutionLoadTheImageThroughTheNameFromTheChainOneEvolution(defultPokemonImg, firstPokemonImg);
     } else {
         const secondPokemonImg = await sendRequest(`/pokemon/${secondName}`);
         // ##18 - 4 part load-single-pokemon.js
-        evolutionLoadTheImageThroughTheNameFromTheChainTwoEvolution(defultPokemonImg, firstPokemonImg, secondPokemonImg)
+        evolutionLoadTheImageThroughTheNameFromTheChainTwoEvolution(defultPokemonImg, firstPokemonImg, secondPokemonImg);
     }
 }
 

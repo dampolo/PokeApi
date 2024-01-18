@@ -19,7 +19,7 @@ function pokemonBackGroundColorBig(BackGroundColor){
 function nameOfPokemonBig(pokemon) {
     const nodeList = document.querySelectorAll('.pokemon-name-big')
     for (let i = 0; i < nodeList.length; i++) {
-        nodeList[i].textContent = pokemon
+        nodeList[i].textContent = pokemon;
     }
 }
 
@@ -41,7 +41,7 @@ function pokemonIdNumberBig(pokemonId) {
 // ##6 load-single-pokemon
 function pokemonMainPictureBig(pokemonImg) {
     const imgElement = document.querySelector('.img');
-    imgElement.src = pokemonImg.other.home.front_default ?? pokemonImg.other.official-artwork.front_default
+    imgElement.src = pokemonImg.other.home.front_default ?? pokemonImg.other.official-artwork.front_default;
 }
 
 
@@ -232,13 +232,13 @@ function pokemonMoves(pokemonMoveName) {
 
     for (let i = 0; i < pokemonMoveName.length; i++) {
         const element = pokemonMoveName[i];
-        movesEl.innerHTML += `<div class="pokemon-move-name">${element.move.name}</div>`
+        movesEl.innerHTML += `<div class="pokemon-move-name">${element.move.name}</div>`;
     }
 }
 
 //##16 Growth Rate
 function pokemonGrowth(growthRate) {
-    document.querySelector('.growth-rate-content-dd').innerHTML = `${growthRate}`
+    document.querySelector('.growth-rate-content-dd').innerHTML = `${growthRate}`;
 }
 
 //##17 All Growth Rate
@@ -248,7 +248,7 @@ function pokemonAllGrowthRates(pokemonAllRatesList) {
 
     for (let i = 0; i < pokemonAllRatesList.length; i++) {
         const element = pokemonAllRatesList[i].name;
-        allGrowthRateContentDdEl.innerHTML += `<dd class="all-growth-rate-content-dd">${element}</dd>`
+        allGrowthRateContentDdEl.innerHTML += `<dd class="all-growth-rate-content-dd">${element}</dd>`;
     }
 }
 
@@ -274,7 +274,7 @@ function evolutionLoadTheNameFromTheChain(defultName, firstName, secondName) {
 
     const firstNameEl = document.querySelectorAll('.first-name-evolution');
         for (let i = 0; i < firstNameEl.length; i++) {
-            firstNameEl[i].textContent = firstName;;
+            firstNameEl[i].textContent = firstName;
         }
 
     const secondNameEl = document.querySelector('.second-name-evolution');
@@ -351,24 +351,24 @@ function amountOfPictures(images) {
 
 //##20 load-single-pokemon.js
 function descriptionOfThePokemon(languages) {
-    const descriptionEnglish = document.querySelector('.description-section-english')
-    const descriptionGerman = document.querySelector('.description-section-german')
-    const descriptionSpanish = document.querySelector('.description-section-spanish')
-    const descriptionFrench = document.querySelector('.description-section-french')
-    const descriptionItalian = document.querySelector('.description-section-italian')
-    const descriptionJapan = document.querySelector('.description-section-japan')
-    const descriptionKorean = document.querySelector('.description-section-korean')
-    const descriptionChina = document.querySelector('.description-section-china')
+    const descriptionEnglish = document.querySelector('.description-section-english');
+    const descriptionGerman = document.querySelector('.description-section-german');
+    const descriptionSpanish = document.querySelector('.description-section-spanish');
+    const descriptionFrench = document.querySelector('.description-section-french');
+    const descriptionItalian = document.querySelector('.description-section-italian');
+    const descriptionJapan = document.querySelector('.description-section-japan');
+    const descriptionKorean = document.querySelector('.description-section-korean');
+    const descriptionChina = document.querySelector('.description-section-china');
 
     if(languages.length === 0) {
-        descriptionEnglish.textContent = 'There is no description in this language'
-        descriptionGerman.textContent = 'There is no description in this language'
-        descriptionSpanish.textContent = 'There is no description in this language'
-        descriptionFrench.textContent = 'There is no description in this language'
-        descriptionItalian.textContent = 'There is no description in this language'
-        descriptionJapan.textContent = 'There is no description in this language'
-        descriptionKorean.textContent = 'There is no description in this language'
-        descriptionChina.textContent = 'There is no description in this language'
+        descriptionEnglish.textContent = 'There is no description in this language';
+        descriptionGerman.textContent = 'There is no description in this language';
+        descriptionSpanish.textContent = 'There is no description in this language';
+        descriptionFrench.textContent = 'There is no description in this language';
+        descriptionItalian.textContent = 'There is no description in this language';
+        descriptionJapan.textContent = 'There is no description in this language';
+        descriptionKorean.textContent = 'There is no description in this language';
+        descriptionChina.textContent = 'There is no description in this language';
 
     } else {
         for (let i = 0; i < languages.length; i++) {
@@ -421,7 +421,7 @@ function displayPokemonHeightFeet(pokemonHeight) {
 //##22 part1 - load-single-pokemon.js
 function calculatePokemonWeightIbs(pokemonWeight) {
     const pounds = ((pokemonWeight * 2.20462)/10).toFixed(1);
-    return pounds
+    return pounds;
 }
 
 //##22 part2 - load-single-pokemon.js

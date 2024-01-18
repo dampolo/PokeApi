@@ -54,6 +54,7 @@ function renderPokemonInfo(id) {
 }
 
 function nextImageRight(id) {
+    // updateOffset(id)
     if( id == 1025) {
         id = 1;
         loadPokemonInfo(id);
@@ -180,4 +181,11 @@ function scrollFunction() {
   } else {
     mybutton.style.display = "none";
   }
+}
+
+function updateOffset(id) {
+    // Calculate slider offset
+    const offset = -id * 100 + '%';
+    // Apply transform on slider element
+    document.querySelector(`.img`).style.transform = `translate3d(${offset}, 0, 0)`;
 }
