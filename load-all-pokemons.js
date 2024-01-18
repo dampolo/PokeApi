@@ -14,10 +14,12 @@ function loadAllPokemonsHtml(id) {
     pokemonNameType.className = 'pokemon-name-type';
 
     const pokemonName = document.createElement('div');
-    pokemonName.className = `pokemon-name${id} pokemon-name text-capitalize fs-2 fw-bold`;
+    pokemonName.className = `pokemon-name text-capitalize fs-2 fw-bold`;
+    pokemonName.setAttribute('data-id', `${id}`)
 
     const pokemonType = document.createElement('div');
-    pokemonType.className = `pokemon-type${id} pokemon-type-content`;
+    pokemonType.className = `pokemon-type pokemon-type-content`;
+    pokemonType.setAttribute('data-id', `${id}`)
 
     const pokemonNumberImgContainer = document.createElement('div');
     pokemonNumberImgContainer.className = 'number-img-container';
@@ -26,8 +28,9 @@ function loadAllPokemonsHtml(id) {
     pokemonNumberContent.className = 'pokemon-number-content';
     
     const pokemonNumber = document.createElement('span');
-    pokemonNumber.className = `pokemon-number${id} pokemon-number pe-2 fs-5 fa-solid opacity-25 fw-bold text-dark`;
-    
+    pokemonNumber.className = `pokemon-number pe-2 fs-5 fa-solid opacity-25 fw-bold text-dark`;
+    pokemonNumber.setAttribute('data-id', `${id}`)
+
     const imgContainer = document.createElement('div');
     imgContainer.className = 'img-container';
     
@@ -73,13 +76,13 @@ function pokemonBackGroundColorSmall(id, BackGroundColor){
 
 //##3  Name of the pokemon.
 function nameOfPokemon(id, pokemonName) {
-    document.querySelector(`.pokemon-name${id}`).innerHTML = `${pokemonName}`;
+    document.querySelector(`.pokemon-name[data-id="${id}"]`).textContent = pokemonName;
 }
 
 //##4  A list of details showing types this Pokémon has.
 function pokemonType(id, currentPokemonType) {
     let type = '';
-    const typeEl = document.querySelector(`.pokemon-type${id}`);
+    const typeEl = document.querySelector(`.pokemon-type[data-id="${id}"]`);
 
     for (let i = 0; i < currentPokemonType.length; i++) {
         const element = currentPokemonType[i];
@@ -89,11 +92,11 @@ function pokemonType(id, currentPokemonType) {
 
 //##5  Number and Id of the pokemon.
 function pokemonIdNumber(id, pokemonId) {
-        document.querySelector(`.pokemon-number${id}`).textContent = `#${pokemonId.toString().padStart(4, '0')}`;
+        document.querySelector(`.pokemon-number[data-id="${id}"]`).textContent = `#${pokemonId.toString().padStart(4, '0')}`;
 }
 
 //##6  The main picture of pokemon
 function pokemonMainPictureSmall(id, pokemonImg) {
     const imageUrl = pokemonImg.other.home.front_default ?? pokemonImg.other.official-artwork.front_default;
-    document.querySelector(`.img-content[data-id="${id}"]`).src = imageUrl
+    document.querySelector(`.img-content[data-id="${id}"]`).src = imageUrl;
 }
