@@ -32,7 +32,8 @@ function loadAllPokemonsHtml(id) {
     imgContainer.className = 'img-container';
     
     const imgContent = document.createElement('img');
-    imgContent.className = `img-content${id} img-content`;
+    imgContent.className = 'img-content';
+    imgContent.setAttribute('data-id', `${id}`)
     
     content.appendChild(pokemonImgContent);
     pokemonImgContent.appendChild(pokemonNameTypeNumber);
@@ -77,8 +78,9 @@ function nameOfPokemon(id, pokemonName) {
 
 //##4  A list of details showing types this Pokémon has.
 function pokemonType(id, currentPokemonType) {
+    let type = '';
     const typeEl = document.querySelector(`.pokemon-type${id}`);
-    typeEl.innerHTML = '';
+
     for (let i = 0; i < currentPokemonType.length; i++) {
         const element = currentPokemonType[i];
         typeEl.innerHTML += `<div class="pokemon-type-name rounded-3 px-1 py-1">${element.type.name}</div>`;
@@ -92,7 +94,6 @@ function pokemonIdNumber(id, pokemonId) {
 
 //##6  The main picture of pokemon
 function pokemonMainPictureSmall(id, pokemonImg) {
-    const imgElement = document.querySelector(`.img-content${id}`);
-    imgElement.src = pokemonImg.other.home.front_default ?? pokemonImg.other.official-artwork.front_default
-    
+    const imageUrl = pokemonImg.other.home.front_default ?? pokemonImg.other.official-artwork.front_default;
+    document.querySelector(`.img-content[data-id="${id}"]`).src = imageUrl
 }
