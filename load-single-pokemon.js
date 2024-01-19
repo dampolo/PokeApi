@@ -40,7 +40,7 @@ function pokemonTypeBig(currentPokemonType) {
 
 //##5 load-single-pokemon
 function pokemonIdNumberBig(pokemonId) {
-    document.querySelector('.pokemon-number-big').textContent = `#${pokemonId.toString().padStart(4, '0')}`;
+    document.querySelector('.pokemon-number-big').textContent = `#${pokemonId.toString().padStart(5, '0')}`;
 }
 
 // ##6 load-single-pokemon
