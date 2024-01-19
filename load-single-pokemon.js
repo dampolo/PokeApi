@@ -1,18 +1,20 @@
 //##2 load-single-pokemon
-function pokemonBackGroundColorBig(BackGroundColor){   
-    if (BackGroundColor == "green") {
-        document.querySelector('.pokemon-top-section').style.backgroundColor = 'rgb(70, 209, 178)';
-    } else if (BackGroundColor == "red") {
-        document.querySelector('.pokemon-top-section').style.backgroundColor = 'rgb(249,103,103)';
-    } else if (BackGroundColor == "blue") {
-        document.querySelector('.pokemon-top-section').style.backgroundColor = 'rgb(119,190,254)';
-    } else if (BackGroundColor == "white") {
-        document.querySelector('.pokemon-top-section').style.backgroundColor = 'rgb(160, 181, 54)';
-    } else if (BackGroundColor == "yellow") {
-        document.querySelector('.pokemon-top-section').style.backgroundColor = 'rgb(207, 152, 58)';
-    } else {
-        document.querySelector('.pokemon-top-section').style.backgroundColor = BackGroundColor;
+function pokemonBackGroundColorBig(backGroundColor){   
+    const colorMap = {
+        'green': 'pokemon-green',
+        're': 'pokemon-red',
+        'blue': 'pokemon-blue',
+        'white': 'pokemon-white',
+        'yellow': 'pokemon-yellow',
+        'brown': 'pokemon-brown',
+        'purple': 'pokemon-purple',
+        'black': 'pokemon-cream',
+        'pink': 'pokemon-pink',
+        'gray': 'pokemon-gray'
     }
+    
+    const color = colorMap[backGroundColor] ?? 'pokemon-defult';
+    document.querySelector('.pokemon-top-section').classList.add(color)
 }
 
 //##3 load-single-pokemon
