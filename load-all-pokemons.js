@@ -90,7 +90,7 @@ function pokemonType(id, currentPokemonType) {
 
 //##5  Number and Id of the pokemon.
 function pokemonIdNumber(id, pokemonId) {
-        document.querySelector(`.pokemon-number[data-id="${id}"]`).textContent = `#${pokemonId.toString().padStart(4, '0')}`;
+        document.querySelector(`.pokemon-number[data-id="${id}"]`).textContent = `#${pokemonId.toString().padStart(5, '0')}`;
 }
 
 //##6  The main picture of pokemon
