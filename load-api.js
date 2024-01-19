@@ -24,7 +24,7 @@ async function createAllPokemonGrowthRatesApi() {
 }
 
 async function searchPokemonApi() {
-    const pokemonSearch = await sendRequest(`/pokemon-species?limit=1100`);
+    const pokemonSearch = await sendRequest(`/pokemon?limit=100000&offset=0`);
     return pokemonSearch.results;
 }
 
@@ -125,7 +125,7 @@ async function loadPokemonInfo(id){
     const pokemon = await createNewPokemonApi(id);
     console.log('1pokemon', pokemon);
     const pokemonSpecies = await createNewPokemonSpeciesApi(id);
-    // console.log('2pokemonSpecies', pokemonSpecies)
+    console.log('2pokemonSpecies', pokemonSpecies)
     // console.log('Description', pokemonSpecies.flavor_text_entries)
 
     

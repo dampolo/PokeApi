@@ -698,7 +698,7 @@ right: 30px;
   width: 2.5rem;
   height: 2.5rem;
   fill: currentColor;
-  transition: all .2s;
+  transition: all .1s;
 }
 
 .c-scroll-top:hover .c-scroll-top__icon {
@@ -729,4 +729,44 @@ right: 30px;
     width: 1.5rem;
     height: 1.5rem;
   }
+}
+
+.pokemon-green {
+ background-color: rgb(70, 209, 178); 
+}
+
+.pokemon-red {
+  background-color: rgb(249,103,103);
+}
+
+.pokemon-blue {
+  background-color: rgb(119,190,254)
+}
+
+.pokemon-white {
+  background-color: rgb(160, 181, 54);
+}
+
+.pokemon-yellow {
+  background-color: rgb(207, 152, 58)
+}
+
+.pokemon-brown {
+  background-color: rgb(207, 152, 58);
+}
+
+.pokemon-purple {
+  background-color: rgb(233, 168, 242);
+}
+.pokemon-cream {
+  background-color: rgb(153, 148, 144);
+}
+.pokemon-pink {
+  background-color: rgb(243, 204, 243);
+}
+.pokemon-gray {
+  background-color: rgb(128,128,128);
+}
+.pokemon-defult {
+  background-color: rgb(219, 231, 201);
 }

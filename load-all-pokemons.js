@@ -4,7 +4,8 @@ function loadAllPokemonsHtml(id) {
     const content = document.querySelector('.content-single');
 
     const pokemonImgContent = document.createElement('div');
-    pokemonImgContent.className = `pokemon-img-content${id} pokemon-img-content rounded-5`;
+    pokemonImgContent.className = `pokemon-img-content rounded-5`;
+    pokemonImgContent.setAttribute('data-id', `${id}`);
     pokemonImgContent.setAttribute('onclick', `renderPokemonInfo(${id})`);
 
     const pokemonNameTypeNumber = document.createElement('div');
@@ -23,6 +24,7 @@ function loadAllPokemonsHtml(id) {
 
     const pokemonNumberImgContainer = document.createElement('div');
     pokemonNumberImgContainer.className = 'number-img-container';
+
 
     const pokemonNumberContent = document.createElement('div');
     pokemonNumberContent.className = 'pokemon-number-content';
@@ -53,24 +55,22 @@ function loadAllPokemonsHtml(id) {
 }
 
 //##2 Background color of the pokemon 
-function pokemonBackGroundColorSmall(id, BackGroundColor){
-    if (BackGroundColor == 'green') {
-        document.querySelector(`.pokemon-img-content${id}`).style.backgroundColor = 'rgb(70, 209, 178)';
-    } else if (BackGroundColor == 'red') {
-        document.querySelector(`.pokemon-img-content${id}`).style.backgroundColor = 'rgb(249,103,103)';
-    } else if (BackGroundColor == 'blue') {
-        document.querySelector(`.pokemon-img-content${id}`).style.backgroundColor = 'rgb(119,190,254)';
-    } else if (BackGroundColor == 'white') {
-        document.querySelector(`.pokemon-img-content${id}`).style.backgroundColor = 'rgb(160, 181, 54)';
-    } else if (BackGroundColor == 'yellow') {
-        document.querySelector(`.pokemon-img-content${id}`).style.backgroundColor = 'rgb(207, 152, 58)';
-    }  else if (BackGroundColor == 'brown') {
-        document.querySelector(`.pokemon-img-content${id}`).style.backgroundColor = 'rgb(207, 152, 58)';
-    } else if (BackGroundColor == 'purple') {
-        document.querySelector(`.pokemon-img-content${id}`).style.backgroundColor = 'rgb(233, 168, 242)';
-    } else {
-        document.querySelector(`.pokemon-img-content${id}`).style.backgroundColor = BackGroundColor;
+function pokemonBackGroundColorSmall(id, backGroundColor){
+    const colorMap = {
+        'green': 'pokemon-green',
+        'red': 'pokemon-red',
+        'blue': 'pokemon-blue',
+        'white': 'pokemon-white',
+        'yellow': 'pokemon-yellow',
+        'brown': 'pokemon-brown',
+        'purple': 'pokemon-purple',
+        'black': 'pokemon-cream',
+        'pink': 'pokemon-pink',
+        'gray': 'pokemon-gray'
     }
+    
+    const color = colorMap[backGroundColor] ?? 'pokemon-defult';
+    document.querySelector(`.pokemon-img-content[data-id="${id}"]`).classList.add(color)
 }
 
 //##3  Name of the pokemon.
