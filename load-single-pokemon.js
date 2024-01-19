@@ -249,13 +249,13 @@ function pokemonGrowth(growthRate) {
 
 //##17 All Growth Rate
 function pokemonAllGrowthRates(pokemonAllRatesList) {
-    const allGrowthRateContentDdEl = document.querySelector('.all-growth-rate-content-dd');
-    allGrowthRateContentDdEl.innerHTML = '';
-
+    let allGrowthRateContentDd = '';
+    
     for (let i = 0; i < pokemonAllRatesList.length; i++) {
         const element = pokemonAllRatesList[i].name;
-        allGrowthRateContentDdEl.innerHTML += `<dd class="all-growth-rate-content-dd">${element}</dd>`;
+        allGrowthRateContentDd += `<dd class="all-growth-rate-content-dd">${element}</dd>`;
     }
+    document.querySelector('.all-growth-rate-content-dd').innerHTML = allGrowthRateContentDd
 }
 
 // ##18 - 1 part load-single-pokemon.js
