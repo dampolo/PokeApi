@@ -108,6 +108,7 @@ function nameOfThePokemonInOtherLanguages(pokemonSpeciesNames) {
     }
 }
 
+
 //##9 Die function show the statistik.
 function pokemonStats(currentPokemonStats) {
     const statsEl = document.querySelector('.pokemon-stats-content');
@@ -232,13 +233,13 @@ function displayPokemonFemaleMale(currentFemaleMale) {
 
 //##15 Moves
 function pokemonMoves(pokemonMoveName) {
-    const movesEl = document.querySelector(".pokemon-moves-content");
-    movesEl.innerHTML = '';
-
+    let moves = '';
+    
     for (let i = 0; i < pokemonMoveName.length; i++) {
         const element = pokemonMoveName[i];
-        movesEl.innerHTML += `<div class="pokemon-move-name">${element.move.name}</div>`;
+        moves += `<div class="pokemon-move-name">${element.move.name}</div>`;
     }
+    document.querySelector(".pokemon-moves-content").innerHTML = moves;
 }
 
 //##16 Growth Rate
