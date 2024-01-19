@@ -2,7 +2,7 @@
 function pokemonBackGroundColorBig(backGroundColor){   
     const colorMap = {
         'green': 'pokemon-green',
-        're': 'pokemon-red',
+        'red': 'pokemon-red',
         'blue': 'pokemon-blue',
         'white': 'pokemon-white',
         'yellow': 'pokemon-yellow',
@@ -14,6 +14,9 @@ function pokemonBackGroundColorBig(backGroundColor){
     }
     
     const color = colorMap[backGroundColor] ?? 'pokemon-defult';
+
+    const element = document.querySelector('.pokemon-top-section');
+    element.className = 'pokemon-top-section';
     document.querySelector('.pokemon-top-section').classList.add(color)
 }
 
@@ -27,12 +30,12 @@ function nameOfPokemonBig(pokemon) {
 
 //##4  A list of details showing types this Pokémon has.
 function pokemonTypeBig(currentPokemonType) {
-    const typeEl = document.querySelector('.pokemon-type');
-    typeEl.innerHTML = '';
+    types = '';
     for (let i = 0; i < currentPokemonType.length; i++) {
         const element = currentPokemonType[i];
-        typeEl.innerHTML += `<div class="pokemon-type-name rounded-3 px-2 py-1">${element.type.name}</div>`;
+        types += `<div class="pokemon-type-name rounded-3 px-2 py-1">${element.type.name}</div>`;
     }
+    document.querySelector('.pokemon-type-big').innerHTML = types
 }
 
 //##5 load-single-pokemon

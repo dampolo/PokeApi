@@ -58,7 +58,7 @@ function loadAllPokemonsHtml(id) {
 function pokemonBackGroundColorSmall(id, backGroundColor){
     const colorMap = {
         'green': 'pokemon-green',
-        're': 'pokemon-red',
+        'red': 'pokemon-red',
         'blue': 'pokemon-blue',
         'white': 'pokemon-white',
         'yellow': 'pokemon-yellow',
