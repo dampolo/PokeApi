@@ -24,7 +24,7 @@ async function createAllPokemonGrowthRatesApi() {
 }
 
 async function searchPokemonApi() {
-    const pokemonSearch = await sendRequest(`/pokemon?limit=100000&offset=0`);
+    const pokemonSearch = await sendRequest(`/pokemon-species?limit=11000`);
     return pokemonSearch.results;
 }
 
@@ -52,6 +52,7 @@ async function searchFunction(search) {
     
         const filteredResults = combinedArray.filter((pokemon) => pokemon.name.includes(search));
         const urlArray = filteredResults.map((pokemon) => pokemon.url);
+        console.log(urlArray)
         loadAllPokemonsApiNew(urlArray);
 
     } else {

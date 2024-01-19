@@ -5,7 +5,6 @@ const tooltipList = [...tooltipTriggerList].map(tooltipTriggerEl => new bootstra
 let originPokemon = 1;
 let firstPokemon = 1;
 let amountOfThePokemon = 20;
-let maxAmountOfThePokemons = 1025;
 
 let id;
 
@@ -24,7 +23,7 @@ function loadPokemonsAfterSearch() {
 }
 
 function loadMorePokemons() {
-    if(amountOfThePokemon === 1020) {
+    if(amountOfThePokemon === 1060) {
         firstPokemon = firstPokemon + 20;
         amountOfThePokemon = amountOfThePokemon + 5;
         document.querySelector('.load-more-pokemons').setAttribute("disabled", null);

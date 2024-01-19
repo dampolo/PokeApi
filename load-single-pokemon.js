@@ -72,42 +72,34 @@ function pokemonBreeding(eggGroupsCycle) {
 
 //##8 Name of the pokemon in other languages.
 function nameOfThePokemonInOtherLanguages(pokemonSpeciesNames) {
-    const languagesEl = document.querySelector('.pokemon-languages-content');
-    languagesEl.innerHTML = '';
+    let languages = '';
+
+    const languageMap = {
+        'ja-Hrkt': 'Japanese',
+        'roomaji': 'Japanese (Latin alphabet)',
+        'ko': 'Korean',
+        'zh-Hant': 'Chinese',
+        'fr': 'French',
+        'de': 'German',
+        'es': 'Spanish',
+        'it': 'Italian',
+        'en': 'English'
+    };
 
     for (let i = 0; i < pokemonSpeciesNames.length; i++) {
         const element = pokemonSpeciesNames[i];
-        if (element.language.name == 'ja-Hrkt') {
-        languagesEl.innerHTML += `<dt class="languages-dt">Japanese</dt>
-                                <dd>${element.name}</dd>`;
-        } else if (element.language.name== 'roomaji') {
-            languagesEl.innerHTML += `<dt class="languages-dt">Japanese (Latin alphabet) </dt>
+        console.log(element)
+        const languageName = languageMap[element.language.name];
+        if (languageName) {
+            languages += `<dt class="languages-dt">${languageName}</dt>
                                     <dd>${element.name}</dd>`;
-        } else if (element.language.name == 'ko') {
-            languagesEl.innerHTML += `<dt class="languages-dt">Korean</dt>
-                                    <dd>${element.name}</dd>`;
-        }  else if (element.language.name == 'zh-Hant') {
-            languagesEl.innerHTML += `<dt class="languages-dt">Chinese</dt>
-                                    <dd>${element.name}</dd>`;
-        } else if (element.language.name == 'fr') {
-            languagesEl.innerHTML += `<dt class="languages-dt">French</dt>
-                                    <dd>${element.name}</dd>`;
-        } else if (element.language.name == 'de') {
-            languagesEl.innerHTML += `<dt class="languages-dt">German</dt>
-                                    <dd>${element.name}</dd>`;
-        } else if (element.language.name == 'es') {
-            languagesEl.innerHTML += `<dt class="languages-dt">Spanish</dt>
-                                    <dd>${element.name}</dd>`;
-        } else if (element.language.name == 'it') {
-            languagesEl.innerHTML += `<dt class="languages-dt">Italian</dt>
-                                    <dd>${element.name}</dd>`;
-        } else if (element.language.name == 'en') {
-            languagesEl.innerHTML += `<dt class="languages-dt">English</dt>
-                                    <dd>${element.name}</dd>`;
+        } else {
+            languages += `<dt class="languages-dt">${languageName}</dt>
+                            <dd>This pokemon do not have name in this language.</dd>`;
         }
+        document.querySelector('.pokemon-languages-content').innerHTML = languages;
     }
 }
-
 
 //##9 Die function show the statistik.
 function pokemonStats(currentPokemonStats) {
@@ -250,12 +242,12 @@ function pokemonGrowth(growthRate) {
 //##17 All Growth Rate
 function pokemonAllGrowthRates(pokemonAllRatesList) {
     let allGrowthRateContentDd = '';
-    
+
     for (let i = 0; i < pokemonAllRatesList.length; i++) {
         const element = pokemonAllRatesList[i].name;
         allGrowthRateContentDd += `<dd class="all-growth-rate-content-dd">${element}</dd>`;
     }
-    document.querySelector('.all-growth-rate-content-dd').innerHTML = allGrowthRateContentDd
+    document.querySelector('.all-growth-rate-content-dd').innerHTML = allGrowthRateContentDd;
 }
 
 // ##18 - 1 part load-single-pokemon.js
