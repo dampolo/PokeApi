@@ -172,13 +172,8 @@ function pokemonAbilities(pokemonAbilities) {
     const abilitiesEl = document.querySelector(".pokemon-abilities");
     abilitiesEl.textContent = '';
 
-    for (let i = 0; i < pokemonAbilities.length; i++) {
-        const element = pokemonAbilities[i];
-        if (i > 0) {
-            abilitiesEl.textContent += ', ';
-        }
-        abilitiesEl.textContent += `${element.ability.name}`;
-    }
+    const abilitiesNames = pokemonAbilities.map(element => element.ability.name);
+    abilitiesEl.textContent = abilitiesNames.join(', ');
 }
 
 //##12 Height of the pokemon calculation.
@@ -187,10 +182,15 @@ function calculatePokemonHeight(pokemonHeight) {
     return pokemonHeightResult;
 }
 
+//##12 Height of the pokemon calculation.
+function formatNumberWithCommaHeight(number) {
+    return Intl.NumberFormat('de-IN').format(number);
+}
+
 //##12 Height of the pokemon display.
 function displayPokemonHeight(pokemonHeight) {
     const result = calculatePokemonHeight(pokemonHeight);
-    const resultWithComma = result.replace(".", ",")
+    const resultWithComma = formatNumberWithCommaHeight(result);
     document.querySelector('.pokemon-height-cm').textContent = '(' + resultWithComma + ' cm)';
 }
 
@@ -202,7 +202,7 @@ function calculatePokemonWeight(pokemonWeight) {
 
 //##13 Weight of the pokemon display.
 function formatNumberWithCommaWeight(number) {
-    return number.toFixed(2).replace(".", ",");
+    return Intl.NumberFormat('de-IN').format(number);
 }
 
 //##13 Weight of the pokemon display.
@@ -222,10 +222,11 @@ function calculateFemaleMale(currentFemaleMale) {
     }
 }
 
+//##14 Female or Male
 function formatNumberWithCommaFemalMale(result) {
     return {
-        female: Intl.NumberFormat('de-IN', { maximumSignificantDigits: 4 }).format(result.female),
-        male: Intl.NumberFormat('de-IN', { maximumSignificantDigits: 4 }).format(result.male)
+        female: Intl.NumberFormat('de-IN').format(result.female),
+        male: Intl.NumberFormat('de-IN').format(result.male)
     };
 }
 
