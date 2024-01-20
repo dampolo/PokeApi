@@ -23,7 +23,8 @@ async function searchFunction(search) {
 
         const filteredResults = combinedArray.filter((pokemon) => pokemon.name.includes(search));
         const urlArray = filteredResults.map((pokemon) => pokemon.url);
-        loadAllPokemonsApiNew(urlArray);
-
+        loadAllPokemonsApiWithSearch(urlArray);
+        } else {
+            loadPokemonsAfterSearch()
         }
 }

@@ -441,3 +441,9 @@ function addNumberToNextImageLeft(id) {
     document.getElementById('imageLeft').setAttribute('onclick', `nextImageLeft(${id})`);
 }
 
+
+
+// mozna to powwstryzamc tak
+// document.querySelector('a.moj-link.czy-jakis-tam-selektor').addEventListener('click',(event)=>{
+// event.preventDefault(); // to powstrzyma przeniesienie elementu na gore strony
+// });

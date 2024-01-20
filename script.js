@@ -35,7 +35,7 @@ function loadMorePokemons() {
     }
 }
 
-function loadAllPokemonsApiNew(names) {
+function loadAllPokemonsApiWithSearch(names) {
     for (let i = 0; i < names.length; i++) {
         const element = names[i];
         loadAllPokemonsHtml(element);
