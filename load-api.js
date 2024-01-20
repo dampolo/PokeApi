@@ -8,13 +8,13 @@ async function sendRequest(endpoint) {
 
 async function createNewPokemonApi(id){
     const pokemon = await sendRequest(`/pokemon/${id}`);
-    console.log(pokemon)
+    // console.log(pokemon)
     return pokemon;
     }
 
 async function createNewPokemonSpeciesApi(id){
     const pokemonSpecies = await sendRequest(`/pokemon-species/${id}`);
-    console.log(pokemonSpecies)
+    // console.log(pokemonSpecies)
     return pokemonSpecies;
     }
 
@@ -36,7 +36,7 @@ async function mainEvolutionAPI(id) {
     // ##18 - 1 part load-single-pokemon.js
     const chainNumber = extractNumberFromUrl(currentPokemonEvolutionChain);
     const currentPokemonEvolution = await sendRequest(`/evolution-chain/${chainNumber}`);
-    console.log('Evolution:', currentPokemonEvolution);
+    // console.log('Evolution:', currentPokemonEvolution);
 
     const defultName = currentPokemonEvolution.chain.species.name;
     let firstName = '';
@@ -90,7 +90,7 @@ async function loadPokemons(id){
 
 async function loadPokemonInfo(id){
     const pokemon = await createNewPokemonApi(id);
-    console.log('1pokemon', pokemon);
+    // console.log('1pokemon', pokemon);
     const pokemonSpecies = await createNewPokemonSpeciesApi(id);
     // console.log('2pokemonSpecies', pokemonSpecies)
     // console.log('Description', pokemonSpecies.flavor_text_entries)

@@ -88,7 +88,6 @@ function nameOfThePokemonInOtherLanguages(pokemonSpeciesNames) {
 
     for (let i = 0; i < pokemonSpeciesNames.length; i++) {
         const element = pokemonSpeciesNames[i];
-        console.log(element)
         const languageName = languageMap[element.language.name];
         if (languageName) {
             languages += `<dt class="languages-dt">${languageName}</dt>
@@ -150,21 +149,10 @@ function pokemonStats(currentPokemonStats) {
 
 //##10 Species of pokemon
 function pokemonSpeciesGenera(pokemonSpeciesGenera) {
-    let foundEnglishGenera = false;
+    const englishGenera = pokemonSpeciesGenera.find(element => element.language.name === 'en' )
+    const species = englishGenera ? englishGenera.genus : '---------';
 
-    for (let i = 0; i < pokemonSpeciesGenera.length; i++) {
-        const genera = pokemonSpeciesGenera[i];
-
-        if (genera.language.name === 'en') {
-            document.querySelector('.species').innerHTML = genera.genus;
-            foundEnglishGenera = true;
-            break;
-        }
-    }
-
-    if (!foundEnglishGenera) {
-        document.querySelector('.species').textContent = '---------';
-    }
+    document.querySelector('.species').textContent = species
 }
 
 //##11 Species of pokemon
