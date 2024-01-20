@@ -200,12 +200,16 @@ function calculatePokemonWeight(pokemonWeight) {
     return pokemonWeightResult;
 }
 
+//##13 Weight of the pokemon display.
+function formatNumberWithCommaWeight(number) {
+    return number.toFixed(2).replace(".", ",");
+}
 
 //##13 Weight of the pokemon display.
 function displayPokemonWeight(pokemonWeight) {
     const result = calculatePokemonWeight(pokemonWeight);
-    const resultWithComma = result.toFixed(2).replace(".", ",")
-    document.querySelector('.pokemon-weight-kg').textContent = '(' + resultWithComma  + ' kg)';
+    const resultWithComma = formatNumberWithCommaWeight(result);
+    document.querySelector('.pokemon-weight-kg').textContent = '(' + resultWithComma + ' kg)';
 }
 
 //##14 Female or Male
