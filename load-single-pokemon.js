@@ -190,7 +190,8 @@ function calculatePokemonHeight(pokemonHeight) {
 //##12 Height of the pokemon display.
 function displayPokemonHeight(pokemonHeight) {
     const result = calculatePokemonHeight(pokemonHeight);
-    document.querySelector('.pokemon-height-cm').textContent = '(' + result + ' cm)';
+    const resultWithComma = result.replace(".", ",")
+    document.querySelector('.pokemon-height-cm').textContent = '(' + resultWithComma + ' cm)';
 }
 
 //##13 Weight of the pokemon calculation.
@@ -203,7 +204,8 @@ function calculatePokemonWeight(pokemonWeight) {
 //##13 Weight of the pokemon display.
 function displayPokemonWeight(pokemonWeight) {
     const result = calculatePokemonWeight(pokemonWeight);
-    document.querySelector('.pokemon-weight-kg').textContent = '(' + result  + ' kg)';
+    const resultWithComma = result.toFixed(2).replace(".", ",")
+    document.querySelector('.pokemon-weight-kg').textContent = '(' + resultWithComma  + ' kg)';
 }
 
 //##14 Female or Male
@@ -219,8 +221,12 @@ function calculateFemaleMale(currentFemaleMale) {
 //##14 Female or Male
 function displayPokemonFemaleMale(currentFemaleMale) {
     const result = calculateFemaleMale(currentFemaleMale);
-    document.querySelector('.pokemon-gender-female').textContent = result.female + ' %';
-    document.querySelector('.pokemon-gender-male').textContent = result.male + ' %';
+    const resultWithComma = {
+        female: result.female.toFixed(2).replace(".", ","),
+        male: result.male.toFixed(2).replace(".", ",")
+    };
+    document.querySelector('.pokemon-gender-female').textContent = resultWithComma.female + ' %';
+    document.querySelector('.pokemon-gender-male').textContent = resultWithComma.male + ' %';
 }
 
 //##15 Moves
@@ -388,7 +394,7 @@ function descriptionOfThePokemon(languages) {
                 } else if (element.language.name == 'zh-Hant') {
                     descriptionChina.innerHTML += `<span>${element.flavor_text}</span>`;
                 } else if (element.language.name == '') {
-                    descriptionChina.textContent += 'This languages is not avilabel';
+                    descriptionChina.textContent += 'This languages is not available';
                 }
             }
     }

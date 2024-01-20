@@ -8,13 +8,13 @@ async function sendRequest(endpoint) {
 
 async function createNewPokemonApi(id){
     const pokemon = await sendRequest(`/pokemon/${id}`);
-    // console.log(pokemon)
+    console.log(pokemon)
     return pokemon;
     }
 
 async function createNewPokemonSpeciesApi(id){
     const pokemonSpecies = await sendRequest(`/pokemon-species/${id}`);
-    // console.log(pokemonSpecies)
+    console.log(pokemonSpecies)
     return pokemonSpecies;
     }
 
@@ -26,40 +26,6 @@ async function createAllPokemonGrowthRatesApi() {
 async function searchPokemonApi() {
     const pokemonSearch = await sendRequest(`/pokemon-species?limit=11000`);
     return pokemonSearch.results;
-}
-
-let searchTimeout;
-
-document.querySelector('input[type="search"]').addEventListener('input', ()=>{
-clearTimeout(searchTimeout);
-
-searchTimeout = setTimeout(()=> {
-    const search = document.getElementById("search").value.toLowerCase();
-    searchFunction(search);
-    }, 1000);
-})
-
-async function searchFunction(search) {
-    document.querySelector('.load-more-pokemons').setAttribute("disabled", null);
-    if (search !== '') {
-        document.querySelector('.content-single').innerHTML = '';
-        const allPokemonsListId = await searchPokemonApi();
-    
-        const combinedArray = allPokemonsListId.map((pokemon) => ({
-            name: pokemon.name,
-            url: extractNumberFromUrl(pokemon.url)
-            }));
-    
-        const filteredResults = combinedArray.filter((pokemon) => pokemon.name.includes(search));
-        const urlArray = filteredResults.map((pokemon) => pokemon.url);
-        console.log(urlArray)
-        loadAllPokemonsApiNew(urlArray);
-
-    } else {
-        document.querySelector('.content-single').innerHTML = '';
-        document.querySelector('.load-more-pokemons').removeAttribute("disabled");
-        loadPokemonsAfterSearch();
-    }
 }
 
 // ##18
@@ -126,7 +92,7 @@ async function loadPokemonInfo(id){
     const pokemon = await createNewPokemonApi(id);
     console.log('1pokemon', pokemon);
     const pokemonSpecies = await createNewPokemonSpeciesApi(id);
-    console.log('2pokemonSpecies', pokemonSpecies)
+    // console.log('2pokemonSpecies', pokemonSpecies)
     // console.log('Description', pokemonSpecies.flavor_text_entries)
 
     
