@@ -222,13 +222,17 @@ function calculateFemaleMale(currentFemaleMale) {
     }
 }
 
+function formatNumberWithCommaFemalMale(result) {
+    return {
+        female: Intl.NumberFormat('de-IN', { maximumSignificantDigits: 4 }).format(result.female),
+        male: Intl.NumberFormat('de-IN', { maximumSignificantDigits: 4 }).format(result.male)
+    };
+}
+
 //##14 Female or Male
 function displayPokemonFemaleMale(currentFemaleMale) {
     const result = calculateFemaleMale(currentFemaleMale);
-    const resultWithComma = {
-        female: result.female.toFixed(2).replace(".", ","),
-        male: result.male.toFixed(2).replace(".", ",")
-    };
+    const resultWithComma = formatNumberWithCommaFemalMale(result)
     document.querySelector('.pokemon-gender-female').textContent = resultWithComma.female + ' %';
     document.querySelector('.pokemon-gender-male').textContent = resultWithComma.male + ' %';
 }
