@@ -1,0 +1,41 @@
+/* TOOLTIP on the flag */
+[data-bs-toggle="tooltip"]::before,
+[data-bs-toggle="tooltip"]::after {
+  --scale: 0;
+  --arrow-size: 10px;
+  --tooltip-color: white;
+  --translate-y: -100%;
+
+  position: absolute;
+  top: 10px;
+  /* left: 50%; */
+  transform: translateX(-50%) translateY(var(--translate-y, 0)) scale(var(--scale));
+  transition: 300ms transform;
+  transform-origin: bottom center;
+}
+
+[data-bs-toggle="tooltip"]::before {
+  --translate-y: calc(400% - var(--arrow-size));
+  content: attr(data-bs-title);
+  color: black;
+  box-shadow: 0px 0px 10px 5px rgba(0,0,0,0.10);
+  padding: 3px;
+  border-radius: 6px;
+  text-align: center;
+  max-width: fit-content;
+  background: var(--tooltip-color);
+}
+
+[data-bs-toggle="tooltip"]:hover::before,
+[data-bs-toggle="tooltip"]:hover::after {
+  --scale: 1;
+}
+
+/* arrow */
+[data-bs-toggle="tooltip"]:hover::after {
+  --translate-y: calc(13.8 * var(--arrow-size));
+  content: '';
+  border: var(--arrow-size) solid transparent;
+  border-top-color: var(--tooltip-color); /* arrow direction */
+  transform-origin: top center;
+}
