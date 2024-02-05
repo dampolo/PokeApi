@@ -2,8 +2,17 @@ const uri = 'https://pokeapi.co/api/v2';
 
 async function sendRequest(endpoint) {
     const url = `${uri}${endpoint}`;
-    const response = await fetch(url);
-    return await response.json();
+    
+    try {
+        const response = await fetch(url);
+        removePreLoader();
+        const data = await response.json();
+        return data;
+    } catch (error) {
+        console.error('Error occurred during the request:', error);
+        // You might want to handle the error appropriately, e.g., show an error message
+        throw error; // Re-throwing the error to let the caller handle it
+    }
 }
 
 async function createNewPokemonApi(id){

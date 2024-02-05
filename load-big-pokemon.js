@@ -300,8 +300,8 @@ function calculateFemaleMale(currentFemaleMale) {
 //##14 Female or Male
 function formatNumberWithCommaFemalMale(result) {
   return {
-    female: Intl.NumberFormat("de-IN").format(result.female),
-    male: Intl.NumberFormat("de-IN").format(result.male),
+    female: Intl.NumberFormat("de-IN", { maximumSignificantDigits: 2 }).format(result.female),
+    male: Intl.NumberFormat("de-IN", { maximumSignificantDigits: 2 }).format(result.male),
   };
 }
 

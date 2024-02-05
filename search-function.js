@@ -1,8 +1,5 @@
 let searchTimeout;
-
 let newArray;
-
-console.log('url: ', newArray)
 
 document.querySelector('input[type="search"]').addEventListener('input', ()=>{
 clearTimeout(searchTimeout);
@@ -14,18 +11,20 @@ searchTimeout = setTimeout(()=> {
 })
 
 async function searchFunction(search) {
-    document.querySelector('.load-more-pokemons').setAttribute("disabled", null);
+  document.querySelector('.load-more-pokemons').disabled = true;
     if (search !== '') {
       // Clear existing content
       document.querySelector('.content-single').innerHTML = '';
       document.querySelector('.show').innerHTML = '';
       document.querySelector('.search-show').innerHTML = '';
       document.querySelector('.search-content-single').innerHTML = '';
+      document.querySelector('.favorite-content-single').innerHTML = '';
     
       // Hide/show elements
       document.querySelector('.content-single').classList.add('d-none');
       document.querySelector('.search-content-single').classList.remove('d-none');
-    
+      document.querySelector('.favorite-content-single').classList.add('d-none');
+
       // Fetch data
       const allPokemonsListId = await searchPokemonApi();
       const combinedArray = allPokemonsListId.map((pokemon) => ({
@@ -119,4 +118,36 @@ function searchNextImageLeft(id, i) {
     searchAddNumberToNextImageLeft(id, i);
   }
   searchAddNumberToNextImageRight(id, i);
+}
+
+function findFavorite(id) {
+  return favoriteArray.includes(id);
+}
+
+function loadPokemonsAfterSearch() {
+  
+  document.querySelector('.homepage').classList.add('nav-menu-element-active')
+  document.querySelector('.favorite').classList.remove('nav-menu-element-active')
+
+  document.querySelector('.pokemons').classList.add('cursor-progress')
+  document.querySelector('.content-single').classList.remove('d-none');
+  document.querySelector('.content-single').innerHTML = '';
+  document.querySelector('.favorite-show').innerHTML = '';
+  document.querySelector('.favorite-content-single').innerHTML = '';
+
+  document.querySelector('.search-content-single').classList.add('d-none');
+  document.querySelector('.load-more-pokemons').removeAttribute("disabled");
+  
+  for (let id = originPokemon; id <= amountOfThePokemon; id++) {
+    loadAllPokemonsHtml(id);
+    loadPokemons(id);
+  
+    if (findFavorite(id)) {
+      loadAllSinglePokemonsBigHtmlWithHeart(id)
+    } else {
+      loadAllSinglePokemonsBigHtmlOhneHeart(id);
+    }
+  }
+  document.querySelector('.pokemons').classList.remove('cursor-progress')
+
 }

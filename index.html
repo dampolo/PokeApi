@@ -14,7 +14,7 @@
     <link rel="stylesheet" href="./tooltip.css">
   </head>
   <body class="body" onload="loadAllPokemonsApi()">
-    <div class="loader" data-id-big-loader>
+    <div class="loader">
       <div class="loader-big"></div>
     </div>
 
@@ -24,39 +24,26 @@
       <h2 class="pokemons row" onclick="loadPokemonsAfterSearch()">Pokemons</h2>
       <label for="search"></label>
       <input type="search" class="input col-1 px-3 rounded-5 h-25 w-auto" id="search" autocomplete="off" placeholder="suchen...">
-      <div class="d-flex align-items-center gap-2">
-        <a href="#" class="nav-menu-element" data-tooltip="Stratseite"><img class="icon-home" src="./icons/home.svg" alt="home-icon"></a>
-        <a href="#" class="nav-menu-element" data-tooltip="Favorite">
-          <svg onclick="showFavariteArray()" class="heart-menu">
+      <div class="d-flex align-items-center gap-2 my-3">
+        <button href="#" class="nav-menu-element bg-transparent homepage nav-menu-element-active">
+          <img class="icon-home" src="./icons/home.svg" alt="home-icon" onclick="loadPokemonsAfterSearch()">
+        </button>
+
+        <button href="#" class="nav-menu-element position-relative bg-transparent favorite">
+          <svg onclick="showFavoriteArray()" class="heart-menu">
             <use href="./icons/heart-regular.svg#Layer_1"></use>
           </svg>
-        </a>
+          <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-dark ">
+            0
+          </span>
+        </button>
       </div>
 
     </header>
-
-      <!-- <header class="pb-5 pt-3">
-
-        <div class="container-xxl d-flex align-items-center justify-content-between">
-
-          <div class="col-2">
-            <img class="img-flying-pokemon1" src="" alt="">
-          </div>
-
-            <div class="col-2 text-center">
-              <h2 class="col">Pokemons</h2>
-              <input type="search" class="input col-1 px-3 rounded-5 h-25 w-auto" id="search" autocomplete="off" placeholder="suchen...">
-            </div>
-            
-            <div class="col-2">
-              <img  class="img-flying-pokemon2" src="" alt="">
-            </div>
-        </div>
-      </header> -->
         
         <div class="main-content flex-grow-1 rounded-5 py-5">
           <div class="content container-xxl">
-            <div class="content-single text-danger">
+            <div class="content-single text-light">
             </div>
             <div class="search-content-single text-danger d-none">
             </div>
@@ -100,12 +87,27 @@
           </button>
         </div>
       </div>
+      <div class="favorite-pokemon-bigger">
+        <button class="close-button rounded-5">
+          <img class="icons" src="./icons/x.svg" alt="close" onclick="closeImage(event)">
+        </button>
+        <div class="main-slider-container">
+          <button id="favorite-image-left" class="arrow-left rounded-5">
+            <img class="icons" src="./icons/arrow-left.svg" alt="left">
+          </button>
+          <div class="favorite-show">
+          </div>
+          <button id="favorite-image-right" class="arrow-right rounded-5">
+            <img class="icons" src="./icons/arrow-right.svg" alt="right">
+          </button>
+        </div>
+      </div>
 
       <footer>
 
         <div class="d-flex justify-content-between align-items-center load-more">
           <button type="button" class="btn btn-primary btn-lg load-more-pokemons rounded-5 d-flex" onclick="loadMorePokemons()">
-            <div class="little-loader me-2 d-none" data-id-loader></div>Load more
+            <div class="little-loader me-2 d-none"></div>Load more
           </button>
         </div>
 
@@ -121,7 +123,11 @@
       <script src="./load-single-pokemon-empty.js"></script>
       <script src="./load-small-pokemon-html.js" ></script>
       <script src="./search-small-pokemon-html.js" ></script>
-      <script src="./search-single-html.js" ></script>
+      <script src="./search-big-pokemon-html.js" ></script>
+      <script src="./favorite.js"></script>
+      <script src="./load-small-favorite-html.js"></script>
+      <script src="./load-big-favorite-html.js"></script>
+
 
   </body>
 </html>

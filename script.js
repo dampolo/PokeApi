@@ -3,16 +3,12 @@ let firstPokemon = 1;
 let amountOfThePokemon = 20;
 let id;
 
-let favoriteArray = [];
-
 function loadAllPokemonsApi() {
-  addPreLoader()
   for (let id = firstPokemon; id <= amountOfThePokemon; id++) {
     loadAllPokemonsHtml(id);
     loadPokemons(id);
-    loadAllSinglePokemonsBigHtml(id);
+    loadAllSinglePokemonsBigHtmlOhneHeart(id);
   }
-  setTimeout(removePreLoader, 1000);
 }
 
 function loadPokemonInfoBig(id) {
@@ -31,24 +27,13 @@ function loadPokemonInfoBig(id) {
   addNumberToNextImageRight(id);
   addNumberToNextImageLeft(id);
   updateOffset(id);
-}
-
-function loadPokemonsAfterSearch() {
-  document.querySelector('.content-single').classList.remove('d-none');
-  document.querySelector('.content-single').innerHTML = '';
-
-  document.querySelector('.search-content-single').classList.add('d-none');
-  document.querySelector('.load-more-pokemons').removeAttribute("disabled");
-  
-  for (let id = originPokemon; id <= amountOfThePokemon; id++) {
-    loadAllPokemonsHtml(id);
-    loadPokemons(id);
-    loadAllSinglePokemonsBigHtml(id);
-  }
+  preventDefaultClick()
 }
 
 function loadMorePokemons() {
-  document.querySelector('.load-more-pokemons').style = 'cursor: progress';
+  document.querySelector('.little-loader').classList.remove('d-none')
+  document.querySelector('.load-more-pokemons').disabled = true;
+
   if (amountOfThePokemon === 1060) {
       firstPokemon = firstPokemon + 20;
       amountOfThePokemon = amountOfThePokemon + 5;
@@ -59,7 +44,8 @@ function loadMorePokemons() {
       amountOfThePokemon = amountOfThePokemon + 20;
       loadAllPokemonsApi();
     }
-  document.querySelector('.load-more-pokemons').style = 'cursor: pointer';
+  document.querySelector('.little-loader').classList.add('d-none')
+  document.querySelector('.load-more-pokemons').disabled = false;
 }
 
 function loadAllPokemonsApiWithSearch(names) {
@@ -102,47 +88,38 @@ function nextImageLeft(id) {
 function closeImage() {
   document.querySelector(".pokemon-bigger").style.display = "none";
   document.querySelector(".search-pokemon-bigger").style.display = "none";
+  document.querySelector(".favorite-pokemon-bigger").style.display = "none";
+
 
   document.querySelector("body").style.overflow = "auto";
   // document.querySelector('body').style.top = Math.round(window.scrollY) + 'px';
 }
 
 function toRight(id) {
-  const listContainer = document.querySelector(
-    `.pokemon-navbar[data-id="${id}"]`
-  );
+  const listContainer = document.querySelector(`.pokemon-navbar[data-id="${id}"]`);
   listContainer.scrollLeft += 115;
-  document.getElementById("left-icon").style.display = "flex";
-//   Check if we've reached the end
-//   if (listContainer.scrollLeft + listContainer.clientWidth >= listContainer.scrollWidth) {
-//   Hide the right arrow icon
-//     document.getElementById("right-icon").style.display = "none";
-//   }
+  document.getElementById(`left-icon${id}`).style.visibility = "visible";
+  // Check if we've reached the end
+  if (listContainer.scrollLeft + listContainer.clientWidth >= listContainer.scrollWidth) {
+  // Hide the right arrow icon
+    document.getElementById(`right-icon${id}`).style.visibility = "hidden";
+  }
 }
 
 // Scroll to left
 function toLeft(id) {
-  const listContainer = document.querySelector(
-    `.pokemon-navbar[data-id="${id}"]`
-  );
+  const listContainer = document.querySelector(`.pokemon-navbar[data-id="${id}"]`);
   listContainer.scrollLeft -= 115;
-
   if (listContainer.scrollLeft === 0) {
-    //   document.getElementById("left-icon").style.display = "none";
+      document.getElementById(`left-icon${id}`).style.visibility = "hidden";
   }
   // Show the right arrow icon when scrolling left
-  // document.getElementById("right-icon").style.display = "flex";
+  document.getElementById(`right-icon${id}`).style.visibility = "visible";
 }
 
 function doNotCLose(event) {
   event.preventDefult();
 }
-
-function showScrollY() {
-  console.log(window.scrollY);
-}
-
-showScrollY();
 
 // Get the button
 let mybutton = document.querySelector(".c-scroll-top");
@@ -187,53 +164,28 @@ window.addEventListener("load", preLoader)
 
 function preLoader() {
   const loader = document.querySelector(".loader");
-
   loader.classList.add("loader-hidden");
 };
 
 function addPreLoader() {
-  document.querySelector('[data-id-big-loader]').classList.remove('loader-hidden')
+  document.querySelector(".loader").classList.remove('loader-hidden')
+  console.log('START')
 }
 
 function removePreLoader() {
-  document.querySelector('[data-id-big-loader]').classList.add('loader-hidden')
+  document.querySelector(".loader").classList.add('loader-hidden');
+  console.log('STOP')
+
 }
 
-function addOrRemovePokemonToFavorite(id) {
-  const index = favoriteArray.indexOf(id);
-
-  if (index === -1) {
-    // Pokemon ID not found in the favoriteArray, add it
-    favoriteArray.push(id);
-    
-    document.querySelector(`.icon-heart[data-id="${id}"]`).innerHTML = `<use href="./icons/heart-red.svg#Layer_1"></use>`
-    document.querySelector(`.confirmation[data-id="${id}"]`).classList.add('show-confirmation')
-    
-    document.querySelector(`.confirmation[data-id="${id}"]`).innerHTML = `<h6 class="confirmation-text">Good choice! Pokemon added to favorite.</h6>`
-    setTimeout(() => {
-      removeShowConfirmation(id);
-    }, 4000);
-  } else {
-    // Pokemon ID found in the favoriteArray, remove it
-    favoriteArray.splice(index, 1);
-    document.querySelector(`.icon-heart[data-id="${id}"]`).innerHTML = `<use href="./icons/heart-regular.svg#Layer_1"></use>`
-    document.querySelector(`.confirmation[data-id="${id}"]`).classList.add('show-confirmation')
-    document.querySelector(`.confirmation[data-id="${id}"]`).innerHTML = `<h6 class="confirmation-text">Removed from the favorite.</h6>`
-    setTimeout(() => {
-      removeShowConfirmation(id);
-    }, 4000);
-  }
-}
-
-function removeShowConfirmation(id) {
-  document.querySelector(`.confirmation[data-id="${id}"]`).classList.remove('show-confirmation')
-}
-
-function showFavariteArray() {
-  document.querySelector('.content-single').innerHTML = ''
-  for (let i = 0; i < favoriteArray.length; i++) {
-    const element = favoriteArray[i];
-    loadAllPokemonsHtml(element)
-    loadPokemons(element);
+function preventDefaultClick() {
+  let elementsClick = document.querySelectorAll('a[href="x"]');
+  
+  for (let i = 0; i < elementsClick.length; i++) {
+    elementsClick[i].addEventListener('click', function(event) {
+      event.preventDefault();
+      console.log
+      // Your other click event handling code goes here
+    });
   }
 }

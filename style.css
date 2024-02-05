@@ -68,10 +68,15 @@
 }
 
 header {
-  min-height: 180px;
+  min-height: 200px;
   margin-bottom: -30px;
   color: black;
   background-color: rgb(241,246,248);
+}
+
+.badge {
+  top: 4px !important;
+  left: 35px !important;
 }
 
 .pokemons {
@@ -99,6 +104,20 @@ header {
   color: rgb(0, 0, 0);
 }
 
+.nav-menu-element {
+  border-bottom: 3px solid transparent;
+  transition: all 300ms;
+}
+
+.nav-menu-element-active {
+  border-bottom: 3px solid rgba(0, 0, 0, 0.8); 
+}
+
+.nav-menu-element:hover {
+  border-bottom: 3px solid rgba(0, 0, 0, 0.8); 
+}
+
+.favorite-content-single,
 .search-content-single {
   display: flex;
   flex-wrap: wrap;
@@ -119,6 +138,7 @@ header {
 }
 
   /* Popup */
+.favorite-pokemon-bigger,
 .search-pokemon-bigger,
 .pokemon-bigger {
   background-color: rgba(0, 0, 0, 0.8);
@@ -138,10 +158,11 @@ header {
   display: flex;
   justify-content: space-between;
   width: 470px;
-  height: 300px;
+  height: 290px;
   margin: 20px;
 }
 
+.favorite-show,
 .search-show,
 .show {
     width: auto;
@@ -364,14 +385,14 @@ header {
   bottom: -40px;
   visibility: hidden;
   opacity: 0;
-  left: 70px;
-  right: 70px;
+  left: 60px;
+  right: 60px;
   color: rgb(255, 255, 255);
   background-color: rgba(6, 52, 57, 0.8);
 }
 
 .show-confirmation {
-  animation: test 4000ms ease;
+  animation: test 3000ms ease;
 }
 
 @keyframes test {
@@ -395,6 +416,7 @@ header {
 
 .confirmation-text {
   margin: 0;
+  padding-inline: 10px;
   text-align: center;
 }
 
@@ -445,7 +467,6 @@ header {
   background-color: rgba(212, 212, 212, 0.8);
 
 }
-
 
 .nav-arrow {
   height: 25px;
@@ -588,11 +609,11 @@ footer {
   background-color: rgb(255,255,255);
 }
 
-.load-more {
+/* .load-more {
   position: fixed;
   bottom: 50px;
-  z-index: 1;
-}
+  z-index: 1; */
+/* } */
 
 /* *{
   border: 1px solid black;
@@ -639,16 +660,8 @@ right: 30px;
   cursor: pointer;
 }
 
-.heart-menu:hover {
-  fill: rgb(255,255,255);
-  padding: 5px;
-  height: 40px;
-  width: 40px;
-  cursor: pointer;
-}
-
 .icon-arrow {
-  padding: 5px;
+  padding: 7px;
   height: 40px;
   width: 40px;
   cursor: pointer;
@@ -946,10 +959,16 @@ right: 30px;
   background-color: red;
 }
 
+.loader-hidden {
+  display: none !important;
+}
+
 .loader {
   position: fixed;
   top: 0;
   left: 0;
+  opacity: 1;
+  visibility: visible;
   width: 100%;
   height: 100vh;
   z-index: 100;
@@ -960,10 +979,6 @@ right: 30px;
   transition: opacity 0.75s, visibility 0.75s;
 }
 
-.loader-hidden {
-  opacity: 0;
-  visibility: hidden;
-}
 
 .loader-big {
   width: 75px;
@@ -972,6 +987,10 @@ right: 30px;
   border-top-color: #6669a1;;
   border-radius: 50%;
   animation: spin360 1.5s linear infinite;
+}
+
+.cursor-progress {
+  cursor: progress;
 }
 
 .little-loader {
