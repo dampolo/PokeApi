@@ -55,6 +55,7 @@ function loadAllPokemonsApiWithSearch(names) {
     loadAllPokemonsSearchHtml(element, i);
     searchAllSinglePokemonsBigHtml(element);
     loadPokemons(element);
+    preventDefaultClick()
   }
 }
 

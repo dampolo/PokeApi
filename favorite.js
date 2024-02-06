@@ -46,21 +46,24 @@ function removeShowConfirmation(id) {
     document.querySelector('.search-content-single').innerHTML = '';
     document.querySelector('.favorite-content-single').innerHTML = '';
     document.querySelector('.favorite-show').innerHTML = '';
-
-
-    
       // Hide/show elements
     document.querySelector('.content-single').classList.add('d-none');
     document.querySelector('.search-content-single').classList.add('d-none');
     document.querySelector('.favorite-content-single').classList.remove('d-none');
 
     document.querySelector('.load-more-pokemons').disabled = true;
-    for (let i = 0; i < favoriteArray.length; i++) {
-      const element = favoriteArray[i];
-      loadAllPokemonsFavoriteHtml(element, i)
-      loadAllFavoritePokemonsBigHtml(element)
-      loadPokemons(element);
+    
+    if(favoriteArray.length === 0) {
+      document.querySelector('.favorite-content-single').innerHTML = 'You do not have any favortie pokemons.';
+    } else { 
+      for (let i = 0; i < favoriteArray.length; i++) {
+        const element = favoriteArray[i];
+        loadAllPokemonsFavoriteHtml(element, i)
+        loadAllFavoritePokemonsBigHtml(element)
+        loadPokemons(element);
+      }
     }
+    preventDefaultClick()
   }
   
   function countTheFavoritePokeomns(favoriteArray) {
