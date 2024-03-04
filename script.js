@@ -7,7 +7,7 @@ function loadAllPokemonsApi() {
   for (let id = firstPokemon; id <= amountOfThePokemon; id++) {
     loadAllPokemonsHtml(id);
     loadPokemons(id);
-    loadAllSinglePokemonsBigHtmlOhneHeart(id);
+    loadAllSinglePokemonsBigHtml(id);
   }
 }
 

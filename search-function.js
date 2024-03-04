@@ -141,12 +141,7 @@ function loadPokemonsAfterSearch() {
   for (let id = originPokemon; id <= amountOfThePokemon; id++) {
     loadAllPokemonsHtml(id);
     loadPokemons(id);
-  
-    if (findFavorite(id)) {
-      loadAllSinglePokemonsBigHtmlWithHeart(id)
-    } else {
-      loadAllSinglePokemonsBigHtmlOhneHeart(id);
-    }
+    loadAllSinglePokemonsBigHtml(id)
   }
   document.querySelector('.pokemons').classList.remove('cursor-progress')
 
