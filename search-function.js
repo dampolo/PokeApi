@@ -120,10 +120,6 @@ function searchNextImageLeft(id, i) {
   searchAddNumberToNextImageRight(id, i);
 }
 
-function findFavorite(id) {
-  return favoriteArray.includes(id);
-}
-
 function loadPokemonsAfterSearch() {
   
   document.querySelector('.homepage').classList.add('nav-menu-element-active')
