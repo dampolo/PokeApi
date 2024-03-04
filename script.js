@@ -51,7 +51,6 @@ function loadMorePokemons() {
 function loadAllPokemonsApiWithSearch(names) {
   for (let i = 0; i < names.length; i++) {
     const element = names[i];
-    console.log(i)
     loadAllPokemonsSearchHtml(element, i);
     searchAllSinglePokemonsBigHtml(element);
     loadPokemons(element);
@@ -176,7 +175,6 @@ function addPreLoader() {
 function removePreLoader() {
   document.querySelector(".loader").classList.add('loader-hidden');
   console.log('STOP')
-
 }
 
 function preventDefaultClick() {

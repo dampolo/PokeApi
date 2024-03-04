@@ -392,10 +392,10 @@ header {
 }
 
 .show-confirmation {
-  animation: test 3000ms ease;
+  animation: confirmation 3000ms ease;
 }
 
-@keyframes test {
+@keyframes confirmation {
   0% { opacity: 0;
     visibility: hidden;
     bottom: -40px;

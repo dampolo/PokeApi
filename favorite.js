@@ -27,11 +27,11 @@ function addOrRemovePokemonToFavorite(id) {
     displayCountTheFavoritePokeomns();
   }
   
-  function removeShowConfirmationTime(id) {
-    setTimeout(() => {
-      removeShowConfirmation(id);
-    }, 3000);
-  }
+function removeShowConfirmationTime(id) {
+  setTimeout(() => {
+    removeShowConfirmation(id);
+  }, 3000);
+}
   
 function removeShowConfirmation(id) {
     document.querySelector(`.confirmation[data-id="${id}"]`).classList.remove('show-confirmation')

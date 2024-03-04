@@ -1,4 +1,5 @@
 function searchAllSinglePokemonsBigHtml(id) {
+    let favoritePokemon = favoriteArray.includes(id)
     const pokemonBiggerEl = document.querySelector('.search-show');
     pokemonBiggerEl.innerHTML += /*html*/ `
 
@@ -17,7 +18,7 @@ function searchAllSinglePokemonsBigHtml(id) {
                 </svg>
                 
                 <svg onclick="addOrRemovePokemonToFavorite(${id})" class="icon-heart" data-id="${id}">
-                  <use href="./icons/heart-regular.svg#Layer_1"></use>
+                  ${favoritePokemon ? '<use href="./icons/heart-red.svg#Layer_1"></use>' : '<use href="./icons/heart-regular.svg#Layer_1"></use>'}
                 </svg>
               </div>
 
