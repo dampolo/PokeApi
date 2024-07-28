@@ -120,17 +120,15 @@ function searchNextImageLeft(id, i) {
   searchAddNumberToNextImageRight(id, i);
 }
 
-function loadPokemonsAfterSearch() {
-  
+
+function loadPokemonsAfterSearch() {  
   document.querySelector('.homepage').classList.add('nav-menu-element-active')
   document.querySelector('.favorite').classList.remove('nav-menu-element-active')
-
   document.querySelector('.pokemons').classList.add('cursor-progress')
   document.querySelector('.content-single').classList.remove('d-none');
   document.querySelector('.content-single').innerHTML = '';
   document.querySelector('.favorite-show').innerHTML = '';
   document.querySelector('.favorite-content-single').innerHTML = '';
-
   document.querySelector('.search-content-single').classList.add('d-none');
   document.querySelector('.load-more-pokemons').removeAttribute("disabled");
   
@@ -140,5 +138,4 @@ function loadPokemonsAfterSearch() {
     loadAllSinglePokemonsBigHtml(id)
   }
   document.querySelector('.pokemons').classList.remove('cursor-progress')
-
 }

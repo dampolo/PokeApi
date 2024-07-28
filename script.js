@@ -74,7 +74,6 @@ function nextImageRight(id) {
 function nextImageLeft(id) {
   document.getElementById("imageRight").style.visibility = 'visible';
   id--;
-  console.log(id)
   updateOffsetLeft(id);
   loadPokemonInfo(id);
   if(id ===  1) {
@@ -169,12 +168,10 @@ function preLoader() {
 
 function addPreLoader() {
   document.querySelector(".loader").classList.remove('loader-hidden')
-  console.log('START')
 }
 
 function removePreLoader() {
   document.querySelector(".loader").classList.add('loader-hidden');
-  console.log('STOP')
 }
 
 function preventDefaultClick() {
@@ -183,7 +180,6 @@ function preventDefaultClick() {
   for (let i = 0; i < elementsClick.length; i++) {
     elementsClick[i].addEventListener('click', function(event) {
       event.preventDefault();
-      console.log
       // Your other click event handling code goes here
     });
   }

@@ -2,10 +2,8 @@ function loadAllSinglePokemonsBigHtml(id) {
     let favoritePokemon = favoriteArray.includes(id)
     const pokemonBiggerEl = document.querySelector('.show');
     pokemonBiggerEl.innerHTML += /*html*/ `
-            
             <div class="main-slider">
               <div class="slider">
-                
                 <div class="pokemon-top-section" data-id="${id}">
                 <div class="small-loader-content">
                   <div class="small-loader">                    
