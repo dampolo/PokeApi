@@ -43,7 +43,6 @@ async function mainEvolutionAPI(id) {
     // ##18 - 1 part load-single-pokemon.js
     const chainNumber = extractNumberFromUrl(currentPokemonEvolutionChain);
     const currentPokemonEvolution = await sendRequest(`/evolution-chain/${chainNumber}`);
-    // console.log('Evolution:', currentPokemonEvolution);
 
     const defultName = currentPokemonEvolution.chain.species.name;
     let firstName = '';
@@ -97,14 +96,8 @@ async function loadPokemons(id){
 
 async function loadPokemonInfo(id){
     const pokemon = await createNewPokemonApi(id);
-    // console.log('1pokemon', pokemon);
     const pokemonSpecies = await createNewPokemonSpeciesApi(id);
-    // console.log('2pokemonSpecies', pokemonSpecies)
-    console.log('Description', pokemonSpecies.flavor_text_entries)
-
-    
     const pokemonAllRatesList = await createAllPokemonGrowthRatesApi();
-    // console.log('Rates', pokemonAllRatesList)
     
     nameOfPokemonBig(id, pokemon.name); //##3 load-single-pokemon.js
     pokemonTypeBig(id, pokemon.types); //##4 load-single-pokemon.js
