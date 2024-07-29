@@ -12,11 +12,11 @@ function loadAllSinglePokemonsBigHtml(id) {
               <div class="pokemon-arrow-heart">
 
                 <svg onclick="closeImage(event)" class="icon-arrow" data-id="${id}">
-                  <use href="./icons/arrow-narrow-left.svg#Layer_2"></use>
+                  <use href="assets/icons/arrow-narrow-left.svg#Layer_2"></use>
                 </svg>
                 
                 <svg onclick="addOrRemovePokemonToFavorite(${id})" class="icon-heart" data-id="${id}">
-                  ${favoritePokemon ? '<use href="./icons/heart-red.svg#Layer_1"></use>' : '<use href="./icons/heart-regular.svg#Layer_1"></use>'}
+                  ${favoritePokemon ? '<use href="assets/icons/heart-red.svg#Layer_1"></use>' : '<use href="assets/icons/heart-regular.svg#Layer_1"></use>'}
                 </svg>
               </div>
 
@@ -41,7 +41,7 @@ function loadAllSinglePokemonsBigHtml(id) {
             <div class="navbar-section">
               <div id="left-icon${id}" class="nav-arrow-single" onclick="toLeft(${id})">
                 <a href="x">
-                  <img class="nav-arrow" src="./icons/nav-arrow-left.svg" alt="left-icon"/>
+                  <img class="nav-arrow" src="assets/icons/nav-arrow-left.svg" alt="left-icon"/>
               </a>
             </div>
                 <ul class="pokemon-navbar" data-id="${id}">
@@ -71,7 +71,7 @@ function loadAllSinglePokemonsBigHtml(id) {
                   </li>
                 </ul>
                 <div id="right-icon${id}" class="nav-arrow-single" onclick="toRight(${id})">
-                  <a href="x"><img class="nav-arrow" src="./icons/nav-arrow-right.svg" alt="right-icon"/> </a>
+                  <a href="x"><img class="nav-arrow" src="assets/icons/nav-arrow-right.svg" alt="right-icon"/> </a>
                 </div>
               </div>
               <div class="all-sections">         
@@ -96,9 +96,9 @@ function loadAllSinglePokemonsBigHtml(id) {
                     
                     <dt class="about-dt">Gender</dt>
                     <div class="gender-info">
-                      <dd><img src="./icons/gender-female.svg" alt=""></dd>
+                      <dd><img src="assets/icons/gender-female.svg" alt=""></dd>
                       <dd class="pokemon-gender-female" data-id="${id}"></dd>
-                      <dd><img src="./icons/gender-male.svg" alt=""></dd>
+                      <dd><img src="assets/icons/gender-male.svg" alt=""></dd>
                       <dd class="pokemon-gender-male" data-id="${id}"></dd>
                     </div>
 
@@ -114,28 +114,28 @@ function loadAllSinglePokemonsBigHtml(id) {
                   <h5>Description of <span class="pokemon-name-big text-capitalize text-center" data-id="${id}"></span> in following languages:</h5>
                   <div class="d-flex py-lg-3 pt-md-0 justify-content-center">
                     <button type="button" class="btn btn-outline-dark p-0 rounded-1" data-id="${id}" data-bs-toggle="tooltip" data-bs-title="English" >
-                      <img class="flag english flag-active" src="./icons/english-flag.png" alt="english-flag" data-id="${id}" onclick="pokemonLanguages('${id}','english')">
+                      <img class="flag english flag-active" src="assets/icons/english-flag.png" alt="english-flag" data-id="${id}" onclick="pokemonLanguages('${id}','english')">
                     </button>
                     <button type="button" class="btn btn-outline-dark p-0 rounded-1" data-id="${id}" data-bs-toggle="tooltip" data-bs-title="German">
-                      <img class="flag german" src="./icons/german-flag.png" alt="german-flag" data-id="${id}" onclick="pokemonLanguages('${id}','german')">
+                      <img class="flag german" src="assets/icons/german-flag.png" alt="german-flag" data-id="${id}" onclick="pokemonLanguages('${id}','german')">
                     </button>
                     <button type="button" class="btn btn-outline-dark p-0 rounded-1" data-id="${id}" data-bs-toggle="tooltip" data-bs-title="Spanish">
-                      <img class="flag spanish" src="./icons/spain-flag.png" alt="spain-flag" data-id="${id}" onclick="pokemonLanguages('${id}','spanish')">
+                      <img class="flag spanish" src="assets/icons/spain-flag.png" alt="spain-flag" data-id="${id}" onclick="pokemonLanguages('${id}','spanish')">
                       </button>
                     <button type="button" class="btn btn-outline-dark p-0 rounded-1" data-id="${id}" data-bs-toggle="tooltip" data-bs-title="French">
-                      <img class="flag french" src="./icons/french-flag.png" alt="french-flag"data-id="${id}"  onclick="pokemonLanguages('${id}','french')">      
+                      <img class="flag french" src="assets/icons/french-flag.png" alt="french-flag"data-id="${id}"  onclick="pokemonLanguages('${id}','french')">      
                     </button>
                     <button type="button" class="btn btn-outline-dark p-0 rounded-1" data-id="${id}" data-bs-toggle="tooltip" data-bs-title="Italian">
-                      <img class="flag italian" src="./icons/italian-flag.png" alt="italian-flag" data-id="${id}" onclick="pokemonLanguages('${id}','italian')">
+                      <img class="flag italian" src="assets/icons/italian-flag.png" alt="italian-flag" data-id="${id}" onclick="pokemonLanguages('${id}','italian')">
                     </button>
                     <button type="button" class="btn btn-outline-dark p-0 rounded-1" data-id="${id}" data-bs-toggle="tooltip" data-bs-title="Japanese">
-                      <img class="flag japanese" src="./icons/japan-flag.png" alt="japan-flag" data-id="${id}" onclick="pokemonLanguages('${id}','japanese')">
+                      <img class="flag japanese" src="assets/icons/japan-flag.png" alt="japan-flag" data-id="${id}" onclick="pokemonLanguages('${id}','japanese')">
                     </button>
                     <button type="button" class="btn btn-outline-dark p-0 rounded-1" data-id="${id}" data-bs-toggle="tooltip" data-bs-title="Koren">
-                      <img class="flag koreanish" src="./icons/korean-flag.png" alt="korean-flag" data-id="${id}" onclick="pokemonLanguages('${id}','koreanish')">
+                      <img class="flag koreanish" src="assets/icons/korean-flag.png" alt="korean-flag" data-id="${id}" onclick="pokemonLanguages('${id}','koreanish')">
                     </button>
                     <button type="button" class="btn btn-outline-dark p-0 rounded-1" data-id="${id}" data-bs-toggle="tooltip" data-bs-title="Chinesisch">
-                      <img class="flag chinesisch" src="./icons/china-flag.png" alt="china-flag" data-id="${id}" onclick="pokemonLanguages('${id}','chinesisch')">
+                      <img class="flag chinesisch" src="assets/icons/china-flag.png" alt="china-flag" data-id="${id}" onclick="pokemonLanguages('${id}','chinesisch')">
                     </button>
 
 
@@ -180,7 +180,7 @@ function loadAllSinglePokemonsBigHtml(id) {
                       <div class="defult-name-evolution" data-id="${id}"></div>
                     </div>
 
-                    <img loading="lazy" class="icon-arrow" src="./icons/arrow-narrow-right.svg" alt="arrow-right">
+                    <img loading="lazy" class="icon-arrow" src="assets/icons/arrow-narrow-right.svg" alt="arrow-right">
                       
                     <div class="evolution-single">
                       <img loading="lazy" class="img-first-name-evolution" data-id="${id}" src="" alt="" srcset="" />
@@ -195,7 +195,7 @@ function loadAllSinglePokemonsBigHtml(id) {
                       <div class="first-name-evolution" data-id="${id}"></div>
                     </div>
                     
-                    <img loading="lazy" class="icon-arrow" src="./icons/arrow-narrow-right.svg" alt="arrow-right">
+                    <img loading="lazy" class="icon-arrow" src="assets/icons/arrow-narrow-right.svg" alt="arrow-right">
                     
                     <div class="evolution-single">
                       <img loading="lazy" class="img-second-name-evolution" data-id="${id}" src="" alt="" srcset="" />

@@ -11,7 +11,7 @@ function addOrRemovePokemonToFavorite(id) {
     if (index === -1) {
       // Pokemon ID not found in the favoriteArray, add it
       favoriteArray.push(id);
-      document.querySelector(`.icon-heart[data-id="${id}"]`).innerHTML = `<use href="./icons/heart-red.svg#Layer_1"></use>`
+      document.querySelector(`.icon-heart[data-id="${id}"]`).innerHTML = `<use href="assets/icons/heart-red.svg#Layer_1"></use>`
       document.querySelector(`.confirmation[data-id="${id}"]`).classList.add('show-confirmation')
       
       document.querySelector(`.confirmation[data-id="${id}"]`).innerHTML = `<h6 class="confirmation-text">Good choice! Pokemon added to favorite.</h6>`
@@ -19,7 +19,7 @@ function addOrRemovePokemonToFavorite(id) {
     } else {
       // Pokemon ID found in the favoriteArray, remove it
       favoriteArray.splice(index, 1);
-      document.querySelector(`.icon-heart[data-id="${id}"]`).innerHTML = `<use href="./icons/heart-regular.svg#Layer_1"></use>`
+      document.querySelector(`.icon-heart[data-id="${id}"]`).innerHTML = `<use href="assets/icons/heart-regular.svg#Layer_1"></use>`
       document.querySelector(`.confirmation[data-id="${id}"]`).classList.add('show-confirmation')
       document.querySelector(`.confirmation[data-id="${id}"]`).innerHTML = `<h6 class="confirmation-text">Removed from the favorite.</h6>`
       removeShowConfirmationTime(id);
